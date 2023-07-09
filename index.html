@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inicio</title>
+        <link rel="stylesheet" href="index.css">
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+    </head>
+    <body>
+        <div id="main-container">
+            <div id="main-content">
+                <div id="time-greeting">
+                    <span id="time-greeting-text"></span>
+                </div>
+                <div id="current-time">
+                    <span id="current-time-text"></span></h1>
+                </div>
+                <div id="search">
+                    <div id="search-engine-cont">
+                        <select name="search-engine" class="button" id="search-engine-select">
+                            <option value="google">Google</option>
+                            <option value="ddg" selected="selected">DuckDuckGo</option>
+                        </select>
+                    </div>
+                    <div id="search-input-cont">
+                        <input id="search-input" placeholder="cd ~/..." autofocus/>
+                    </div>
+                    <div id="search-button-cont">
+                        <button class="button" id="search-button" onclick="doSearch()">Buscar</button>
+                    </div>
+                </div>
+                <div id="links">
+                    <div class="link-group" id="dev">
+                        <ul>
+                            <li class="link-group-title">Dev</li>
+                            <li><a href="https://www.stackoverflow.com"><span class="link-text">Stack Overflow</span></a></li>
+                            <li><a href="https://www.github.com"><span class="link-text">GitHub</span></a></li>
+                            <li><a href="https://wiki.archlinux.org"><span class="link-text">Arch Wiki</span></a></li>
+                            <li><a href="https://developer.mozilla.org"><span class="link-text">MDN Web Docs</span></a></li>
+                            <li><a href="https://chat.openai.com"><span class="link-text">ChatGPT</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group" id="media">
+                        <ul>
+                            <li class="link-group-title">Media</li>
+                            <li><a href="https://zaap.bio/Axenide"><span class="link-text">Axenide</span></a></li> 
+                            <li><a href="https://www.youtube.com"><span class="link-text">YouTube</span></a></li> 
+                            <li><a href="https://www.twitch.tv"><span class="link-text">Twitch</span></a></li>
+                            <li><a href="https://www.twitter.com"><span class="link-text">Twitter</span></a></li>
+                            <li><a href="https://www.reddit.com"><span class="link-text">Reddit</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group" id="socials">
+                        <ul>
+                            <li class="link-group-title">Universidad</li>
+                            <li><a href="https://mail.google.com"><span class="link-text">Gmail</span></a></li>
+                            <li><a href="https://www.notion.so"><span class="link-text">Notion</span></a></li>
+                            <li><a href="https://slack.com"><span class="link-text">Slack</span></a></li>
+                            <li><a href="https://virtual.um.edu.ar/"><span class="link-text">Cátedras Virtuales</span></a></li>
+                            <li><a href="https://portal.um.edu.ar"><span class="link-text">Portal Estudiantes</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="index.js"></script>
+</html>
