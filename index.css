@@ -16,7 +16,7 @@
 body {
     background: url('background.jpg') center/cover;
     background-color: var(--bg-color);
-    font-family: "VictorMono Nerd Font";
+    font-family: "Iosevka Nerd Font";
     margin: 0px;
     min-height: 100vh;
 }
