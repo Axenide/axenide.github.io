@@ -25,6 +25,9 @@ function doSearch() {
             break;
         case 'ddg':
             window.location.href = `https://www.duckduckgo.com/?q=${query}`
+            break;
+        case 'bing':
+            window.location.href = `https://www.bing.com/search?q=${query}`
     }
 }
 
