@@ -3,25 +3,27 @@ import Layout from '../layouts/Layout.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 
 const skills = [
-  "dev", "python", "design", "music", 
-  "gamedev", "art", "tech", "engineering", "ai"
+  "dev", "gamedev", "tech", "engineering", 
+  "python", "ai", 
+  "design", "art", 
+  "music"
 ];
 
 const socialMedia = [
   { name: 'YouTube', icon: 'youtube', url: 'https://www.youtube.com/@Axenide' },
-  { name: 'X', icon: 'x', url: 'https://x.com/Axenide' },
-  { name: 'GitHub', icon: 'github', url: 'https://github.com/Axenide' },
   { name: 'Twitch', icon: 'twitch', url: 'https://www.twitch.tv/Axenide' },
   { name: 'Instagram', icon: 'instagram', url: 'https://www.instagram.com/Axenide' },
+  { name: 'X', icon: 'x', url: 'https://x.com/Axenide' },
+  { name: 'GitHub', icon: 'github', url: 'https://github.com/Axenide' },
 ];
 ---
 
-<Layout title="Your Name - Portfolio">
+<Layout title="Adriano Tisera (@Axenide)">
 	<main>
 		<ThemeToggle />
 		<div class="portfolio-container">
 			<div class="content-wrapper">
-        <img src="/media/pic.png" alt="Your Name" class="profile-photo">
+        <img src="/media/pic.png" alt="" class="profile-photo">
 				<div class="text-content">
 					<h1 class="name">Adriano Tisera</h1>
 					<p class="username">@Axenide</p>
@@ -41,11 +43,11 @@ const socialMedia = [
 				))}
 			</div>
       <div class="links">
-        <a href="https://cafecito.app/Axenide" class="link" target="_blank" rel="noopener noreferrer">☕ Cafecito</a>
+        <a href="https://cafecito.app/Axenide" class="link" target="_blank" rel="noopener noreferrer">Cafecito</a>
         <span class="separator">|</span>
-        <a href="https://ko-fi.com/Axenide" class="link" target="_blank" rel="noopener noreferrer">♥️ Ko-Fi</a>
+        <a href="https://ko-fi.com/Axenide" class="link" target="_blank" rel="noopener noreferrer">Ko-Fi</a>
         <span class="separator">|</span>
-        <a href="https://paypal.me/Axenide" class="link" target="_blank" rel="noopener noreferrer">💸 PayPal</a>
+        <a href="https://paypal.me/Axenide" class="link" target="_blank" rel="noopener noreferrer">PayPal</a>
       </div>
 		</div>
 	</main>
@@ -131,12 +133,12 @@ const socialMedia = [
 	}
 
 	.profile-photo {
-		width: 200px;
-		height: 200px;
+		width: 180px;
+		height: 180px;
 		border-radius: 50%;
 		object-fit: cover;
 		margin-bottom: 1rem;
-    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.25));
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
 	}
 
 	.text-content {
@@ -208,7 +210,8 @@ const socialMedia = [
 	}
 
 	.social-button:hover {
-		transform: scale(1.1);
+    translate: 0 -2px;
+    filter: drop-shadow(0 0px 2px rgba(var(--shadow-color), 0.5));
 	}
 
 	.social-button svg {
@@ -217,10 +220,6 @@ const socialMedia = [
 		fill: var(--social-icon-color);
     transition: all 0.1s ease;
 	}
-
-  .social-button svg:hover {
-    fill: var(--hover-color);
-  }
 
   .links {
     display: flex;
@@ -232,10 +231,12 @@ const socialMedia = [
   .link {
     color: var(--text-color);
     font-size: 0.8rem;
+    transition: all 0.1s ease;
   }
 
   .link:hover {
     color: var(--hover-color);
+    font-weight: bold;
   }
 
   .separator {
@@ -250,7 +251,7 @@ const socialMedia = [
 			flex-direction: row;
 			justify-content: flex-start;
 			align-items: center;
-			margin-bottom: 2rem;
+			margin-bottom: 1rem;
 		}
 
 		.profile-photo {
@@ -261,6 +262,7 @@ const socialMedia = [
 		.text-content {
 			text-align: left;
 			flex: 1;
+      translate: 0 0.8rem;
 		}
 
 		.name {
