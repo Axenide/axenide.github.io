@@ -25,7 +25,10 @@ const socialMedia = [
 		<ThemeToggle />
 		<div class="portfolio-container">
 			<div class="content-wrapper">
-        <img src="/media/pic.png" alt="" class="profile-photo">
+        <div class="profile-photo-container">
+          <img src="/media/pic.png" alt="" class="profile-photo">
+          <img src="/media/pfp.png" alt="" class="profile-photo profile-photo-hover">
+        </div>
 				<div class="text-content">
 					<h1 class="name">Adriano Tisera</h1>
 					<p class="username">@Axenide</p>
@@ -121,7 +124,7 @@ const socialMedia = [
 		width: 100%;
 		padding: 2rem;
 		background: linear-gradient(to bottom, rgba(var(--bg), 0.75), rgba(var(--shadow-color), 0.05));
-		border-radius: 10px;
+		border-radius: 16px;
 		border: 2px solid var(--tag-border);
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.25);
 		backdrop-filter: blur(3px);
@@ -134,13 +137,38 @@ const socialMedia = [
 		width: 100%;
 	}
 
+	.profile-photo-container {
+		position: relative;
+		width: 180px;
+		height: 180px;
+		margin-bottom: 1rem;
+	}
+
 	.profile-photo {
 		width: 180px;
 		height: 180px;
 		border-radius: 50%;
 		object-fit: cover;
-		margin-bottom: 1rem;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+		position: absolute;
+		top: 0;
+		left: 0;
+		box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+		transition: all 0.6s ease-in-out;
+	}
+
+	.profile-photo-hover {
+		opacity: 0;
+		transform: rotate(0deg);
+	}
+
+	.profile-photo-container:hover .profile-photo:first-child {
+		opacity: 0;
+		transform: rotate(360deg);
+	}
+
+	.profile-photo-container:hover .profile-photo-hover {
+		opacity: 1;
+		transform: rotate(360deg);
 	}
 
 	.text-content {
@@ -158,6 +186,7 @@ const socialMedia = [
 
 	.username {
 		font-size: 1rem;
+    font-weight: bold;
 		margin: 0.25rem 0 0.75rem;
 		color: var(--username-color);
 	}
@@ -255,7 +284,7 @@ const socialMedia = [
 			margin-bottom: 1rem;
 		}
 
-		.profile-photo {
+		.profile-photo-container {
 			margin-right: 2rem;
 			margin-bottom: 0;
 		}
