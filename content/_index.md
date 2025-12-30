@@ -165,7 +165,7 @@ no_header = true
         <span class="retro-letter" style="--i:7" data-text="e">e</span>
     </h1>
     <p style="font-size: 1rem; margin-bottom: 2rem; line-height: 1.6;">
-      Soy Adriano Tisera, conocido en Internet como Axenide. Futuro ingeniero informático, tecnólogo y científico. Hago videos, música, animación y videojuegos... Entre otras cosas.
+      Soy <mark>Adriano Tisera</mark>, conocido en Internet como <mark>Axenide</mark>. Futuro ingeniero informático, tecnólogo y científico. Soy programador, hago videos, música, animación y videojuegos... Entre otras cosas.
     </p>
     <div class="buttons">
       <a class="button suggested" href="@/blog/_index.md" style="border-radius: 2rem; padding: 0.5rem 1.5rem;">Sobre mí ↓</a>
