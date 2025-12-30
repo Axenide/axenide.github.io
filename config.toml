@@ -25,7 +25,7 @@ highlight_code = true
 smart_punctuation = true
 
 [extra]
-accent_color = "hsl(0, 45%, 55%)"
+accent_color = "hsl(0.01, 68%, 55%)"
 date_format = "%d %B %Y"
 
 [extra.meta]

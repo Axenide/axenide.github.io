@@ -1,5 +1,5 @@
 +++
-title = "¡Hola Mundo!"
+title = "¡Hola, mundo!"
 date = 2025-12-30
 [taxonomies]
 tags = ["general"]
