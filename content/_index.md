@@ -5,6 +5,10 @@ insert_anchor_links = "left"
 no_header = true
 +++
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bytesized&display=swap" rel="stylesheet">
+
 <style>
   /* Definimos la propiedad para que el navegador sepa interpolarla suavemente */
   @property --wave-amplitude {
@@ -70,7 +74,7 @@ no_header = true
     left: 0;
     top: 0;
     z-index: 10;
-    background: linear-gradient(180deg, #EA6962 0%, #cc241d 100%);
+    background: linear-gradient(180deg, #EA6962 0%, #db4740 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
