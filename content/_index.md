@@ -74,7 +74,7 @@ no_header = true
     left: 0;
     top: 0;
     z-index: 10;
-    background: linear-gradient(180deg, #EA6962 0%, #db4740 100%);
+    background: linear-gradient(180deg, #ff6b4d 0%, #db4740 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -99,6 +99,49 @@ no_header = true
       drop-shadow(1px 1px 0 #000)
       drop-shadow(1px 1px 0 #000);
   }
+
+  /* --- ESTILOS PARA LA FOTO DE AVATAR (RETRO) --- */
+  .retro-avatar-container {
+    flex-shrink: 0;
+    transform: rotate(6deg);
+    /* Borde blanco exterior NÍTIDO alrededor de todo el contenedor */
+    filter: 
+      drop-shadow(2px 0 0 white)
+      drop-shadow(-2px 0 0 white)
+      drop-shadow(0 2px 0 white)
+      drop-shadow(0 -2px 0 white);
+  }
+
+  .retro-avatar {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-radius: 45px;
+    
+    /* Borde interno (color rojo) + Borde externo (negro) simulados con box-shadow */
+    /* border: 8px solid black; <-- Reemplazamos esto por boxShadow para tener múltiples bordes */
+    
+    box-shadow: 
+      /* Borde Rojo (6px) */
+      0 0 0 6px #db4740,
+      
+      /* Borde Negro (6px + 8px = 14px) */
+      0 0 0 14px #000,
+      
+      /* Block Shadow: 
+         Para que nazca del borde negro, las sombras deben tener el MISMO spread (14px)
+         que el borde negro, y luego desplazarlas (offset). */
+      1px 1px 0 14px #000,
+      2px 2px 0 14px #000,
+      3px 3px 0 14px #000,
+      4px 4px 0 14px #000,
+      5px 5px 0 14px #000,
+      6px 6px 0 14px #000;
+      
+    /* Margen aumentado para compensar spread + sombra */
+    margin: 20px; 
+  }
 </style>
 
 <div style="display: flex; align-items: center; justify-content: center; min-height: 80vh; gap: 2rem; flex-wrap: wrap; padding: 2rem;">
@@ -120,16 +163,7 @@ no_header = true
     </div>
   </div>
   
-  <div style="flex-shrink: 0;">
-    <img src="/images/avatar.png" alt="Axenide" style="
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 45px;
-      border: 6px solid var(--accent-color, #b57edc);
-      transform: rotate(6deg);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      display: block;
-    ">
+  <div class="retro-avatar-container">
+    <img src="/images/avatar.png" alt="Axenide" class="retro-avatar">
   </div>
 </div>
