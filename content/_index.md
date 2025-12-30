@@ -147,7 +147,7 @@ no_header = true
     margin: 20px; 
     
     /* Transición suave de la rotación */
-    transition: transform 0.8s ease-in-out;
+    transition: transform 0.75s ease-in-out;
   }
   
   /* Eliminados keyframes y estilos antiguos */
