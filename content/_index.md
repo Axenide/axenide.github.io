@@ -110,7 +110,32 @@ no_header = true
       drop-shadow(-2px 0 0 white)
       drop-shadow(0 2px 0 white)
       drop-shadow(0 -2px 0 white);
+    
+    /* Transición suave para que al soltar el hover, vuelva naturalmente a su posición */
+    transition: transform 0.5s ease-in-out;
   }
+  
+  /* Animación 1: Rotación (aplicada al contenedor) */
+  /* Usamos transform directo en lugar de animation para permitir transición de vuelta */
+  .retro-avatar-container:hover {
+    transform: rotate(-354deg); /* 360 grados antihorario (6 - 360) */
+  }
+
+  /* Animación 2: Solo MANTENIMIENTO DE ESTILO - SIN ESCALA */
+  .retro-avatar-container:hover .retro-avatar {
+    /* No hay animación, solo mantenemos el estilo por seguridad */
+    box-shadow: 
+      0 0 0 6px #db4740,
+      0 0 0 14px #000,
+      1px 1px 0 14px #000,
+      2px 2px 0 14px #000,
+      3px 3px 0 14px #000,
+      4px 4px 0 14px #000,
+      5px 5px 0 14px #000,
+      6px 6px 0 14px #000;
+  }
+  
+  /* Eliminados keyframes retro-spin y retro-pulse */
 
   .retro-avatar {
     width: 200px;
@@ -164,6 +189,6 @@ no_header = true
   </div>
   
   <div class="retro-avatar-container">
-    <img src="/images/avatar.png" alt="Axenide" class="retro-avatar">
+    <img src="/images/avatar.png" alt="Axenide" class="retro-avatar no-hover">
   </div>
 </div>
