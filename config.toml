@@ -1,9 +1,55 @@
 base_url = "https://axeni.de"
+title = "Axenide"
+description = "Hago cosas."
+theme = "ametrine"
 compile_sass = true
 build_search_index = true
+default_language = "es"
+
+taxonomies = [
+    {name = "categories", feed = true},
+    {name = "tags", feed = true},
+]
+
+[languages.en]
+title = "Axenide"
+description = "I do things."
+generate_feeds = true
+taxonomies = [
+    {name = "categories", feed = true},
+    {name = "tags", feed = true},
+]
 
 [markdown]
 highlight_code = true
+smart_punctuation = true
 
 [extra]
-theme = "ametrine"
+accent_color = "hsl(0, 45%, 55%)"
+date_format = "%d %B %Y"
+
+[extra.meta]
+favicon = true
+
+[extra.nav]
+icon = "apple-touch-icon.png"
+links = [
+    { url = "@/blog/_index.md", name = "Blog", icon = "newspaper" },
+]
+
+[extra.nav.en]
+links = [
+    { url = "@/blog/_index.md", name = "Blog", icon = "newspaper" },
+]
+
+[extra.footer]
+copyright = "© $YEAR Axenide"
+show_powered_by = true
+show_timestamp = true
+socials = [
+    { url = "https://github.com", icon = "github" },
+]
+
+[extra.footer.en]
+copyright = "© $YEAR Axenide"
+
