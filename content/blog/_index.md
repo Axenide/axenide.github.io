@@ -7,10 +7,4 @@ paginate_by = 5
 [extra]
 no_header = true
 +++
-{% crt() %}
-```
-░█▀▄░█░░░█▀█░█▀▀
-░█▀▄░█░░░█░█░█░█
-░▀▀░░▀▀▀░▀▀▀░▀▀▀
-```
-{% end %}
+{{ retro_text(text="Blog", tag="h1") }}
