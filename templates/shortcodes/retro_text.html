@@ -17,6 +17,10 @@
     line-height: 1;
     cursor: default;
     
+    text-decoration: none !important;
+    border: none !important;
+    outline: none !important;
+
     filter: 
       drop-shadow(2px 0 0 white)
       drop-shadow(-2px 0 0 white)
@@ -84,6 +88,10 @@
 
 <{{ tag | default(value="div") }} class="retro-word" {% if size %}style="font-size: {{ size }};"{% endif %}>
     {% for char in text %}
-        <span class="retro-letter" style="--i:{{ loop.index }}" data-text="{{ char }}">{{ char }}</span>
+        {% if char == " " %}
+            <span class="retro-letter" style="--i:{{ loop.index }}; width: 0.5em;" data-text="&nbsp;">&nbsp;</span>
+        {% else %}
+            <span class="retro-letter" style="--i:{{ loop.index }}" data-text="{{ char }}">{{ char }}</span>
+        {% endif %}
     {% endfor %}
 </{{ tag | default(value="div") }}>
