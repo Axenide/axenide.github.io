@@ -103,39 +103,32 @@ no_header = true
   /* --- ESTILOS PARA LA FOTO DE AVATAR (RETRO) --- */
   .retro-avatar-container {
     flex-shrink: 0;
-    transform: rotate(6deg);
-    /* Borde blanco exterior NÍTIDO alrededor de todo el contenedor */
+    transform: rotate(6deg); /* Inclinación fija inicial del marco */
+    
+    /* APLICAMOS LOS EFECTOS DE SOMBRA AQUÍ (EN EL PADRE ESTÁTICO) */
+    /* De esta forma, la sombra siempre se proyecta en la misma dirección 
+       independientemente de cómo gire la imagen interior */
     filter: 
+      /* 1. BLOCK SHADOW NEGRA (Proyección sólida) */
+      /* Encadenamos drop-shadows para crear la extrusión */
+      drop-shadow(1px 1px 0 #000)
+      drop-shadow(1px 1px 0 #000)
+      drop-shadow(1px 1px 0 #000)
+      drop-shadow(1px 1px 0 #000)
+      drop-shadow(1px 1px 0 #000)
+      drop-shadow(1px 1px 0 #000)
+      
+      /* 2. BORDE BLANCO EXTERIOR (Rodea todo el conjunto) */
       drop-shadow(2px 0 0 white)
       drop-shadow(-2px 0 0 white)
       drop-shadow(0 2px 0 white)
       drop-shadow(0 -2px 0 white);
-    
-    /* Transición suave para que al soltar el hover, vuelva naturalmente a su posición */
-    transition: transform 0.5s ease-in-out;
   }
   
-  /* Animación 1: Rotación (aplicada al contenedor) */
-  /* Usamos transform directo en lugar de animation para permitir transición de vuelta */
-  .retro-avatar-container:hover {
-    transform: rotate(-354deg); /* 360 grados antihorario (6 - 360) */
-  }
-
-  /* Animación 2: Solo MANTENIMIENTO DE ESTILO - SIN ESCALA */
+  /* El contenedor activa la rotación de la imagen al hacer hover */
   .retro-avatar-container:hover .retro-avatar {
-    /* No hay animación, solo mantenemos el estilo por seguridad */
-    box-shadow: 
-      0 0 0 6px #db4740,
-      0 0 0 14px #000,
-      1px 1px 0 14px #000,
-      2px 2px 0 14px #000,
-      3px 3px 0 14px #000,
-      4px 4px 0 14px #000,
-      5px 5px 0 14px #000,
-      6px 6px 0 14px #000;
+    transform: rotate(-360deg); 
   }
-  
-  /* Eliminados keyframes retro-spin y retro-pulse */
 
   .retro-avatar {
     width: 200px;
@@ -144,29 +137,20 @@ no_header = true
     display: block;
     border-radius: 45px;
     
-    /* Borde interno (color rojo) + Borde externo (negro) simulados con box-shadow */
-    /* border: 8px solid black; <-- Reemplazamos esto por boxShadow para tener múltiples bordes */
+    /* Borde Rojo Real */
+    border: 6px solid #db4740;
     
-    box-shadow: 
-      /* Borde Rojo (6px) */
-      0 0 0 6px #db4740,
-      
-      /* Borde Negro (6px + 8px = 14px) */
-      0 0 0 14px #000,
-      
-      /* Block Shadow: 
-         Para que nazca del borde negro, las sombras deben tener el MISMO spread (14px)
-         que el borde negro, y luego desplazarlas (offset). */
-      1px 1px 0 14px #000,
-      2px 2px 0 14px #000,
-      3px 3px 0 14px #000,
-      4px 4px 0 14px #000,
-      5px 5px 0 14px #000,
-      6px 6px 0 14px #000;
-      
-    /* Margen aumentado para compensar spread + sombra */
+    /* Borde Negro (Simulado con box-shadow para que sea exterior al borde rojo) */
+    box-shadow: 0 0 0 8px #000;
+    
+    /* Margen para que el box-shadow negro no se corte y para espacio de la sombra */
     margin: 20px; 
+    
+    /* Transición suave de la rotación */
+    transition: transform 0.8s ease-in-out;
   }
+  
+  /* Eliminados keyframes y estilos antiguos */
 </style>
 
 <div style="display: flex; align-items: center; justify-content: center; min-height: 80vh; gap: 2rem; flex-wrap: wrap; padding: 2rem;">
