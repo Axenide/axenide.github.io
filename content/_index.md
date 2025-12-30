@@ -6,16 +6,23 @@ no_header = true
 +++
 
 <style>
-  .retro-title {
+  /* Definimos la propiedad para que el navegador sepa interpolarla suavemente */
+  @property --wave-amplitude {
+    syntax: '<length>';
+    initial-value: -3px;
+    inherits: true;
+  }
+
+  .retro-word {
+    display: inline-flex; /* Alinea las letras en fila */
     font-family: 'Bytesized', monospace;
     font-size: 5rem;
     margin-bottom: 0;
     line-height: 1;
-    position: relative;
-    color: transparent;
-    z-index: 1;
-    /* Borde blanco exterior NÍTIDO alrededor de todo el conjunto */
-    /* Usamos desplazamientos en 4 direcciones con 0 blur para simular 'stroke' externo */
+    cursor: default;
+    
+    /* MOVIDO AQUÍ: Borde blanco exterior NÍTIDO aplicado al CONJUNTO completo */
+    /* Al estar en el contenedor, rodea la silueta total y no cada letra individualmente */
     filter: 
       drop-shadow(2px 0 0 white)
       drop-shadow(-2px 0 0 white)
@@ -23,33 +30,63 @@ no_header = true
       drop-shadow(0 -2px 0 white);
   }
 
+  /* Estilos para cada letra individual */
+  .retro-letter {
+    position: relative;
+    color: transparent;
+    z-index: 1;
+    display: inline-block;
+    
+    /* Animación constante: 1s */
+    /* Usamos una variable CSS para controlar la amplitud */
+    --wave-amplitude: -3px;
+    
+    /* Añadimos transición para la variable (requiere soporte @property) */
+    transition: --wave-amplitude 0.5s ease;
+    
+    animation: wave 1s ease-in-out infinite running;
+    animation-delay: calc(0.1s * var(--i));
+  }
+
+  /* Estado HOVER: Solo cambia la amplitud */
+  .retro-word:hover .retro-letter {
+    /* Mantenemos la velocidad igual (1s) */
+    --wave-amplitude: -6px; 
+  }
+
+  @keyframes wave {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(var(--wave-amplitude));
+    }
+  }
+
   /* Capa Superior: Texto con Gradiente */
-  .retro-title::after {
+  .retro-letter::after {
     content: attr(data-text);
     position: absolute;
     left: 0;
     top: 0;
     z-index: 10;
-    background: linear-gradient(180deg, #ff4d4d 0%, #f9cb28 100%);
+    background: linear-gradient(180deg, #EA6962 0%, #cc241d 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  /* Capa Inferior: Borde Negro + Block Shadow Real (desde el borde) */
-  .retro-title::before {
+  /* Capa Inferior: Borde Negro + Block Shadow Real */
+  .retro-letter::before {
     content: attr(data-text);
     position: absolute;
     left: 0;
     top: 0;
     z-index: -1;
     color: black;
-    /* 1. BORDE: Usamos text-stroke grueso para ampliar la silueta del texto */
-    -webkit-text-stroke: 8px black;
+    -webkit-text-stroke: 8px black; /* Borde grueso */
     
-    /* 2. EXTRUSIÓN: Usamos drop-shadow encadenados.
-       A diferencia de text-shadow, drop-shadow respeta la silueta del text-stroke.
-       Al aplicar varios seguidos (1px cada vez), creamos un bloque sólido desde el borde exterior. */
+    /* Extrusión sólida */
     filter: 
       drop-shadow(1px 1px 0 #000)
       drop-shadow(1px 1px 0 #000)
@@ -62,7 +99,15 @@ no_header = true
 
 <div style="display: flex; align-items: center; justify-content: center; min-height: 80vh; gap: 2rem; flex-wrap: wrap; padding: 2rem;">
   <div style="flex: 1; max-width: 500px; text-align: left;">
-    <h1 class="retro-title" data-text="Axenide">Axenide</h1>
+    <h1 class="retro-word">
+        <span class="retro-letter" style="--i:1" data-text="A">A</span>
+        <span class="retro-letter" style="--i:2" data-text="x">x</span>
+        <span class="retro-letter" style="--i:3" data-text="e">e</span>
+        <span class="retro-letter" style="--i:4" data-text="n">n</span>
+        <span class="retro-letter" style="--i:5" data-text="i">i</span>
+        <span class="retro-letter" style="--i:6" data-text="d">d</span>
+        <span class="retro-letter" style="--i:7" data-text="e">e</span>
+    </h1>
     <p style="font-size: 1rem; margin-bottom: 2rem; line-height: 1.6;">
       Soy Adriano Tisera, conocido en Internet como Axenide. Futuro ingeniero informático, tecnólogo y científico. Hago videos, música, animación y videojuegos... Entre otras cosas.
     </p>
