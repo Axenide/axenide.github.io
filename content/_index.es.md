@@ -37,20 +37,50 @@ no_header = true
     border-radius: 45px;
     border: 6px solid #db4740;
     box-shadow: 0 0 0 8px #000;
-    margin: 20px; 
     transition: transform 0.75s ease-in-out, scale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
-  
+
+  .hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 2rem;
+  }
+
+  .hero-content {
+    flex: 1;
+    max-width: 500px;
+    text-align: left;
+  }
+
+  @media (max-width: 768px) {
+    .hero-container {
+      flex-direction: column-reverse;
+      padding-top: 4rem;
+      gap: 0;
+    }
+    
+    .hero-content {
+      text-align: center;
+    }
+    
+    .hero-content .buttons {
+      justify-content: center;
+    }
+  }
 </style>
 
-<div style="display: flex; align-items: center; justify-content: center; min-height: 80vh; gap: 2rem; flex-wrap: wrap; padding: 2rem;">
-  <div style="flex: 1; max-width: 500px; text-align: left;">
+<div class="hero-container">
+  <div class="hero-content">
     {{ retro_text(text="Axenide", tag="h1") }}
     <p style="font-size: 1rem; margin-bottom: 2rem; line-height: 1.6;">
       Soy <mark>Adriano Tisera</mark>, conocido en Internet como <mark>Axenide</mark>. Futuro ingeniero informático, tecnólogo y científico. Soy programador, hago videos, música, animación y videojuegos... Entre otras cosas.
     </p>
     <div class="buttons">
-      <a class="button suggested" href="@/blog/_index.md" style="border-radius: 2rem; padding: 0.5rem 1.5rem;">Sobre mí ↓</a>
+      <a class="button suggested" href="@/blog/_index.md" style="border-radius: 2rem; padding: 0.5rem 1.5rem;">Sobre mí</a>
     </div>
   </div>
   

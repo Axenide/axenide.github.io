@@ -49,6 +49,7 @@
         let isAnimating = false;
         let timerId = null;
         let scrollTimeout = null;
+        let isHovering = false;
 
         container.handleItemClick = (clickedItem) => {
             if (clickedItem.classList.contains('active')) {
@@ -79,6 +80,7 @@
 
         function startTimer() {
             if (lightbox.classList.contains('visible')) return;
+            if (isHovering) return;
             if (intervalTime > 0) {
                 stopTimer();
                 timerId = setInterval(nextSlide, intervalTime);
@@ -173,8 +175,23 @@
         });
 
         // Refinado: Solo pausar si el mouse está sobre el track (imágenes)
-        track.addEventListener('mouseenter', stopTimer);
-        track.addEventListener('mouseleave', startTimer);
+        track.addEventListener('mouseenter', () => {
+            isHovering = true;
+            stopTimer();
+        });
+        
+        track.addEventListener('mouseleave', () => {
+            isHovering = false;
+            startTimer();
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopTimer();
+            } else {
+                startTimer();
+            }
+        });
         
         window.addEventListener('resize', () => scrollToIndex(currentIndex, 'auto'));
 

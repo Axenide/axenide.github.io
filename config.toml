@@ -23,6 +23,7 @@ taxonomies = [
 [markdown]
 highlight_code = true
 smart_punctuation = true
+github_alerts = true
 
 [extra]
 styles = ["custom.css"]
@@ -33,7 +34,7 @@ date_format = "%d %B %Y"
 favicon = true
 
 [extra.nav]
-icon = "apple-touch-icon.png"
+icon = "images/avatar.png"
 links = [
     { url = "@/blog/_index.md", name = "Blog", icon = "newspaper" },
     { url = "@/projects/_index.md", name = "Projects", icon = "cpu" },
