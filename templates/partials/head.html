@@ -125,12 +125,19 @@
 		<link rel="apple-touch-icon" type="image/{{ apple_touch_icon_type }}" sizes="180x180" href="{{ apple_touch_icon | safe }}" />
 	{%- endif %}
 
-	{%- if config.generate_feeds or section.generate_feeds or (taxonomy.feed and term.path) %}
+	{%- set has_taxonomy_feed =
+		taxonomy is defined
+		and taxonomy.feed
+		and term is defined
+		and term.path is defined
+	%}
+
+	{%- if config.generate_feeds or section.generate_feeds or has_taxonomy_feed %}
 		{%- for feed_filename in config.feed_filenames %}
 			{%- if section.generate_feeds %}
 				{%- set feed_filename = current_path ~ feed_filename %}
 			{%- endif %}
-			{%- if taxonomy.feed and term.path %}
+			{%- if has_taxonomy_feed %}
 				{%- set feed_filename = term.path ~ feed_filename %}
 			{%- endif %}
 			{%- if feed_filename is containing("atom") %}
