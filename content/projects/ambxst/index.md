@@ -11,7 +11,7 @@ tags = ["dev", "wip"]
 no_header = true
 +++
 
-<img src="./ambxst-banner.png" alt="Ambxst Logo" align="center" width="600"/>
+{{ image(url="./ambxst-banner.png", alt="Ambxst Logo", transparent=true, drop_shadow=true, no_hover=true) }}
 
 <div align="center">
 
