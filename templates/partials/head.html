@@ -116,7 +116,7 @@
 		{%- if config.extra.meta.apple_touch_icon != true %}
 			{%- set apple_touch_icon = get_url(path=config.extra.meta.apple_touch_icon, cachebust=true) %}
 		{%- else %}
-			{%- set apple_touch_icon = get_url(path="apple-touch-icon.png", cachebust=true) %}
+    {%- if config.generate_feeds or section.generate_feeds or (taxonomy.feed and term.path != "") %}
 		{%- endif %}
 	{%- endif %}
 
