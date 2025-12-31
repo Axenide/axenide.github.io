@@ -5,6 +5,7 @@ theme = "ametrine"
 compile_sass = true
 build_search_index = true
 default_language = "en"
+feed_filenames = ["atom.xml", "rss.xml"]
 
 taxonomies = [
     {name = "categories", feed = true},

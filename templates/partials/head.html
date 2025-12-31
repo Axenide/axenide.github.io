@@ -125,20 +125,30 @@
 		<link rel="apple-touch-icon" type="image/{{ apple_touch_icon_type }}" sizes="180x180" href="{{ apple_touch_icon | safe }}" />
 	{%- endif %}
 
-	{%- if config.generate_feeds or section.generate_feeds or (taxonomy is defined and taxonomy.feed and term is defined and term.path) %}
+	{%- set show_feeds = false %}
+	{%- if config.generate_feeds %}
+		{%- set show_feeds = true %}
+	{%- elif section is defined and section.generate_feeds %}
+		{%- set show_feeds = true %}
+	{%- elif taxonomy is defined and taxonomy.feed and term is defined and term.path %}
+		{%- set show_feeds = true %}
+	{%- endif %}
+
+	{%- if show_feeds and config.feed_filenames is defined %}
 		{%- for feed_filename in config.feed_filenames %}
-			{%- if section.generate_feeds %}
-				{%- set feed_filename = current_path ~ feed_filename %}
+			{%- set final_feed_filename = feed_filename %}
+			{%- if section is defined and section.generate_feeds %}
+				{%- set final_feed_filename = current_path ~ feed_filename %}
 			{%- endif %}
 			{%- if taxonomy is defined and taxonomy.feed and term is defined and term.path %}
-				{%- set feed_filename = term.path ~ feed_filename %}
+				{%- set final_feed_filename = term.path ~ feed_filename %}
 			{%- endif %}
-			{%- if feed_filename is containing("atom") %}
-				<link rel="alternate" type="application/atom+xml" href="{{ get_url(path=feed_filename, lang=lang) }}" />
-			{%- elif feed_filename is containing("rss") %}
-				<link rel="alternate" type="application/rss+xml" href="{{ get_url(path=feed_filename, lang=lang) }}" />
+			{%- if final_feed_filename is containing("atom") %}
+				<link rel="alternate" type="application/atom+xml" href="{{ get_url(path=final_feed_filename, lang=lang) }}" />
+			{%- elif final_feed_filename is containing("rss") %}
+				<link rel="alternate" type="application/rss+xml" href="{{ get_url(path=final_feed_filename, lang=lang) }}" />
 			{%- else %}
-				<link rel="alternate" href="{{ get_url(path=feed_filename, lang=lang) }}" />
+				<link rel="alternate" href="{{ get_url(path=final_feed_filename, lang=lang) }}" />
 			{%- endif %}
 		{%- endfor %}
 	{%- endif %}
