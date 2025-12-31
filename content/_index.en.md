@@ -25,19 +25,20 @@ no_header = true
   }
   
   .retro-avatar-container:hover .retro-avatar {
-    transform: rotate(-360deg); 
+    transform: rotate(-360deg);
+    scale: 1.2;
   }
 
   .retro-avatar {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     object-fit: cover;
     display: block;
     border-radius: 45px;
     border: 6px solid #db4740;
     box-shadow: 0 0 0 8px #000;
     margin: 20px; 
-    transition: transform 0.75s ease-in-out;
+    transition: transform 0.75s ease-in-out, scale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   
 </style>

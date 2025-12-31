@@ -11,10 +11,12 @@ tags = ["dev", "wip"]
 no_header = true
 +++
 
-{{ image(url="./ambxst-banner.png", alt="Ambxst Logo", transparent=true, drop_shadow=true, no_hover=true) }}
+<img src="./ambxst-banner.png" alt="Ambxst Logo" class="transparent drop-shadow no-hover" style="max-width: 600px; width: 100%;" />
 
 <div align="center">
 
-Una shell ***Ax**tremadamente* personalizable creada por Axenide.
+Una shell ***Ax**tremadamente* personalizable creada por [Axenide](/).
 
 </div>
+
+{{ carousel(images=["1.png", "2.png", "3.png", "4.png", "5.png"], interval=3000) }}
