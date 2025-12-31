@@ -36,11 +36,13 @@ favicon = true
 icon = "apple-touch-icon.png"
 links = [
     { url = "@/blog/_index.md", name = "Blog", icon = "newspaper" },
+    { url = "@/projects/_index.md", name = "Proyectos", icon = "cpu" },
 ]
 
 [extra.nav.en]
 links = [
     { url = "@/blog/_index.md", name = "Blog", icon = "newspaper" },
+    { url = "@/projects/_index.md", name = "Projects", icon = "cpu" },
 ]
 
 [extra.footer]
