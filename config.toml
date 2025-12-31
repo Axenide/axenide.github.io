@@ -25,6 +25,7 @@ highlight_code = true
 smart_punctuation = true
 
 [extra]
+styles = ["custom.css"]
 accent_color = "hsl(0.01, 68%, 55%)"
 date_format = "%d %B %Y"
 
