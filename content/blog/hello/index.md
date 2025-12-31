@@ -1,30 +1,30 @@
 +++
-title = "¡Hola, mundo!"
+title = "Hello, World!"
 date = 2025-12-30
 [taxonomies]
 tags = ["general"]
 +++
 
-Decidí migrar mi sitio web a [Zola](https://www.getzola.org/), un generador de sitios estáticos escrito en Rust.
+I decided to migrate my website to [Zola](https://www.getzola.org/), a static site generator written in Rust.
 
-Mi amigo [Trix](https://trix.is-a.dev/) hizo un sitio con el mismo tema, [Ametrine](https://ametrine.daudix.one/), y me gustó mucho cómo se veía. Así que pensé, ¿por qué no? Después de todo, llevo bastante tiempo queriendo convertir mi sitio en una especie de blog personal.
+My friend [Trix](https://trix.is-a.dev/) made a site using the same theme, [Ametrine](https://ametrine.daudix.one/), and I really liked how it looked. So I thought, why not? After all, I've wanted to turn my site into a sort of personal blog for quite a while now.
 
-Me pica un poco en el sentido de que estoy acostumbrado a crear mis propias herramientas y a tener control total sobre lo que hago. Pero también quiero algo que funcione bien y que no requiera tanto mantenimiento. Tengo muchos proyectos pendientes y no quiero agregar más trabajo a mi lista.
+It itches a bit because I'm used to building my own tools and having full control over what I do. But I also want something that works well and doesn't require as much maintenance. I have many pending projects and I don't want to add more work to my list.
 
-Una clara muestra de mi tendencia a querer controlarlo todo es mi paso a Linux (hace ya unos 4 años) y proyectos como [Ax-Shell](https://github.com/Axenide/Ax-Shell) o su sucesor [Ambxst](https://github.com/Axenide/Ambxst). Pero a veces, es mejor usar herramientas que ya existen y que funcionan bien, en lugar de reinventar la rueda.
+A clear sign of my tendency to want to control everything is my move to Linux (about 4 years ago now) and projects like [Ax-Shell](https://github.com/Axenide/Ax-Shell) or its successor [Ambxst](https://github.com/Axenide/Ambxst). But sometimes, it's better to use existing tools that work well instead of reinventing the wheel.
 
-"A veces" en realidad es "la mayoría de las veces", pero cuando se trata de crear, *a veces* es inevitable querer hacerlo todo uno mismo. :)
+"Sometimes" is actually "most of the time," but when it comes to creating, *sometimes* it's inevitable to want to do it all yourself. :)
 
-## ¿Por qué?
+## Why?
 
-Bueno, esta es la parte en la que me pongo a hablar sobre mis sentimientos y motivaciones. Pero eso quisiera detallarlo más en una próxima entrada (y quizás en video, que tengo muchas ganas de volver a [YouTube](https://youtube.com/Axenide)).
+Well, this is the part where I start talking about my feelings and motivations. But I'd like to go into more detail about that in a future entry (and maybe in a video, since I'm really looking forward to returning to [YouTube](https://youtube.com/Axenide)).
 
-Pero en resumen, desde pequeño quise tener una web, y cuando finalmente aprendí cómo... Sucedieron las redes sociales. Sentí que había perdido el sentido, que ya no tenía lógica tener un sitio personal. Las redes sociales tienen sus algoritmos, infraestructura y comunidad, y es más fácil llegar a la gente allí.
+In short, I've wanted to have a website since I was a kid, and when I finally learned how... Social media happened. I felt like the purpose was lost, that it no longer made sense to have a personal site. Social networks have their algorithms, infrastructure, and community, and it's easier to reach people there.
 
-Pero en los últimos años he sentido mucha nostalgia por la web clásica, por esos sitios personales y blogs que solía visitar. Quiero recuperar esa sensación y compartir mis pensamientos, proyectos y experiencias de una manera más auténtica y personal.
+But in recent years, I've felt a lot of nostalgia for the classic web, for those personal sites and blogs I used to visit. I want to recapture that feeling and share my thoughts, projects, and experiences in a more authentic and personal way.
 
-## ¿Y ahora qué?
+## What's next?
 
-Bueno, como muchas de las cosas que hago, esto es un experimento. No sé exactamente a dónde me llevará, ni si tendré la constancia para mantenerlo. Pero quiero intentarlo.
+Well, like many things I do, this is an experiment. I don't know exactly where it will lead me, or if I'll have the consistency to maintain it. But I want to try.
 
-Y bueno, nada más eso. Tuve que contenerme para no escribir un ensayo completo en esta primera entrada, lo cual me hace ver que tengo mucho que decir. Así que puede que sí sea activo después de todo. :)
+And well, that's it. I had to hold myself back from writing a full essay in this first entry, which makes me realize I have a lot to say. So, I might actually be active after all. :)

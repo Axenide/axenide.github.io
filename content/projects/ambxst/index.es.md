@@ -2,8 +2,8 @@
 title = "Ambxst"
 date = 2025-12-31
 weight = 1
-description = "An Axtremely customizable shell by Axenide."
-path = "/ambxst"
+description = "Una shell Axtremadamente personalizable creada por Axenide."
+path = "/es/ambxst"
 
 [taxonomies]
 tags = ["dev", "wip"]
@@ -15,13 +15,13 @@ no_header = true
 
 <div align="center">
 
-An ***Ax**tremely* customizable shell created by [Axenide](/).
+Una shell ***Ax**tremadamente* personalizable creada por [Axenide](/).
 
 </div>
 
 {{ carousel(images=["1.png", "2.png", "3.png", "4.png", "5.png"], interval=3000, style="margin: -2rem 0 -2rem 0") }}
 
-## Installation
+## Instalación
 
 {% crt() %}
 ```bash

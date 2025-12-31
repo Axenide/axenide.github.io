@@ -47,7 +47,7 @@ no_header = true
   <div style="flex: 1; max-width: 500px; text-align: left;">
     {{ retro_text(text="Axenide", tag="h1") }}
     <p style="font-size: 1rem; margin-bottom: 2rem; line-height: 1.6;">
-        I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. Future computer engineer, technologist, and scientist. I'm a programmer, I make videos, music, animation, and video games... Among other things.
+      Soy <mark>Adriano Tisera</mark>, conocido en Internet como <mark>Axenide</mark>. Futuro ingeniero informático, tecnólogo y científico. Soy programador, hago videos, música, animación y videojuegos... Entre otras cosas.
     </p>
     <div class="buttons">
       <a class="button suggested" href="@/blog/_index.md" style="border-radius: 2rem; padding: 0.5rem 1.5rem;">Sobre mí ↓</a>

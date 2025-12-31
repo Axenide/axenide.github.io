@@ -1,4 +1,4 @@
-<div class="carousel-container" data-interval="{{ interval | default(value=0) }}">
+<div class="carousel-container {{ class | default(value='') }}" style="{{ style | default(value='') }}" data-interval="{{ interval | default(value=0) }}">
     <div class="carousel-track">
         {% for i in range(end=3) %}
             {% for image in images %}

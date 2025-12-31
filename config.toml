@@ -1,19 +1,19 @@
 base_url = "https://axeni.de"
 title = "Axenide"
-description = "Hago cosas."
+description = "I do things."
 theme = "ametrine"
 compile_sass = true
 build_search_index = true
-default_language = "es"
+default_language = "en"
 
 taxonomies = [
     {name = "categories", feed = true},
     {name = "tags", feed = true},
 ]
 
-[languages.en]
+[languages.es]
 title = "Axenide"
-description = "I do things."
+description = "Hago cosas."
 generate_feeds = true
 taxonomies = [
     {name = "categories", feed = true},
@@ -36,13 +36,13 @@ favicon = true
 icon = "apple-touch-icon.png"
 links = [
     { url = "@/blog/_index.md", name = "Blog", icon = "newspaper" },
-    { url = "@/projects/_index.md", name = "Proyectos", icon = "cpu" },
+    { url = "@/projects/_index.md", name = "Projects", icon = "cpu" },
 ]
 
-[extra.nav.en]
+[extra.nav.es]
 links = [
     { url = "@/blog/_index.md", name = "Blog", icon = "newspaper" },
-    { url = "@/projects/_index.md", name = "Projects", icon = "cpu" },
+    { url = "@/projects/_index.md", name = "Proyectos", icon = "cpu" },
 ]
 
 [extra.footer]
@@ -50,9 +50,12 @@ copyright = "© $YEAR Axenide"
 show_powered_by = true
 show_timestamp = true
 socials = [
-    { url = "https://github.com", icon = "github" },
+    { url = "https://github.com/Axenide", icon = "github" },
+    { url = "https://youtube.com/Axenide", icon = "youtube" },
+    { url = "https://twitch.tv/Axenide", icon = "twitch" },
+    { url = "https://x.com/Axenide", icon = "x" },
+    { url = "https://instagram.com/Axenide", icon = "instagram" },
 ]
 
-[extra.footer.en]
+[extra.footer.es]
 copyright = "© $YEAR Axenide"
-
