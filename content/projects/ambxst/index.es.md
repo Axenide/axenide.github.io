@@ -34,10 +34,6 @@ curl -L get.axeni.de/ambxst | sh
 > [!WARNING]
 > Ambxst está actualmente en desarrollo temprano.
 
-<div class="buttons">
-  <a class="button suggested" href="https://github.com/Axenide/Ambxst" style="border-radius: 2rem; padding: 0.5rem 1.5rem;">¡Mira el código! (Mmm... Spaghetti. 🍝)</a>
-</div>
-
 ## Características
 - [x] Componentes personalizables
 - [x] Temas
