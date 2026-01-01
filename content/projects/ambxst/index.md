@@ -80,7 +80,6 @@ curl -L get.axeni.de/ambxst | sh
 I want to release this before the end of the year, so you'll have to wait a bit for the full documentation. u_u
 However, the most important things you need to know are:
 - The main configuration is located at `~/.config/Ambxst`.
-- Removing Ambxst is as simple as `nix profile remove Ambxst`.
 - You can ask anything on the [Axenide Discord server](https://discord.com/invite/gHG9WHyNvH) or in the [GitHub discussions](https://github.com/Axenide/Ambxst/discussions).
 
 > [!CAUTION]
