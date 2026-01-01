@@ -16,7 +16,8 @@
 			{% if page.extra.banner or page.extra.accent_color %}
 				style="
 				{%- if page.extra.banner -%}
-					{%- set blurnail = resize_image(path=page.colocated_path ~ page.extra.banner, width=4, height=2, op='fill', format='webp') -%}
+					{%- set banner_path = page.colocated_path | default(value="") -%}
+					{%- set blurnail = resize_image(path=banner_path ~ page.extra.banner, width=4, height=2, op='fill', format='webp') -%}
 					--blurnail: url('{{ blurnail.url }}');
 				{%- endif -%}
 				{%- if page.extra.banner_position -%}
@@ -40,7 +41,8 @@
 			</div>
 			<a class="open-post" href="{{ page.permalink | safe }}" aria-label="{{ page.title }}">
 				{%- if page.extra.banner -%}
-					{%- set thumbnail = resize_image(path=page.colocated_path ~ page.extra.banner, width=480, height=240, op="fill", format="webp") -%}
+					{%- set banner_path = page.colocated_path | default(value="") -%}
+					{%- set thumbnail = resize_image(path=banner_path ~ page.extra.banner, width=480, height=240, op="fill", format="webp") -%}
 					<img class="transparent no-hover{% if page.extra.banner_position %} banner-position{% endif %}" src="{{ thumbnail.url | safe }}" />
 				{%- endif -%}
 				{{- macros_icon::icon(name="caret-right") -}}

@@ -37,14 +37,18 @@
 	{%- endif %}
 
 	{%- if page.extra.meta.card %}
-		{%- set card = get_url(path=page.colocated_path ~ page.extra.card, cachebust=true) %}
+		{%- set path_prefix = page.colocated_path | default(value="") -%}
+		{%- set card = get_url(path=path_prefix ~ page.extra.card, cachebust=true) %}
 	{%- elif section.extra.meta.card %}
-		{%- set card = get_url(path=section.colocated_path ~ section.extra.card, cachebust=true) %}
+		{%- set path_prefix = section.colocated_path | default(value="") -%}
+		{%- set card = get_url(path=path_prefix ~ section.extra.card, cachebust=true) %}
 	{%- elif page.extra.banner %}
-		{%- set card = resize_image(path=page.colocated_path ~ page.extra.banner, width=1200, height=628, op="fill") %}
+		{%- set path_prefix = page.colocated_path | default(value="") -%}
+		{%- set card = resize_image(path=path_prefix ~ page.extra.banner, width=1200, height=628, op="fill") %}
 		{%- set card = card.url %}
 	{%- elif section.extra.banner %}
-		{%- set card = resize_image(path=section.colocated_path ~ section.extra.banner, width=1200, height=628, op="fill") %}
+		{%- set path_prefix = section.colocated_path | default(value="") -%}
+		{%- set card = resize_image(path=path_prefix ~ section.extra.banner, width=1200, height=628, op="fill") %}
 		{%- set card = card.url %}
 	{%- elif config.extra.meta.card %}
 		{%- if config.extra.meta.card != true %}
@@ -80,10 +84,12 @@
 
 	{%- set is_global_favicon = true %}
 	{%- if page.extra.meta.favicon %}
-		{%- set favicon = page.colocated_path ~ page.extra.meta.favicon %}
+		{%- set path_prefix = page.colocated_path | default(value="") -%}
+		{%- set favicon = path_prefix ~ page.extra.meta.favicon %}
 		{%- set is_global_favicon = false %}
 	{%- elif section.extra.meta.favicon %}
-		{%- set favicon = section.colocated_path ~ section.extra.meta.favicon %}
+		{%- set path_prefix = section.colocated_path | default(value="") -%}
+		{%- set favicon = path_prefix ~ section.extra.meta.favicon %}
 		{%- set is_global_favicon = false %}
 	{%- elif config.extra.meta.favicon %}
 		{%- if config.extra.meta.favicon != true %}
@@ -109,9 +115,11 @@
 	{%- endif %}
 
 	{%- if page.extra.meta.apple_touch_icon %}
-		{%- set apple_touch_icon = get_url(path=page.colocated_path ~ page.extra.apple_touch_icon, cachebust=true) %}
+		{%- set path_prefix = page.colocated_path | default(value="") -%}
+		{%- set apple_touch_icon = get_url(path=path_prefix ~ page.extra.apple_touch_icon, cachebust=true) %}
 	{%- elif section.extra.meta.apple_touch_icon %}
-		{%- set apple_touch_icon = get_url(path=section.colocated_path ~ section.extra.apple_touch_icon, cachebust=true) %}
+		{%- set path_prefix = section.colocated_path | default(value="") -%}
+		{%- set apple_touch_icon = get_url(path=path_prefix ~ section.extra.apple_touch_icon, cachebust=true) %}
 	{%- elif config.extra.meta.apple_touch_icon %}
 		{%- if config.extra.meta.apple_touch_icon != true %}
 			{%- set apple_touch_icon = get_url(path=config.extra.meta.apple_touch_icon, cachebust=true) %}

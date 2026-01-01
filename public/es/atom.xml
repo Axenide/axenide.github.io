@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
+    <title>Axenide</title>
+    <subtitle>Hago cosas.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://axeni.de/es/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://axeni.de"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-12-31T00:00:00+00:00</updated>
+    <id>https://axeni.de/es/atom.xml</id>
+    <entry xml:lang="es">
+        <title>Ambxst</title>
+        <published>2025-12-31T00:00:00+00:00</published>
+        <updated>2025-12-31T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://axeni.de/es/ambxst/"/>
+        <id>https://axeni.de/es/ambxst/</id>
+        
+        <content type="html" xml:base="https://axeni.de/es/ambxst/">&lt;img src=&quot;.&#x2F;ambxst-banner.png&quot; alt=&quot;Ambxst Logo&quot; class=&quot;transparent drop-shadow no-hover&quot; style=&quot;max-width: 500px; width: 100%;&quot; &#x2F;&gt;
+&lt;div align=&quot;center&quot;&gt;
+&lt;p&gt;Una shell &lt;em&gt;&lt;strong&gt;Ax&lt;&#x2F;strong&gt;tremadamente&lt;&#x2F;em&gt; personalizable.&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+&lt;div class=&quot;carousel-container &quot; style=&quot;margin: -2rem 0 -2rem 0&quot; data-interval=&quot;3000&quot;&gt;
+    &lt;div class=&quot;carousel-track&quot;&gt;
+        
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;0&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;1.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;1&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;2.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;2&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;3.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;3&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;4.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;4&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;5.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;5&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;6.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;6&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;7.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+        
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;0&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;1.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;1&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;2.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;2&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;3.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;3&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;4.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;4&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;5.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;5&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;6.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;6&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;7.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+        
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;0&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;1.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;1&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;2.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;2&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;3.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;3&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;4.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;4&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;5.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;5&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;6.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+                &lt;div class=&quot;carousel-item&quot; data-real-index=&quot;6&quot; onclick=&quot;onItemClick(this)&quot;&gt;
+                    &lt;img src=&quot;7.png#transparent&quot; class=&quot;no-hover&quot; alt=&quot;Slide&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+                &lt;&#x2F;div&gt;
+            
+        
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+
+&lt;div class=&quot;lightbox-overlay&quot; onclick=&quot;closeLightbox(this)&quot;&gt;
+    &lt;img class=&quot;lightbox-img&quot; src=&quot;&quot; alt=&quot;Full size view&quot; &#x2F;&gt;
+&lt;&#x2F;div&gt;
+
+&lt;script&gt;
+    function onItemClick(item) {
+        const container = item.closest(&#x27;.carousel-container&#x27;);
+        if (container.handleItemClick) {
+            container.handleItemClick(item);
+        }
+    }
+
+    function closeLightbox(overlay) {
+        overlay.classList.remove(&#x27;visible&#x27;);
+        document.body.style.overflow = &#x27;&#x27;;
+        const container = overlay.previousElementSibling;
+        if (container &amp;&amp; container.resumeTimer) container.resumeTimer();
+    }
+
+    document.addEventListener(&#x27;keydown&#x27;, (e) =&gt; {
+        if (e.key === &#x27;Escape&#x27;) {
+            document.querySelectorAll(&#x27;.lightbox-overlay.visible&#x27;).forEach(closeLightbox);
+        }
+    });
+
+    (function() {
+        const script = document.currentScript;
+        const lightbox = script.previousElementSibling;
+        const container = lightbox.previousElementSibling;
+        const track = container.querySelector(&#x27;.carousel-track&#x27;);
+        const allItems = Array.from(track.querySelectorAll(&#x27;.carousel-item&#x27;));
+        
+        const intervalTime = parseInt(container.dataset.interval);
+        const setSize = allItems.length &#x2F; 3;
+        
+        let currentIndex = setSize; 
+        let isAnimating = false;
+        let timerId = null;
+        let scrollTimeout = null;
+        let isHovering = false;
+
+        container.handleItemClick = (clickedItem) =&gt; {
+            if (clickedItem.classList.contains(&#x27;active&#x27;)) {
+                const img = clickedItem.querySelector(&#x27;img&#x27;);
+                openLightbox(img.src);
+            } else {
+                const index = allItems.indexOf(clickedItem);
+                scrollToIndex(index, &#x27;smooth&#x27;);
+            }
+        };
+
+        container.resumeTimer = startTimer;
+
+        function openLightbox(src) {
+            const img = lightbox.querySelector(&#x27;img&#x27;);
+            img.src = src;
+            lightbox.classList.add(&#x27;visible&#x27;);
+            document.body.style.overflow = &#x27;hidden&#x27;;
+            stopTimer();
+        }
+
+        function stopTimer() {
+            if (timerId) {
+                clearInterval(timerId);
+                timerId = null;
+            }
+        }
+
+        function startTimer() {
+            if (lightbox.classList.contains(&#x27;visible&#x27;)) return;
+            if (isHovering) return;
+            if (intervalTime &gt; 0) {
+                stopTimer();
+                timerId = setInterval(nextSlide, intervalTime);
+            }
+        }
+
+        function scrollToIndex(index, behavior = &#x27;smooth&#x27;) {
+            currentIndex = index;
+            const targetItem = allItems[index];
+            
+            const containerCenter = track.clientWidth &#x2F; 2;
+            const itemCenter = targetItem.offsetWidth &#x2F; 2;
+            const targetLeft = targetItem.offsetLeft - containerCenter + itemCenter;
+
+            &#x2F;&#x2F; MODO SIGILOSO (TELETRANSPORTE)
+            if (behavior === &#x27;auto&#x27;) {
+                &#x2F;&#x2F; 1. Apagar transiciones
+                track.classList.add(&#x27;no-transition&#x27;);
+                
+                &#x2F;&#x2F; 2. Mover scroll
+                track.scrollTo({ left: targetLeft, behavior: &#x27;auto&#x27; });
+                
+                &#x2F;&#x2F; 3. Forzar Layout (Reflow) para que el navegador &quot;digiera&quot; el cambio sin animar
+                void track.offsetHeight; 
+                
+                &#x2F;&#x2F; 4. Actualizar estado visual (Active&#x2F;Inactive) INSTANTÁNEAMENTE
+                updateVisualClasses(true); &#x2F;&#x2F; true = force sync
+                
+                &#x2F;&#x2F; 5. Reactivar transiciones (después de un frame para seguridad)
+                requestAnimationFrame(() =&gt; {
+                    requestAnimationFrame(() =&gt; {
+                        track.classList.remove(&#x27;no-transition&#x27;);
+                    });
+                });
+            } else {
+                &#x2F;&#x2F; MODO NORMAL (ANIMADO)
+                isAnimating = true;
+                track.scrollTo({ left: targetLeft, behavior: behavior });
+                updateVisualClasses();
+            }
+        }
+
+        function nextSlide() {
+            scrollToIndex(currentIndex + 1, &#x27;smooth&#x27;);
+        }
+
+        function updateVisualClasses(forceSync = false) {
+            const centerPoint = track.scrollLeft + (track.clientWidth &#x2F; 2);
+            let closest = null;
+            let minDistance = Infinity;
+
+            allItems.forEach((item, i) =&gt; {
+                const itemCenter = item.offsetLeft + (item.offsetWidth &#x2F; 2);
+                const distance = Math.abs(centerPoint - itemCenter);
+                
+                if (distance &lt; minDistance) {
+                    minDistance = distance;
+                    closest = item;
+                    if (!isAnimating || forceSync) currentIndex = i; 
+                }
+                item.classList.remove(&#x27;active&#x27;);
+            });
+
+            if (closest) closest.classList.add(&#x27;active&#x27;);
+        }
+
+        function checkTeleport() {
+            isAnimating = false;
+
+            if (currentIndex &lt; setSize) {
+                const realIndex = currentIndex + setSize;
+                scrollToIndex(realIndex, &#x27;auto&#x27;);
+            } 
+            else if (currentIndex &gt;= setSize * 2) {
+                const realIndex = currentIndex - setSize;
+                scrollToIndex(realIndex, &#x27;auto&#x27;);
+            }
+        }
+
+        setTimeout(() =&gt; {
+            scrollToIndex(currentIndex, &#x27;auto&#x27;); 
+            startTimer();
+        }, 100);
+
+        track.addEventListener(&#x27;scroll&#x27;, () =&gt; {
+            if (!track.classList.contains(&#x27;no-transition&#x27;)) {
+                requestAnimationFrame(() =&gt; updateVisualClasses());
+            }
+
+            if (scrollTimeout) clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(checkTeleport, 100);
+        });
+
+        &#x2F;&#x2F; Refinado: Solo pausar si el mouse está sobre el track (imágenes)
+        track.addEventListener(&#x27;mouseenter&#x27;, () =&gt; {
+            isHovering = true;
+            stopTimer();
+        });
+        
+        track.addEventListener(&#x27;mouseleave&#x27;, () =&gt; {
+            isHovering = false;
+            startTimer();
+        });
+
+        document.addEventListener(&#x27;visibilitychange&#x27;, () =&gt; {
+            if (document.hidden) {
+                stopTimer();
+            } else {
+                startTimer();
+            }
+        });
+        
+        window.addEventListener(&#x27;resize&#x27;, () =&gt; scrollToIndex(currentIndex, &#x27;auto&#x27;));
+
+    })();
+&lt;&#x2F;script&gt;
+&lt;h2 id=&quot;instalacion&quot;&gt;Instalación&lt;&#x2F;h2&gt;
+&lt;div class=&quot;crt scanlines&quot; aria-hidden=&quot;true&quot;&gt;
+	&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;curl -L&lt;&#x2F;span&gt;&lt;span&gt; get.axeni.de&#x2F;ambxst | &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;sh
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;&#x2F;div&gt;
+&lt;blockquote class=&quot;markdown-alert-warning&quot;&gt;
+&lt;p&gt;Ambxst está actualmente en desarrollo temprano.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;div class=&quot;buttons&quot;&gt;
+  &lt;a class=&quot;button suggested&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Axenide&#x2F;Ambxst&quot; style=&quot;border-radius: 2rem; padding: 0.5rem 1.5rem;&quot;&gt;¡Mira el código! (Mmm... Spaghetti. 🍝)&lt;&#x2F;a&gt;
+&lt;&#x2F;div&gt;
+&lt;h2 id=&quot;caracteristicas&quot;&gt;Características&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Componentes personalizables&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Temas&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Integración con el sistema&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Lanzador de aplicaciones&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Gestor de portapapeles&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Notas rápidas (y no tan rápidas)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Gestor de wallpapers&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Selector de emojis&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Gestor de sesiones de &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;tmux&#x2F;tmux&quot;&gt;tmux&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Monitor del sistema&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Control multimedia&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Sistema de notificaciones&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Gestor de Wi-Fi&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Gestor de Bluetooth&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Mezclador de audio&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Integración con &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;wwmm&#x2F;easyeffects&quot;&gt;EasyEffects&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Captura de pantalla&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Grabación de pantalla&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Selector de color&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+OCR&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Escáner de códigos QR y códigos de barras&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+“Espejo” (webcam)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Modo juego&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Modo noche&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Gestor de perfiles de energía&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Asistente de IA&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Clima&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Calendario&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Menú de apagado&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Gestión de espacios de trabajo&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Soporte para diferentes layouts (dwindle, master, scrolling, etc.)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Soporte para múltiples monitores&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot; checked=&quot;&quot;&#x2F;&gt;
+Atajos de teclado personalizables&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Sistema de plugins y extensiones&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;input disabled=&quot;&quot; type=&quot;checkbox&quot;&#x2F;&gt;
+Compatibilidad con otros compositores Wayland&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;y-los-docs&quot;&gt;¿Y los &lt;em&gt;docs&lt;&#x2F;em&gt;?&lt;&#x2F;h2&gt;
+&lt;p&gt;Quiero liberar esto antes de fin de año, así que tendrás que esperar un poco para la documentación completa. u_u
+Sin embargo, lo más importante que debes saber es lo siguiente:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;La configuración principal se encuentra en &lt;code&gt;~&#x2F;.config&#x2F;Ambxst&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;Puedes preguntar lo que sea en el &lt;a href=&quot;https:&#x2F;&#x2F;discord.com&#x2F;invite&#x2F;gHG9WHyNvH&quot;&gt;servidor de Discord de Axenide&lt;&#x2F;a&gt; o en las &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Axenide&#x2F;Ambxst&#x2F;discussions&quot;&gt;discusiones de GitHub&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;blockquote class=&quot;markdown-alert-caution&quot;&gt;
+&lt;p&gt;Los paquetes instalados via Nix tomarán prioridad sobre los del sistema. Tenlo en cuenta si tienes conflictos de versiones.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="es">
+        <title>¡Hola, mundo!</title>
+        <published>2025-12-30T00:00:00+00:00</published>
+        <updated>2025-12-30T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://axeni.de/es/blog/hello/"/>
+        <id>https://axeni.de/es/blog/hello/</id>
+        
+        <content type="html" xml:base="https://axeni.de/es/blog/hello/">&lt;p&gt;Decidí migrar mi sitio web a &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;&quot;&gt;Zola&lt;&#x2F;a&gt;, un generador de sitios estáticos escrito en Rust.&lt;&#x2F;p&gt;
+&lt;p&gt;Mi amigo &lt;a href=&quot;https:&#x2F;&#x2F;trix.is-a.dev&#x2F;&quot;&gt;Trix&lt;&#x2F;a&gt; hizo un sitio con el mismo tema, &lt;a href=&quot;https:&#x2F;&#x2F;ametrine.daudix.one&#x2F;&quot;&gt;Ametrine&lt;&#x2F;a&gt;, y me gustó mucho cómo se veía. Así que pensé, ¿por qué no? Después de todo, llevo bastante tiempo queriendo convertir mi sitio en una especie de blog personal.&lt;&#x2F;p&gt;
+&lt;p&gt;Me pica un poco en el sentido de que estoy acostumbrado a crear mis propias herramientas y a tener control total sobre lo que hago. Pero también quiero algo que funcione bien y que no requiera tanto mantenimiento. Tengo muchos proyectos pendientes y no quiero agregar más trabajo a mi lista.&lt;&#x2F;p&gt;
+&lt;p&gt;Una clara muestra de mi tendencia a querer controlarlo todo es mi paso a Linux (hace ya unos 4 años) y proyectos como &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Axenide&#x2F;Ax-Shell&quot;&gt;Ax-Shell&lt;&#x2F;a&gt; o su sucesor &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Axenide&#x2F;Ambxst&quot;&gt;Ambxst&lt;&#x2F;a&gt;. Pero a veces, es mejor usar herramientas que ya existen y que funcionan bien, en lugar de reinventar la rueda.&lt;&#x2F;p&gt;
+&lt;p&gt;“A veces” en realidad es “la mayoría de las veces”, pero cuando se trata de crear, &lt;em&gt;a veces&lt;&#x2F;em&gt; es inevitable querer hacerlo todo uno mismo. :)&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;por-que&quot;&gt;¿Por qué?&lt;&#x2F;h2&gt;
+&lt;p&gt;Bueno, esta es la parte en la que me pongo a hablar sobre mis sentimientos y motivaciones. Pero eso quisiera detallarlo más en una próxima entrada (y quizás en video, que tengo muchas ganas de volver a &lt;a href=&quot;https:&#x2F;&#x2F;youtube.com&#x2F;Axenide&quot;&gt;YouTube&lt;&#x2F;a&gt;).&lt;&#x2F;p&gt;
+&lt;p&gt;Pero en resumen, desde pequeño quise tener una web, y cuando finalmente aprendí cómo… Sucedieron las redes sociales. Sentí que había perdido el sentido, que ya no tenía lógica tener un sitio personal. Las redes sociales tienen sus algoritmos, infraestructura y comunidad, y es más fácil llegar a la gente allí.&lt;&#x2F;p&gt;
+&lt;p&gt;Pero en los últimos años he sentido mucha nostalgia por la web clásica, por esos sitios personales y blogs que solía visitar. Quiero recuperar esa sensación y compartir mis pensamientos, proyectos y experiencias de una manera más auténtica y personal.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;y-ahora-que&quot;&gt;¿Y ahora qué?&lt;&#x2F;h2&gt;
+&lt;p&gt;Bueno, como muchas de las cosas que hago, esto es un experimento. No sé exactamente a dónde me llevará, ni si tendré la constancia para mantenerlo. Pero quiero intentarlo.&lt;&#x2F;p&gt;
+&lt;p&gt;Y bueno, nada más eso. Tuve que contenerme para no escribir un ensayo completo en esta primera entrada, lo cual me hace ver que tengo mucho que decir. Así que puede que sí sea activo después de todo. :)&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
