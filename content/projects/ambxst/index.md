@@ -38,23 +38,6 @@ curl -L get.axeni.de/ambxst | sh
   <a class="button suggested" href="https://github.com/Axenide/Ambxst" style="border-radius: 2rem; padding: 0.5rem 1.5rem;">Check the code! (Mmm... Spaghetti. 🍝)</a>
 </div>
 
-### What does the installation do?
-
-> [!IMPORTANT]
-> For now Ambxst is installed via Nix flakes, so **Nix is required** for supporting it on as many distros as possible. But we are looking for contributions to support other package managers (and make this easier for everyone).
-
-On non-NixOS distros, the installation script does the following:
-- Installs [Nix](https://en.wikipedia.org/wiki/Nix_(package_manager)) if it's not already installed.
-- Installs some necessary system dependencies. (Only a few that Nix cannot handle by itself).
-- Installs Ambxst as a Nix flake. (*Dependency hell*? No, thanks. 😎)
-- Creates an alias to launch `ambxst` from anywhere. (`exec-once = ambxst` in your `hyprland.conf`, for example.)
-- Gives you a kiss on the cheek. 😘 (Optional, of course.)
-
-On NixOS:
-- Installs Ambxst via `nix profile add github:Axenide/Ambxst`.
-> [!NOTE]
-> The installation script doesn't do anything else on NixOS, so you can declare it however you like in your system.
-
 ## Features
 - [x] Customizable components
 - [x] Themes
