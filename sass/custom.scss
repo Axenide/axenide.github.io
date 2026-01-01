@@ -134,3 +134,57 @@
 .lightbox-overlay.visible .lightbox-img {
   transform: scale(1);
 }
+
+/* Social Icons Shortcode */
+.social-icon-wrapper {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--icon-size, 16px);
+  height: var(--icon-size, 16px);
+  text-decoration: none;
+  /* Rotation happens on the wrapper */
+  transition: transform var(--rotate-dur, 0.5s) ease;
+  transform-origin: center center;
+  
+  /* Ensure it's clickable above potential negative-margin overlaps (like the carousel) */
+  position: relative;
+  z-index: 20;
+  
+  /* Spacing */
+  margin: 0 0.5rem;
+  
+  /* Reset default anchor styles if necessary */
+  border: none;
+  background: transparent;
+
+  .social-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    
+    /* Pixel Art rendering */
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+
+    /* Zoom happens on the image */
+    transition: transform var(--zoom-dur, 0.25s) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: center center;
+  }
+
+  &:hover {
+    transform: rotate(var(--rotate-val, 0deg));
+
+    .social-icon-img {
+      transform: scale(var(--zoom-val, 1));
+    }
+  }
+}
+
+/* Social Icons Active State (Click Zoom Out) */
+.social-icon-wrapper:active .social-icon-img {
+  transform: scale(0.9) !important;
+  transition-duration: 0.1s !important;
+}
