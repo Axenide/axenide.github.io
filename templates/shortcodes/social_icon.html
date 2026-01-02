@@ -8,15 +8,8 @@
     {% set icon_filename = icon ~ ".png" %}
 {% endif %}
 
-{# --- 2. Determine Folder based on requested size --- #}
-{% set num_size = icon_size | replace(from="px", to="") | int %}
-{% if num_size <= 16 %}
-    {% set folder = "16x" %}
-{% elif num_size <= 128 %}
-    {% set folder = "128x" %}
-{% else %}
-    {% set folder = "512x" %}
-{% endif %}
+{# --- 2. Always use 16x folder (Pixel Art Scaling) --- #}
+{% set folder = "16x" %}
 
 {# --- 3. Parse Parameters for Effects --- #}
 
@@ -77,7 +70,7 @@
    target="_blank" 
    rel="noopener noreferrer"
    style="--icon-size: {{ icon_size }}; --rotate-val: {{ final_r_val }}deg; --rotate-dur: {{ final_r_dur }}; --zoom-val: {{ final_z_val }}; --zoom-dur: {{ final_z_dur }};">
-    <img src="/Social Icons Pack PNG/{{ folder }}/{{ icon_filename }}" 
+    <img src="/social-icons/{{ folder }}/{{ icon_filename }}" 
          alt="{{ icon }}" 
          class="social-icon-img" />
 </a>
