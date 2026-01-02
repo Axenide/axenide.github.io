@@ -143,8 +143,9 @@
   width: var(--icon-size, 16px);
   height: var(--icon-size, 16px);
   text-decoration: none;
-  /* Rotation happens on the wrapper */
-  transition: transform var(--rotate-dur, 0.5s) ease;
+  
+  /* Zoom happens on the wrapper now */
+  transition: transform var(--zoom-dur, 0.25s) cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transform-origin: center center;
   
   /* Ensure it's clickable above potential negative-margin overlaps (like the carousel) */
@@ -158,27 +159,51 @@
   border: none;
   background: transparent;
 
+  /* ALL Filters on Wrapper (Fixed Light Source Effect) */
+  /* Order matters: 1. Black Shadow (Inner), 2. White Outline (Outer) */
+  filter: 
+    /* Black Retro Block Shadow */
+    drop-shadow(1px 1px 0 #000)
+    drop-shadow(1px 1px 0 #000)
+    drop-shadow(1px 1px 0 #000)
+    drop-shadow(1px 1px 0 #000)
+    drop-shadow(1px 1px 0 #000)
+    /* White Retro Outline */
+    drop-shadow(2px 0 0 white)
+    drop-shadow(-2px 0 0 white)
+    drop-shadow(0 2px 0 white)
+    drop-shadow(0 -2px 0 white);
+
   .social-icon-img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     display: block;
     
-    /* Pixel Art rendering */
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
-
-    /* Zoom happens on the image */
-    transition: transform var(--zoom-dur, 0.25s) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Pixel Art rendering - Force !important */
+    image-rendering: pixelated !important;
+    image-rendering: -moz-crisp-edges !important;
+    image-rendering: crisp-edges !important;
+    
+    /* Optimize for keeping edges sharp */
+    -webkit-font-smoothing: none;
+    
+    /* Rotation happens on the image */
+    transition: transform var(--rotate-dur, 0.5s) ease;
     transform-origin: center center;
+    
+    /* Ensure transform doesn't blur */
+    will-change: transform; 
   }
 
   &:hover {
-    transform: rotate(var(--rotate-val, 0deg));
+    /* Scale the wrapper (and its filters) */
+    transform: scale(var(--zoom-val, 1));
 
     .social-icon-img {
-      transform: scale(var(--zoom-val, 1));
+      /* Rotate ONLY the image inside */
+      transform: rotate(var(--rotate-val, 0deg));
+      border-radius: 0 !important;
     }
   }
 }
