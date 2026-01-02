@@ -21,7 +21,7 @@ An ***Ax**tremely* customizable shell.
 
 </div>
 
-{{ carousel(images=["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png"], interval=3000, style="margin: -2rem 0 -2rem 0") }}
+{{ carousel(images=["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"], interval=3000, style="margin: -2rem 0 -2rem 0") }}
 
 <div align="center">
   {{ social_icon(icon="kofi_icon_bg", link="https://ko-fi.com/Axenide", size="32px", effect="zoom rotate", rotate="-15") }}
