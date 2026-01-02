@@ -77,10 +77,16 @@ no_header = true
   <div class="hero-content">
     {{ retro_text(text="Axenide", tag="h1") }}
     <p style="font-size: 1rem; margin-bottom: 2rem; line-height: 1.6;">
-      Soy <mark>Adriano Tisera</mark>, conocido en Internet como <mark>Axenide</mark>. Futuro ingeniero informático, tecnólogo y científico. Soy programador, hago videos, música, animación y videojuegos... Entre otras cosas.
+      Soy <mark>Adriano Tisera</mark>, conocido en Internet como <mark>Axenide</mark>. Futuro ingeniero informático, tecnólogo y científico. Soy programador, hago videos, música, animación y videojuegos...<br>Entre otras cosas.
     </p>
-    <div class="buttons">
-      <a class="button suggested" href="@/blog/_index.md" style="border-radius: 2rem; padding: 0.5rem 1.5rem;">Sobre mí</a>
+    <div>
+    {{ social_icon(icon="youtube_icon_bg", link="https://www.youtube.com/@Axenide", size="32px", effect="zoom rotate", rotate="-15") }}
+    {{ social_icon(icon="twitch_icon_bg", link="https://www.twitch.tv/Axenide", size="32px", effect="zoom rotate", rotate="-15") }}
+    {{ social_icon(icon="xtwitter_icon_bg", link="https://x.com/Axenide", size="32px", effect="zoom rotate", rotate="-15") }}
+    {{ social_icon(icon="instagram_icon_bg", link="https://www.instagram.com/Axenide", size="32px", effect="zoom rotate", rotate="-15") }}
+    {{ social_icon(icon="github_icon_bg", link="https://github.com/Axenide", size="32px", effect="zoom rotate", rotate="-15") }}
+    {{ social_icon(icon="discord_icon_bg", link="https://discord.com/invite/gHG9WHyNvH", size="32px", effect="zoom rotate", rotate="-15") }}
+    {{ social_icon(icon="kofi_icon_bg", link="https://ko-fi.com/Axenide", size="32px", effect="zoom rotate", rotate="-15") }}
     </div>
   </div>
   
