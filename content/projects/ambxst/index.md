@@ -10,7 +10,7 @@ tags = ["dev", "wip"]
 [extra]
 no_header = true
 [extra.meta]
-favicon = "favicon.svg"
+favicon = "favicon.ico"
 +++
 
 <img src="./ambxst-banner.png" alt="Ambxst Logo" class="transparent drop-shadow no-hover" style="max-width: 500px; width: 100%;" />
