@@ -102,6 +102,11 @@
 	{%- if favicon %}
 		{%- if favicon | split(pat=".") | length > 1 %}
 			{%- set favicon_type = favicon | split(pat=".") | last %}
+			{%- if favicon_type == "ico" %}
+				{%- set favicon_type = "x-icon" %}
+			{%- elif favicon_type == "svg" %}
+				{%- set favicon_type = "svg+xml" %}
+			{%- endif %}
 			<link rel="icon" type="image/{{ favicon_type }}" href="{{ get_url(path=favicon, cachebust=true) }}" />
 		{%- else %}
 			<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='50%25' x='50%25' dominant-baseline='central' text-anchor='middle' font-size='88'%3E{{ favicon | truncate(length=1, end='') }}%3C/text%3E%3C/svg%3E" />
@@ -109,9 +114,9 @@
 		{%- if is_global_favicon %}
 			<link rel="icon" type="image/svg+xml" href="{{ get_url(path='favicon.svg', cachebust=true) }}" />
 			<link rel="alternate icon" href="{{ get_url(path='favicon.ico', cachebust=true) }}" />
+			<link rel="icon" type="image/png" sizes="192x192" href="{{ get_url(path='icon-192.png', cachebust=true) }}" />
+			<link rel="icon" type="image/png" sizes="512x512" href="{{ get_url(path='icon-512.png', cachebust=true) }}" />
 		{%- endif %}
-		<link rel="icon" type="image/png" sizes="192x192" href="{{ get_url(path='icon-192.png', cachebust=true) }}" />
-		<link rel="icon" type="image/png" sizes="512x512" href="{{ get_url(path='icon-512.png', cachebust=true) }}" />
 	{%- endif %}
 
 	{%- if page.extra.meta.apple_touch_icon %}
