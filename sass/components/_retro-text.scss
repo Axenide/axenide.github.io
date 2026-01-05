@@ -1,0 +1,87 @@
+// Retro Text Component
+// Usage: {{ retro_text(text="Hello", tag="h1", size="5rem") }}
+
+// CSS Property for wave animation
+@property --wave-amplitude {
+  syntax: '<length>';
+  initial-value: -3px;
+  inherits: true;
+}
+
+.retro-word {
+  display: inline-flex;
+  font-family: 'Bytesized', monospace;
+  font-size: var(--retro-text-size, 5rem);
+  margin-bottom: 0;
+  line-height: 1;
+  cursor: default;
+  
+  text-decoration: none !important;
+  border: none !important;
+  outline: none !important;
+
+  filter: 
+    drop-shadow(2px 0 0 white)
+    drop-shadow(-2px 0 0 white)
+    drop-shadow(0 2px 0 white)
+    drop-shadow(0 -2px 0 white);
+
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  &:hover {
+    transform: scale(1.1); 
+  }
+}
+
+.retro-letter {
+  position: relative;
+  color: transparent;
+  z-index: 1;
+  display: inline-block;
+  
+  --wave-amplitude: -3px;
+  
+  transition: --wave-amplitude 0.5s ease;
+  
+  animation: retro-wave 1s ease-in-out infinite running;
+  animation-delay: calc(0.1s * var(--i));
+
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    background: linear-gradient(180deg, #ff6b4d 0%, #db4740 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  &::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    color: black;
+    -webkit-text-stroke: 8px black;
+    
+    filter: 
+      drop-shadow(1px 1px 0 #000)
+      drop-shadow(1px 1px 0 #000)
+      drop-shadow(1px 1px 0 #000)
+      drop-shadow(1px 1px 0 #000)
+      drop-shadow(1px 1px 0 #000)
+      drop-shadow(1px 1px 0 #000);
+  }
+}
+
+@keyframes retro-wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(var(--wave-amplitude));
+  }
+}

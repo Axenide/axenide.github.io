@@ -37,14 +37,18 @@ favicon = true
 [extra.nav]
 icon = "images/avatar.png"
 links = [
-    { url = "@/blog/_index.md", name = "Blog", icon = "newspaper" },
-    { url = "@/projects/_index.md", name = "Projects", icon = "cpu" },
+	{ name = "Personal", category = [
+    { url = "@/blog/_index.md", name = "Blog", icon = "newspaper-clipping" },
+    { url = "@/projects/_index.md", name = "Projects", icon = "cube" },
+	] },
 ]
 
 [extra.nav.es]
 links = [
-    { url = "@/blog/_index.md", name = "Blog", icon = "newspaper" },
-    { url = "@/projects/_index.md", name = "Proyectos", icon = "cpu" },
+	{ name = "Personal", category = [
+    { url = "@/blog/_index.md", name = "Blog", icon = "newspaper-clipping" },
+    { url = "@/projects/_index.md", name = "Proyectos", icon = "cube" },
+	] },
 ]
 
 [extra.footer]

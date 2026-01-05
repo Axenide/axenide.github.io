@@ -1,3 +1,7 @@
+// Component imports
+@import "components/retro-avatar";
+@import "components/retro-text";
+
 :root {
   --font-sans-serif: "Roboto Condensed", "Geist", sans-serif;
 }
@@ -212,4 +216,37 @@
 .social-icon-wrapper:active .social-icon-img {
   transform: scale(0.9) !important;
   transition-duration: 0.1s !important;
+}
+
+/* Hero Section Layout */
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 500px;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column-reverse;
+    padding-top: 4rem;
+    gap: 0;
+  }
+  
+  .hero-content {
+    text-align: center;
+  }
+  
+  .hero-content .buttons {
+    justify-content: center;
+  }
 }
