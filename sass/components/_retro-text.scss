@@ -1,5 +1,5 @@
 // Retro Text Component
-// Usage: {{ retro_text(text="Hello", tag="h1", size="5rem") }}
+// Usage: {{ retro_text(text="Hello", tag="h1", size="5rem", font="Arial, sans-serif") }}
 
 // CSS Property for wave animation
 @property --wave-amplitude {
@@ -10,7 +10,7 @@
 
 .retro-word {
   display: inline-flex;
-  font-family: 'Bytesized', monospace;
+  font-family: var(--retro-text-font, 'Bytesized', monospace);
   font-size: var(--retro-text-size, 5rem);
   margin-bottom: 0;
   line-height: 1;
