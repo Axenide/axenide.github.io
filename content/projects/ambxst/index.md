@@ -9,6 +9,8 @@ path = "/ambxst"
 tags = ["dev", "wip"]
 [extra]
 no_header = true
+banner = "1.png"
+hide_banner = true
 [extra.meta]
 favicon = "favicon.svg"
 +++
