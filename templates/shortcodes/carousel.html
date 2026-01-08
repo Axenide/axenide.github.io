@@ -1,199 +1,311 @@
-<div class="carousel-container {{ class | default(value='') }}" style="{{ style | default(value='') }}" data-interval="{{ interval | default(value=0) }}">
-    <div class="carousel-track">
-        {% for i in range(end=3) %}
-            {% for image in images %}
-                <div class="carousel-item" data-real-index="{{ loop.index0 }}" onclick="onItemClick(this)">
-                    <img src="{{ image }}#transparent" class="no-hover" alt="Slide" loading="lazy" />
-                </div>
-            {% endfor %}
+<div class="carousel-wrapper {{ class | default(value='') }}" style="{{ style | default(value='') }}">
+    <div class="carousel" data-autoplay="{{ interval | default(value=0) }}">
+        {# Clon final para wrap infinito #}
+        <div class="carousel-cell carousel-cell-clone">
+            <img src="{{ images | last }}#transparent" class="no-hover" alt="Slide clone" loading="lazy" />
+        </div>
+        
+        {# Imágenes reales #}
+        {% for image in images %}
+            <div class="carousel-cell" data-index="{{ loop.index0 }}">
+                <img src="{{ image }}#transparent" class="no-hover" alt="Slide {{ loop.index }}" loading="lazy" />
+            </div>
         {% endfor %}
+        
+        {# Clon inicial para wrap infinito #}
+        <div class="carousel-cell carousel-cell-clone">
+            <img src="{{ images | first }}#transparent" class="no-hover" alt="Slide clone" loading="lazy" />
+        </div>
     </div>
 </div>
 
-<div class="lightbox-overlay" onclick="closeLightbox(this)">
+<div class="lightbox-overlay">
     <img class="lightbox-img" src="" alt="Full size view" />
 </div>
 
 <script>
-    function onItemClick(item) {
-        const container = item.closest('.carousel-container');
-        if (container.handleItemClick) {
-            container.handleItemClick(item);
-        }
-    }
-
-    function closeLightbox(overlay) {
-        overlay.classList.remove('visible');
-        document.body.style.overflow = '';
-        const container = overlay.previousElementSibling;
-        if (container && container.resumeTimer) container.resumeTimer();
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            document.querySelectorAll('.lightbox-overlay.visible').forEach(closeLightbox);
-        }
-    });
-
-    (function() {
-        const script = document.currentScript;
-        const lightbox = script.previousElementSibling;
-        const container = lightbox.previousElementSibling;
-        const track = container.querySelector('.carousel-track');
-        const allItems = Array.from(track.querySelectorAll('.carousel-item'));
+(function() {
+    const script = document.currentScript;
+    const lightbox = script.previousElementSibling;
+    const wrapper = lightbox.previousElementSibling;
+    const carousel = wrapper.querySelector('.carousel');
+    const allCells = Array.from(carousel.querySelectorAll('.carousel-cell'));
+    const cells = allCells.filter(cell => !cell.classList.contains('carousel-cell-clone'));
+    
+    if (cells.length === 0) return;
+    
+    const autoplayInterval = parseInt(carousel.dataset.autoplay) || 0;
+    const totalCells = allCells.length; // Incluye clones
+    const realCount = cells.length; // Solo las reales
+    
+    let currentIndex = 1; // Empezamos en 1 porque hay un clon al inicio
+    let autoplayTimer = null;
+    let isDragging = false;
+    let hasDragged = false;
+    let dragStartX = 0;
+    let dragStartTranslateX = 0;
+    let currentTranslateX = 0;
+    
+    // Inicialización
+    function init() {
+        updateCarousel(false);
+        startAutoplay();
         
-        const intervalTime = parseInt(container.dataset.interval);
-        const setSize = allItems.length / 3;
-        
-        let currentIndex = setSize; 
-        let isAnimating = false;
-        let timerId = null;
-        let scrollTimeout = null;
-        let isHovering = false;
-
-        container.handleItemClick = (clickedItem) => {
-            if (clickedItem.classList.contains('active')) {
-                const img = clickedItem.querySelector('img');
-                openLightbox(img.src);
-            } else {
-                const index = allItems.indexOf(clickedItem);
-                scrollToIndex(index, 'smooth');
-            }
-        };
-
-        container.resumeTimer = startTimer;
-
-        function openLightbox(src) {
-            const img = lightbox.querySelector('img');
-            img.src = src;
-            lightbox.classList.add('visible');
-            document.body.style.overflow = 'hidden';
-            stopTimer();
-        }
-
-        function stopTimer() {
-            if (timerId) {
-                clearInterval(timerId);
-                timerId = null;
-            }
-        }
-
-        function startTimer() {
-            if (lightbox.classList.contains('visible')) return;
-            if (isHovering) return;
-            if (intervalTime > 0) {
-                stopTimer();
-                timerId = setInterval(nextSlide, intervalTime);
-            }
-        }
-
-        function scrollToIndex(index, behavior = 'smooth') {
-            currentIndex = index;
-            const targetItem = allItems[index];
-            
-            const containerCenter = track.clientWidth / 2;
-            const itemCenter = targetItem.offsetWidth / 2;
-            const targetLeft = targetItem.offsetLeft - containerCenter + itemCenter;
-
-            // MODO SIGILOSO (TELETRANSPORTE)
-            if (behavior === 'auto') {
-                // 1. Apagar transiciones
-                track.classList.add('no-transition');
-                
-                // 2. Mover scroll
-                track.scrollTo({ left: targetLeft, behavior: 'auto' });
-                
-                // 3. Forzar Layout (Reflow) para que el navegador "digiera" el cambio sin animar
-                void track.offsetHeight; 
-                
-                // 4. Actualizar estado visual (Active/Inactive) INSTANTÁNEAMENTE
-                updateVisualClasses(true); // true = force sync
-                
-                // 5. Reactivar transiciones (después de un frame para seguridad)
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        track.classList.remove('no-transition');
-                    });
-                });
-            } else {
-                // MODO NORMAL (ANIMADO)
-                isAnimating = true;
-                track.scrollTo({ left: targetLeft, behavior: behavior });
-                updateVisualClasses();
-            }
-        }
-
-        function nextSlide() {
-            scrollToIndex(currentIndex + 1, 'smooth');
-        }
-
-        function updateVisualClasses(forceSync = false) {
-            const centerPoint = track.scrollLeft + (track.clientWidth / 2);
-            let closest = null;
-            let minDistance = Infinity;
-
-            allItems.forEach((item, i) => {
-                const itemCenter = item.offsetLeft + (item.offsetWidth / 2);
-                const distance = Math.abs(centerPoint - itemCenter);
-                
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    closest = item;
-                    if (!isAnimating || forceSync) currentIndex = i; 
+        // Click en celda (todas, incluyendo clones)
+        allCells.forEach((cell, index) => {
+            cell.addEventListener('click', (e) => {
+                // Solo procesar click si NO hubo drag
+                if (!hasDragged) {
+                    handleCellClick(index);
                 }
-                item.classList.remove('active');
             });
-
-            if (closest) closest.classList.add('active');
-        }
-
-        function checkTeleport() {
-            isAnimating = false;
-
-            if (currentIndex < setSize) {
-                const realIndex = currentIndex + setSize;
-                scrollToIndex(realIndex, 'auto');
-            } 
-            else if (currentIndex >= setSize * 2) {
-                const realIndex = currentIndex - setSize;
-                scrollToIndex(realIndex, 'auto');
-            }
-        }
-
-        setTimeout(() => {
-            scrollToIndex(currentIndex, 'auto'); 
-            startTimer();
-        }, 100);
-
-        track.addEventListener('scroll', () => {
-            if (!track.classList.contains('no-transition')) {
-                requestAnimationFrame(() => updateVisualClasses());
-            }
-
-            if (scrollTimeout) clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(checkTeleport, 100);
-        });
-
-        // Refinado: Solo pausar si el mouse está sobre el track (imágenes)
-        track.addEventListener('mouseenter', () => {
-            isHovering = true;
-            stopTimer();
         });
         
-        track.addEventListener('mouseleave', () => {
-            isHovering = false;
-            startTimer();
-        });
-
+        // Arrastre con mouse/touch - aplicado al wrapper completo
+        wrapper.addEventListener('mousedown', touchStart);
+        wrapper.addEventListener('touchstart', touchStart, { passive: false });
+        
+        window.addEventListener('mousemove', touchMove);
+        window.addEventListener('touchmove', touchMove, { passive: false });
+        
+        window.addEventListener('mouseup', touchEnd);
+        window.addEventListener('touchend', touchEnd);
+        
+        // Navegación con teclado
+        document.addEventListener('keydown', handleKeyNav);
+        
+        // Pausar cuando tab pierde foco
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
-                stopTimer();
-            } else {
-                startTimer();
+                stopAutoplay();
+            } else if (autoplayInterval > 0 && !lightbox.classList.contains('visible')) {
+                startAutoplay();
             }
         });
         
-        window.addEventListener('resize', () => scrollToIndex(currentIndex, 'auto'));
-
-    })();
+        // Pausar en hover
+        wrapper.addEventListener('mouseenter', stopAutoplay);
+        wrapper.addEventListener('mouseleave', () => {
+            if (autoplayInterval > 0 && !lightbox.classList.contains('visible')) {
+                startAutoplay();
+            }
+        });
+        
+        // Responsive
+        window.addEventListener('resize', () => updateCarousel(false));
+    }
+    
+    function handleCellClick(cellIndex) {
+        const realIndex = cellIndex - 1; // Ajustar por el clon inicial
+        
+        if (cellIndex === currentIndex) {
+            // Abrir lightbox
+            const img = allCells[cellIndex].querySelector('img');
+            openLightbox(img.src);
+        } else {
+            // Ir a esa celda
+            goToSlide(cellIndex);
+        }
+    }
+    
+    function goToSlide(index, animate = true) {
+        currentIndex = index;
+        updateCarousel(animate);
+        
+        // Después de la animación, verificar si necesitamos teleportar
+        if (animate) {
+            setTimeout(() => checkWrap(), 400);
+        }
+        
+        stopAutoplay();
+        if (autoplayInterval > 0) {
+            startAutoplay();
+        }
+    }
+    
+    function nextSlide() {
+        goToSlide(currentIndex + 1);
+    }
+    
+    function prevSlide() {
+        goToSlide(currentIndex - 1);
+    }
+    
+    function checkWrap() {
+        // Si estamos en el clon del final, saltar al primero real
+        if (currentIndex === totalCells - 1) {
+            currentIndex = 1;
+            updateCarousel(false);
+        }
+        // Si estamos en el clon del inicio, saltar al último real
+        else if (currentIndex === 0) {
+            currentIndex = totalCells - 2;
+            updateCarousel(false);
+        }
+    }
+    
+    function getTranslateXForIndex(index) {
+        const wrapperWidth = wrapper.offsetWidth;
+        const cellWidth = allCells[0].offsetWidth;
+        const cellMargin = parseFloat(getComputedStyle(allCells[0]).marginRight) || 0;
+        const totalCellWidth = cellWidth + cellMargin;
+        
+        // Centrar la celda actual
+        const offset = (wrapperWidth / 2) - (cellWidth / 2) - (index * totalCellWidth);
+        return offset;
+    }
+    
+    function updateCarousel(animate = true) {
+        currentTranslateX = getTranslateXForIndex(currentIndex);
+        
+        if (animate) {
+            carousel.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        } else {
+            carousel.style.transition = 'none';
+        }
+        
+        carousel.style.transform = `translateX(${currentTranslateX}px)`;
+        
+        // Actualizar clases activas (solo en las celdas reales)
+        allCells.forEach((cell, index) => {
+            const isClone = cell.classList.contains('carousel-cell-clone');
+            
+            if (!isClone) {
+                cell.classList.toggle('is-selected', index === currentIndex);
+            } else {
+                // Los clones se activan según su posición equivalente
+                if (index === 0) { // Clon del final al inicio
+                    cell.classList.toggle('is-selected', currentIndex === totalCells - 1);
+                } else if (index === totalCells - 1) { // Clon del inicio al final
+                    cell.classList.toggle('is-selected', currentIndex === 0);
+                }
+            }
+        });
+    }
+    
+    // Autoplay
+    function startAutoplay() {
+        stopAutoplay();
+        if (autoplayInterval > 0) {
+            autoplayTimer = setInterval(nextSlide, autoplayInterval);
+        }
+    }
+    
+    function stopAutoplay() {
+        if (autoplayTimer) {
+            clearInterval(autoplayTimer);
+            autoplayTimer = null;
+        }
+    }
+    
+    // Drag functionality
+    function touchStart(event) {
+        isDragging = true;
+        hasDragged = false;
+        dragStartX = event.type === 'touchstart' ? event.touches[0].clientX : event.clientX;
+        dragStartTranslateX = currentTranslateX;
+        
+        carousel.style.transition = 'none';
+        carousel.style.cursor = 'grabbing';
+        stopAutoplay();
+        
+        event.preventDefault();
+    }
+    
+    function touchMove(event) {
+        if (!isDragging) return;
+        
+        const currentX = event.type === 'touchmove' ? event.touches[0].clientX : event.clientX;
+        const diff = currentX - dragStartX;
+        
+        // Si se movió más de 5px, considerar que es un drag
+        if (Math.abs(diff) > 5) {
+            hasDragged = true;
+        }
+        
+        currentTranslateX = dragStartTranslateX + diff;
+        carousel.style.transform = `translateX(${currentTranslateX}px)`;
+        
+        event.preventDefault();
+    }
+    
+    function touchEnd(event) {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        carousel.style.cursor = 'grab';
+        
+        const movedBy = currentTranslateX - dragStartTranslateX;
+        const cellWidth = allCells[0].offsetWidth;
+        const threshold = cellWidth * 0.25; // 25% del ancho de la celda
+        
+        // Determinar cuántas celdas se movió
+        const cellsMoved = Math.round(movedBy / (cellWidth + parseFloat(getComputedStyle(allCells[0]).marginRight)));
+        
+        // Si se movió lo suficiente, cambiar slide
+        if (Math.abs(movedBy) > threshold) {
+            // movedBy positivo = arrastró a la derecha = ir a la anterior
+            // movedBy negativo = arrastró a la izquierda = ir a la siguiente
+            if (movedBy < 0) {
+                // Arrastró a la izquierda -> siguiente
+                const slidesToMove = Math.max(1, Math.abs(cellsMoved));
+                goToSlide(currentIndex + slidesToMove);
+            } else {
+                // Arrastró a la derecha -> anterior
+                const slidesToMove = Math.max(1, Math.abs(cellsMoved));
+                goToSlide(currentIndex - slidesToMove);
+            }
+        } else {
+            // No se movió lo suficiente, volver a la posición actual
+            updateCarousel(true);
+        }
+        
+        if (autoplayInterval > 0) {
+            startAutoplay();
+        }
+    }
+    
+    function handleKeyNav(e) {
+        if (lightbox.classList.contains('visible')) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+            return;
+        }
+        
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            prevSlide();
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            nextSlide();
+        }
+    }
+    
+    // Lightbox
+    function openLightbox(src) {
+        const img = lightbox.querySelector('img');
+        img.src = src;
+        lightbox.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+        stopAutoplay();
+    }
+    
+    function closeLightbox() {
+        lightbox.classList.remove('visible');
+        document.body.style.overflow = '';
+        if (autoplayInterval > 0) {
+            startAutoplay();
+        }
+    }
+    
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+    
+    // Iniciar
+    init();
+})();
 </script>

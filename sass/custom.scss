@@ -7,14 +7,13 @@
 }
 
 /* Carousel Styles */
-.carousel-container {
+.carousel-wrapper {
   width: 100%;
   margin: 0;
   position: relative;
   overflow: hidden;
-  perspective: 1000px;
-
-  /* Máscara de desvanecimiento */
+  
+  /* Máscara de desvanecimiento en los bordes */
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
@@ -31,76 +30,80 @@
   );
 }
 
-.carousel-track {
+.carousel {
   display: flex;
-  gap: 0;
-  /* IMPORTANTE: overflow-x scroll para permitir movimiento, 
-       pero SIN scroll-snap para tener control manual total JS */
-  overflow-x: auto;
-
-  padding: 2rem 0; /* Padding vertical para sombras */
-  padding-bottom: 3rem;
-
-  /* Ocultar barra de scroll */
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Comportamiento fluido por defecto */
-  scroll-behavior: auto;
-
-  /* CRÍTICO: Clase para apagar animaciones durante el teletransporte del loop */
-  &.no-transition .carousel-item,
-  &.no-transition .carousel-item img {
-    transition: none !important;
+  align-items: center;
+  padding: 3rem 0;
+  cursor: grab;
+  user-select: none;
+  
+  /* Transición suave por defecto */
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+  
+  &:active {
+    cursor: grabbing;
   }
 }
 
-.carousel-item {
-  flex: 0 0 70%; /* AHORA OCUPA EL 70% (Antes 80%) */
-  /* Centrado flex dentro del item */
+.carousel-cell {
+  /* Cada celda tiene un ancho fijo */
+  flex: 0 0 66%;
+  margin-right: 2%;
+  
+  /* Centrado */
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  /* Interacción */
   cursor: pointer;
-
-  /* Transiciones para el efecto visual (Scale/Opacity) */
-  transition:
+  
+  /* Efectos de escala y opacidad */
+  transform: scale(0.85);
+  opacity: 0.6;
+  filter: blur(2px) brightness(0.8);
+  
+  /* Transiciones */
+  transition: 
     transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     opacity 0.4s ease,
-    filter 0.4s ease,
-    z-index 0s; /* Z-index instantáneo para evitar problemas de capas */
-
-  /* ESTADO BASE (INACTIVO) */
-  transform: scale(0.85);
-  opacity: 1;
-  z-index: 1;
-  filter: blur(2px);
-
+    filter 0.4s ease;
+  
   img {
-    max-height: 600px;
     width: 100%;
+    max-height: 600px;
     object-fit: cover;
     border-radius: var(--rounded-corner);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     user-select: none;
     -webkit-user-drag: none;
-    border: 0px solid transparent;
-    transition: border-color 0.3s;
+    pointer-events: none;
+    border: 2px solid transparent;
+    transition: 
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
   }
-
-  /* ESTADO ACTIVO */
-  &.active {
+  
+  /* Estado seleccionado (activo) */
+  &.is-selected {
     transform: scale(1);
     opacity: 1;
+    filter: blur(0) brightness(1);
     z-index: 10;
-    filter: brightness(1) blur(0);
-
+    
     img {
       border-color: var(--accent-color);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
     }
+  }
+}
+
+/* Responsive: en pantallas pequeñas, celdas ocupan más */
+@media (max-width: 768px) {
+  .carousel-cell {
+    flex: 0 0 80%;
+    margin-right: 4%;
   }
 }
 
