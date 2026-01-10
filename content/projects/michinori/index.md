@@ -1,9 +1,9 @@
 +++
-title = "Ambxst"
-date = 2025-12-31
+title = "Michinori"
+date = 2021-09-01
 weight = 1
-description = "An ***Ax**tremely* customizable shell."
-path = "/ambxst"
+description = "The game where the path to your love is… Complicated."
+path = "/michinori"
 
 [taxonomies]
 tags = ["dev", "wip"]
@@ -11,12 +11,12 @@ tags = ["dev", "wip"]
 no_header = true
 banner = "1.png"
 hide_banner = true
-accent_color = "hsl(2.71, 68.28%, 55.49%)"
+accent_color = "hsl(0.0, 0%, 30%)"
 [extra.meta]
 favicon = "favicon.svg"
 +++
 
-<img src="./ambxst-banner.png" alt="Ambxst Logo" class="transparent drop-shadow no-hover" style="max-width: 500px; width: 100%;" />
+<img src="./michinori-banner.png" alt="Ambxst Logo" class="transparent drop-shadow no-hover" style="max-width: 500px; width: 100%;" />
 
 <div align="center">
 
@@ -24,7 +24,7 @@ An ***Ax**tremely* customizable shell.
 
 </div>
 
-{{ carousel(images=["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"], interval=3000, style="margin: -2rem 0 -2rem 0") }}
+{{ carousel(images=["1.png", "2.png", "3.png", "4.png", "5.png"], interval=3000, style="margin: -2rem 0 -2rem 0") }}
 
 <div align="center">
   {{ social_icon(icon="kofi_icon_bg", link="https://ko-fi.com/Axenide", size="32px", effect="zoom rotate", rotate="-15") }}

@@ -3,7 +3,7 @@ title = "Ambxst"
 date = 2025-12-31
 weight = 1
 description = "Una shell ***Ax**tremadamente* personalizable."
-path = "/es/ambxst"
+path = "/es/michinori"
 
 [taxonomies]
 tags = ["dev", "wip"]
@@ -11,7 +11,6 @@ tags = ["dev", "wip"]
 no_header = true
 banner = "1.png"
 hide_banner = true
-accent_color = "hsl(2.71, 68.28%, 55.49%)"
 [extra.meta]
 favicon = "favicon.svg"
 +++
