@@ -211,7 +211,7 @@
   
   /* Ensure it's clickable above potential negative-margin overlaps (like the carousel) */
   position: relative;
-  z-index: 20;
+  z-index: 2;
   
   /* Spacing */
   margin: 0 0.5rem;
@@ -302,6 +302,7 @@
   .hero-content {
     text-align: center;
   }
+  
   
   .hero-content .buttons {
     justify-content: center;
