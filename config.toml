@@ -22,9 +22,11 @@ taxonomies = [
 ]
 
 [markdown]
-highlight_code = true
 smart_punctuation = true
 github_alerts = true
+
+[markdown.highlighting]
+theme = "github-dark"
 
 [extra]
 styles = ["custom.css"]
