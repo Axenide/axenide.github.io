@@ -118,13 +118,15 @@
   justify-content: center;
   align-items: center;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease;
-  cursor: zoom-out;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  cursor: default; /* Changed from zoom-out to allow clicking buttons */
 }
 
 .lightbox-overlay.visible {
   opacity: 1;
+  visibility: visible;
   pointer-events: all;
 }
 
@@ -136,10 +138,62 @@
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   transform: scale(0.9);
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* Ensure image doesn't block clicks to overlay but... we want drag on image. */
+  pointer-events: auto; 
+  cursor: grab;
+}
+
+.lightbox-img:active {
+    cursor: grabbing;
 }
 
 .lightbox-overlay.visible .lightbox-img {
   transform: scale(1);
+}
+
+/* Lightbox Navigation */
+.lightbox-nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease, background 0.3s ease;
+  z-index: 10000;
+  
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+/* Visible on touch devices usually means we can't rely on hover, 
+   but swipe is primary there. We can keep them hidden or show slightly.
+   Let's keep hidden unless hovered/active to keep it clean.
+*/
+
+.lightbox-prev {
+  left: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.4), transparent);
+}
+
+.lightbox-next {
+  right: 0;
+  background: linear-gradient(to left, rgba(0,0,0,0.4), transparent);
+}
+
+.lightbox-arrow-icon {
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  pointer-events: none;
 }
 
 /* Social Icons Shortcode */

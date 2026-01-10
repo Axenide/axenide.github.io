@@ -1,30 +1,37 @@
-{% set icon_size = size | default(value="16px") %}
-{% set icon_url = link | default(value=url | default(value="#")) %}
+{% set button_link = link | default(value=url | default(value="#")) %}
 {% set effect_list = effect | default(value="") %}
 
-{# --- 1. Handle Icon Filename (.png automatico) --- #}
-{% set icon_filename = icon %}
-{% if not icon is ending_with(".png") %}
-    {% set icon_filename = icon ~ ".png" %}
+{# --- Dimensions Logic --- #}
+{% set wrapper_style = "" %}
+{% set img_style = "" %}
+
+{% if width and height %}
+    {# Both provided: Fixed size #}
+    {% set wrapper_style = "width: " ~ width ~ "; height: " ~ height ~ ";" %}
+    {# Image keeps default 100% from class #}
+{% elif width %}
+    {# Only width provided: Maintain aspect ratio #}
+    {% set wrapper_style = "width: " ~ width ~ "; height: auto;" %}
+    {% set img_style = "height: auto;" %}
+{% elif height %}
+    {# Only height provided: Maintain aspect ratio #}
+    {% set wrapper_style = "width: auto; height: " ~ height ~ ";" %}
+    {% set img_style = "width: auto;" %}
+{% else %}
+    {# Neither provided: Default to 16px #}
+    {% set wrapper_style = "width: 16px; height: 16px;" %}
 {% endif %}
 
-{# --- 2. Always use 16x folder (Pixel Art Scaling) --- #}
-{% set folder = "16x" %}
-
-{# --- 3. Parse Parameters for Effects --- #}
-
-{# Defaults #}
+{# --- Effects (Zoom & Rotate) --- #}
 {% set d_z_val = 1.2 %}
 {% set d_z_dur = "0.25s" %}
 {% set d_r_val = 30 %}
 {% set d_r_dur = "0.5s" %}
 
-{# --- Zoom Logic --- #}
+{# Zoom #}
 {% set final_z_val = 1.0 %}
 {% set final_z_dur = d_z_dur %}
-
 {% if zoom %}
-    {# User provided explicit zoom param #}
     {% set z_str = zoom | as_str %}
     {% if "," in z_str %}
         {% set parts = z_str | split(pat=",") %}
@@ -34,16 +41,13 @@
         {% set final_z_val = z_str | trim %}
     {% endif %}
 {% elif "zoom" in effect_list %}
-    {# User requested zoom via effect list, use defaults #}
     {% set final_z_val = d_z_val %}
 {% endif %}
 
-{# --- Rotate Logic --- #}
+{# Rotate #}
 {% set final_r_val = 0 %}
 {% set final_r_dur = d_r_dur %}
-
 {% if rotate %}
-    {# User provided explicit rotate param #}
     {% set r_str = rotate | as_str %}
     {% if "," in r_str %}
         {% set parts = r_str | split(pat=",") %}
@@ -53,11 +57,10 @@
         {% set final_r_val = r_str | trim %}
     {% endif %}
 {% elif "rotate" in effect_list %}
-    {# User requested rotate via effect list, use defaults #}
     {% set final_r_val = d_r_val %}
 {% endif %}
 
-{# Ensure durations have units if missing (simple check) #}
+{# Ensure units #}
 {% if not final_z_dur is ending_with("s") and not final_z_dur is ending_with("ms") %}
     {% set final_z_dur = final_z_dur ~ "s" %}
 {% endif %}
@@ -65,12 +68,13 @@
     {% set final_r_dur = final_r_dur ~ "s" %}
 {% endif %}
 
-<a href="{{ icon_url }}" 
+<a href="{{ button_link }}" 
    class="social-icon-wrapper" 
    target="_blank" 
    rel="noopener noreferrer"
-   style="--icon-size: {{ icon_size }}; --rotate-val: {{ final_r_val }}deg; --rotate-dur: {{ final_r_dur }}; --zoom-val: {{ final_z_val }}; --zoom-dur: {{ final_z_dur }};">
-    <img src="/social-icons/{{ folder }}/{{ icon_filename }}" 
-         alt="{{ icon }}" 
-         class="social-icon-img transparent" />
+   style="{{ wrapper_style }} --rotate-val: {{ final_r_val }}deg; --rotate-dur: {{ final_r_dur }}; --zoom-val: {{ final_z_val }}; --zoom-dur: {{ final_z_dur }};">
+    <img src="{{ image }}" 
+         alt="button" 
+         class="social-icon-img transparent"
+         {% if img_style %}style="{{ img_style }}"{% endif %} />
 </a>

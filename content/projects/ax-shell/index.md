@@ -24,12 +24,12 @@ A hackable shell for [Hyprland](https://hyprland.org/), powered by [Fabric](http
 
 </div>
 
-{{ carousel(images=["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png", "10.png", "11.png", "12.png", "13.png", "14.png", "15.png"], interval=3000, style="margin: -2rem 0 -2rem 0") }}
+{{ carousel(start=1, end=15, interval=3000, style="margin: -2rem 0 -2rem 0") }}
 
 <div align="center">
-  {{ social_icon(icon="kofi_icon_bg", link="https://ko-fi.com/Axenide", size="32px", effect="zoom rotate", rotate="-15") }}
-  {{ social_icon(icon="github_icon_bg", link="https://github.com/Axenide/Ax-Shell", size="32px", effect="zoom rotate", rotate="-15") }}
-  {{ social_icon(icon="discord_icon_bg", link="https://discord.com/invite/gHG9WHyNvH", size="32px", effect="zoom rotate", rotate="-15") }}
+  {{ styled_button(image="/social-icons/16x/kofi_icon_bg.png", link="https://ko-fi.com/Axenide", width="32px", effect="zoom rotate", rotate="-15") }}
+  {{ styled_button(image="/social-icons/16x/github_icon_bg.png", link="https://github.com/Axenide/Ax-Shell", width="32px", effect="zoom rotate", rotate="-15") }}
+  {{ styled_button(image="/social-icons/16x/discord_icon_bg.png", link="https://discord.com/invite/gHG9WHyNvH", width="32px", effect="zoom rotate", rotate="-15") }}
 </div>
 
 ## Installation
@@ -59,66 +59,65 @@ curl -fsSL https://raw.githubusercontent.com/Axenide/Ax-Shell/main/install.sh | 
 
 ### Manual Installation
 1. Install dependencies:
-    - [Fabric](https://github.com/Fabric-Development/fabric)
-    - [fabric-cli](https://github.com/Fabric-Development/fabric-cli)
-    - [Gray](https://github.com/Fabric-Development/gray)
-    - [Matugen](https://github.com/InioX/matugen)
-    - `awww`
-    - `brightnessctl`
-    - `cava`
-    - `cliphist`
-    - `ddcutil`
-    - `gnome-bluetooth-3.0`
-    - `gobject-introspection`
-    - `gpu-screen-recorder`
-    - `grimblast`
-    - `hypridle`
-    - `hyprlock`
-    - `hyprpicker`
-    - `hyprshot`
-    - `hyprsunset`
-    - `imagemagick`
-    - `libnotify`
-    - `networkmanager`
-    - `network-manager-applet`
-    - `nm-connection-editor`
-    - `noto-fonts-emoji`
-    - `nvtop`
-    - `playerctl`
-    - `swappy`
-    - `tesseract`
-    - `tesseract-data-eng`
-    - `tesseract-data-spa`
-    - `tmux`
-    - `unzip`
-    - `upower`
-    - `uwsm`
-    - `vte3`
-    - `webp-pixbuf-loader`
-    - `wl-clipboard`
-    - Python dependencies:
-        - PyGObject
-        - ijson
-        - numpy
-        - pillow
-        - psutil
-        - pywayland
-        - requests
-        - setproctitle
-        - toml
-        - watchdog
-    - Fonts (automated on first run):
-        - Zed Sans
-        - Tabler Icons
+- [Fabric](https://github.com/Fabric-Development/fabric)
+- [fabric-cli](https://github.com/Fabric-Development/fabric-cli)
+- [Gray](https://github.com/Fabric-Development/gray)
+- [Matugen](https://github.com/InioX/matugen)
+- `awww`
+- `brightnessctl`
+- `cava`
+- `cliphist`
+- `ddcutil`
+- `gnome-bluetooth-3.0`
+- `gobject-introspection`
+- `gpu-screen-recorder`
+- `grimblast`
+- `hypridle`
+- `hyprlock`
+- `hyprpicker`
+- `hyprshot`
+- `hyprsunset`
+- `imagemagick`
+- `libnotify`
+- `networkmanager`
+- `network-manager-applet`
+- `nm-connection-editor`
+- `noto-fonts-emoji`
+- `nvtop`
+- `playerctl`
+- `swappy`
+- `tesseract`
+- `tesseract-data-eng`
+- `tesseract-data-spa`
+- `tmux`
+- `unzip`
+- `upower`
+- `uwsm`
+- `vte3`
+- `webp-pixbuf-loader`
+- `wl-clipboard`
+- Python dependencies:
+    - PyGObject
+    - ijson
+    - numpy
+    - pillow
+    - psutil
+    - pywayland
+    - requests
+    - setproctitle
+    - toml
+    - watchdog
+- Fonts (automated on first run):
+    - Zed Sans
+    - Tabler Icons
 
 2. Download and run Ax-Shell:
-    ```bash
-    git clone https://github.com/Axenide/Ax-Shell.git ~/.config/Ax-Shell
-    uwsm -- app python ~/.config/Ax-Shell/main.py > /dev/null 2>&1 & disown
-    ```
+```bash
+git clone https://github.com/Axenide/Ax-Shell.git ~/.config/Ax-Shell
+uwsm -- app python ~/.config/Ax-Shell/main.py > /dev/null 2>&1 & disown
+```
 
-<h2><sub><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Rocket.png" alt="Rocket" width="25" height="25" /></sub> Roadmap</h2>
-
+## Roadmap
 - [x] App Launcher
 - [x] Bluetooth Manager
 - [x] Calculator
