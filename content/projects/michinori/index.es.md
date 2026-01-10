@@ -6,7 +6,7 @@ description = "El juego donde el camino hacia tu amor es… Complicado."
 path = "/es/michinori"
 
 [taxonomies]
-tags = ["dev", "wip"]
+tags = ["gamedev", "jam"]
 [extra]
 no_header = true
 banner = "1.png"
