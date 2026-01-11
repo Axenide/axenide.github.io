@@ -1,0 +1,44 @@
+{%- if page.extra.games -%}
+    {%- set games_list = page.extra.games -%}
+{%- elif section.extra.games -%}
+    {%- set games_list = section.extra.games -%}
+{%- endif -%}
+
+{%- if games_list -%}
+    {%- if games_list | length > 8 -%}
+    <input class="visually-hidden" id="show-more" type="checkbox" name="show-more" autocomplete="off" />
+    <label for="show-more">
+        <span class="more">Show More…</span>
+        <span class="less">Show Less…</span>
+    </label>
+    {%- endif -%}
+
+    <ul>
+    {%- for game in games_list -%}
+        {%- if loop.index == 9 -%}
+    </ul>
+    <ul class="games-extra">
+        {%- endif -%}
+        <li>
+            <a href="{{ game.url }}" target="_blank" title="{{ game.name }}">
+                {%- if game.id != "none" -%}
+                    <img
+                        class="transparent no-hover"
+                        alt="{{ game.name }}"
+                        src="https://shared.steamstatic.com/store_item_assets/steam/apps/{{ game.id }}/library_600x900.jpg"
+                        loading="lazy"
+                    />
+                {%- else -%}
+                     <img
+                        class="transparent no-hover"
+                        alt="{{ game.name }}"
+                        src="/images/games/{{ game.name | slugify }}.jpg"
+                        loading="lazy"
+                        onerror="this.src='/images/placeholder_game.png'"
+                    />
+                {%- endif -%}
+            </a>
+        </li>
+    {%- endfor -%}
+    </ul>
+{%- endif -%}

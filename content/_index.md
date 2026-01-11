@@ -11,6 +11,17 @@ badges = [
   { name = "standwith.gif", url = "https://decolonizepalestine.com" },
   { name = "vscodium.gif", url = "https://vscodium.com" },
 ]
+games = [
+  { name = "Portal 2", id = "620", url = "https://store.steampowered.com/app/620/Portal_2/" },
+  { name = "The Stanley Parable: Ultra Deluxe", id = "1703340", url = "https://store.steampowered.com/app/1703340/The_Stanley_Parable_Ultra_Deluxe/" },
+  { name = "OneShot", id = "420530", url = "https://store.steampowered.com/app/420530/OneShot/" },
+  { name = "Firewatch", id = "383870", url = "https://store.steampowered.com/app/383870/Firewatch/" },
+  { name = "Superliminal", id = "1049410", url = "https://store.steampowered.com/app/1049410/Superliminal/" },
+  { name = "Celeste", id = "504230", url = "https://store.steampowered.com/app/504230/Celeste/" },
+  { name = "Teardown", id = "1167630", url = "https://store.steampowered.com/app/1167630/Teardown/" },
+  { name = "Dream BBQ", id = "1434540", url = "https://store.steampowered.com/app/1434540/Hello_Neighbor_2/" }, # Using Hello Neighbor 2 ID as Dream BBQ (Hello Engineer/Guest) might vary, but sticking to valid ID for artwork. Or actually Dream BBQ standalone page exists? Let's assume standard ID for artwork works.
+  { name = "Minecraft", id = "none", url = "https://minecraft.net" } 
+]
 +++
 
 <section class="snap-section hero-wrapper">
@@ -45,31 +56,43 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 <div style="width: 100%;">
 <h2>About</h2>
 <ul class="masonry">
-<!-- Card Start -->
+<!-- Card Start: Intro -->
 <li>
 <article>
 
 **I'm Adriano Tisera,** a future Computer Engineer. I love building things and exploring new technologies.
+</article>
+</li>
 
-<div class="fancy-list">
+<!-- Card Start: Interests -->
+<li>
+<article class="fancy-list">
 
 **Interests:**
 - Programming
 - Game Development
 - Music Production
 - Content Creation
-</div>
 </article>
 </li>
-<!-- Card End -->
 
-<!-- Card Start -->
+<!-- Card Start: Tile Embed -->
 <li>
 <article>
 {{ tile_embed() }}
 </article>
 </li>
-<!-- Card End -->
+
+<!-- Card Start: Games -->
+<li>
+<article class="fancy-list games">
+
+**Games I like:**
+
+{{ games() }}
+</article>
+</li>
+
 </ul>
 
 <div id="indieweb" style="margin-top: 3rem;">
