@@ -100,12 +100,19 @@ Simply put, IndieWeb is anything on the web that is hand-crafted and feels perso
     const indicator = document.querySelector('.scroll-indicator');
     
     function updateIndicator() {
-      // Increased threshold to 150px to prevent accidental hiding
-      // and ensure it stays visible longer at the top
+      // Logic for the scroll indicator visibility
       if (window.scrollY > 150) {
         indicator.classList.add('hidden');
       } else {
         indicator.classList.remove('hidden');
+      }
+
+      // Logic to release scroll snapping after the first section
+      // This allows free scrolling in the tall content section
+      if (window.scrollY > window.innerHeight * 0.9) {
+        document.documentElement.style.scrollSnapType = 'none';
+      } else {
+        document.documentElement.style.scrollSnapType = 'y mandatory';
       }
     }
 
