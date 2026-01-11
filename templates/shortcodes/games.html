@@ -74,15 +74,49 @@
 				{%- endif -%}
 			{%- endif -%}
 
-			{%- if steam -%}
+			{%- if sgdb_token != "NO_TOKEN" and not steam -%}
+				{# Search by name if not on Steam #}
+				{%- set search_query = data.name | urlencode -%}
+				{%- set sgdb_search = load_data(
+					url="https://www.steamgriddb.com/api/v2/search/autocomplete/" ~ search_query,
+					format="json",
+					method="GET",
+					headers=["Authorization= Bearer " ~ sgdb_token],
+					fail_on_error=false
+				) -%}
+
+				{%- if sgdb_search and sgdb_search.success and sgdb_search.data | length > 0 -%}
+					{%- set game_id = sgdb_search.data[0].id -%}
+					{%- set sgdb_data = load_data(
+						url="https://www.steamgriddb.com/api/v2/grids/game/" ~ game_id ~ "?dimensions=600x900&nsfw=false",
+						format="json",
+						method="GET",
+						headers=["Authorization= Bearer " ~ sgdb_token],
+						fail_on_error=false
+					) -%}
+					{%- if sgdb_data and sgdb_data.success and sgdb_data.data | length > 0 -%}
+						{%- set sgdb_img = sgdb_data.data[0].url -%}
+					{%- endif -%}
+				{%- endif -%}
+			{%- endif -%}
+
+			{%- if steam or sgdb_img -%}
 			<li>
-				<a href="https://store.steampowered.com/app/{{ steam.id }}">
-					{%- set steam_img = "https://shared.steamstatic.com/store_item_assets/steam/apps/" ~ steam.id ~ "/library_600x900.jpg" -%}
+				<a href="{% if steam %}https://store.steampowered.com/app/{{ steam.id }}{% else %}#{% endif %}">
+					{%- set steam_img = "" -%}
+					{%- if steam -%}
+						{%- set steam_img = "https://shared.steamstatic.com/store_item_assets/steam/apps/" ~ steam.id ~ "/library_600x900.jpg" -%}
+					{%- endif -%}
+					
 					<img
 						class="transparent no-hover"
 						alt="Capsule art of {{ data.name }}."
-						src="{{ steam_img }}"
-						{% if sgdb_img %}
+						{% if steam_img %}
+							src="{{ steam_img }}"
+						{% else %}
+							src="{{ sgdb_img }}"
+						{% endif %}
+						{% if steam_img and sgdb_img %}
 							onerror="this.onerror=null;this.src='{{ sgdb_img }}';"
 						{% endif %}
 						{% if config.markdown.lazy_async_image %}
