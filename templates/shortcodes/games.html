@@ -54,14 +54,37 @@
 			-%}
 			{%- set steam = data.third_party_skus | filter(attribute="distributor", value="steam") | first -%}
 			
-			{# Steam Image Fallback Only - SGDB removed due to API instability with Zola #}
+			{# SteamGridDB Logic as Fallback #}
+			{%- set sgdb_img = "" -%}
+			{# Only attempt to fetch if we have a token AND the Steam image might fail (we can't know beforehand, so we fetch aggressively) #}
+			{# Or, per your request, we use SGDB as fallback. Wait, usually Steam is faster/more reliable, but lacks some covers. #}
+			{# "Use SteamGridDB but as Fallback" means: Try Steam first. If it breaks, use SGDB. #}
+			
+			{%- if sgdb_token != "NO_TOKEN" and steam -%}
+				{# We fetch SGDB URL just in case we need it for onerror. Removed styles filter to prevent 400 Bad Request on specific games like Undertale #}
+				{%- set sgdb_data = load_data(
+					url="https://www.steamgriddb.com/api/v2/grids/steam/" ~ steam.id ~ "?dimensions=600x900&nsfw=false",
+					format="json",
+					method="GET",
+					headers=["Authorization= Bearer " ~ sgdb_token],
+					fail_on_error=false
+				) -%}
+				{%- if sgdb_data and sgdb_data.success and sgdb_data.data | length > 0 -%}
+					{%- set sgdb_img = sgdb_data.data[0].url -%}
+				{%- endif -%}
+			{%- endif -%}
+
 			{%- if steam -%}
 			<li>
 				<a href="https://store.steampowered.com/app/{{ steam.id }}">
+					{%- set steam_img = "https://shared.steamstatic.com/store_item_assets/steam/apps/" ~ steam.id ~ "/library_600x900.jpg" -%}
 					<img
 						class="transparent no-hover"
 						alt="Capsule art of {{ data.name }}."
-						src="https://shared.steamstatic.com/store_item_assets/steam/apps/{{ steam.id }}/library_600x900.jpg"
+						src="{{ steam_img }}"
+						{% if sgdb_img %}
+							onerror="this.onerror=null;this.src='{{ sgdb_img }}';"
+						{% endif %}
 						{% if config.markdown.lazy_async_image %}
 							decoding="async" loading="lazy"
 						{% endif %}
