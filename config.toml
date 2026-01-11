@@ -29,6 +29,7 @@ github_alerts = true
 theme = "github-dark"
 
 [extra]
+discord_user_id = "294856304969908224"
 styles = ["custom.css"]
 accent_color = "hsl(0.01, 68%, 55%)"
 date_format = "%d %B %Y"

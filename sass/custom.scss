@@ -6,10 +6,15 @@
   --font-sans-serif: "Roboto Condensed", "Geist", sans-serif;
 }
 
-/* Daudix Components */
-@import "components/masonry";
+/* Daudix Components - Imported directly */
+/* These map to the downloaded files */
+@import "home/masonry";
 @import "components/fancy-list";
-@import "components/games";
+@import "home/games";
+@import "home/badges";
+/* We can import others as needed, but let's start with what we use to avoid bloat/conflicts */
+/* @import "home/window"; */ /* Replaced by Tile embed */
+/* @import "home/polaroid"; */ /* Not used yet */
 
 /* Custom Overrides & Layout */
 
@@ -152,77 +157,6 @@
 	padding-block: 3rem; min-height: 80vh;
 }
 
-/* Window Component (Legacy but kept for structure if needed) */
-.window {
-	& > div {
-		display: block; position: relative; margin: 0 auto;
-		border: 4rem solid; border-image: url("/images/border.gif") 32 repeat;
-		image-rendering: pixelated; width: min(rpx(300), 100%); height: rpx(171);
-		#window-contents {
-			position: absolute; inset: rpx(-32) rpx(-58) rpx(-54) rpx(-58);
-			background-color: #faf4f2; padding: 1rem; overflow: auto;
-			@media (prefers-color-scheme: dark) { background-color: #2d2a2e; }
-            small { color: var(--fg-color); a { color: var(--yellow-fg, yellow); line-height: 1; text-decoration: none; } }
-            /* Rainbow text omitted for brevity as it was replaced */
-		}
-	}
-}
-
-/* Badges */
-#badges {
-	position: relative; padding-block-start: 0.75rem;
-	&:hover #here { transform: none; opacity: 1; }
-	&:has(#badges-popup-expand:checked) #here { transform: scale(0.5); opacity: 0; }
-	& > p { margin: 0.5rem 0 1rem; }
-	.badges-marquee-wrapper { content-visibility: auto; margin: -1rem -1rem -2.125rem; padding: 1rem 0 2.125rem; overflow: hidden; }
-	.badges-marquee {
-		display: flex;
-		&:hover ul {
-			animation-play-state: paused;
-            img:not(:hover), iframe:not(:hover), #more:not(:hover) { opacity: 0.5; filter: blur(2px); }
-		}
-		ul {
-			display: flex; flex-shrink: 0; animation: badges-marquee-scroll var(--duration) linear infinite;
-			margin: 0; padding: 0; list-style: none;
-			@keyframes badges-marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-100%); } }
-		}
-		li { display: flex; flex-shrink: 0; margin-inline-end: 0.25rem; margin-block: 0; padding: 0; height: fit-content; line-height: 0; }
-		img, iframe, #more {
-			transition: all 0.2s ease; margin: 0; width: rpx(88); height: rpx(31);
-			&:hover { transform: translate(2px, -2px); }
-		}
-		iframe { box-shadow: none; border-radius: 0; }
-	}
-    /* Popup Logic simplified */
-	#badges-popup-expand {
-		&:checked {
-			& + label { .icon.plus { transform: rotate(45deg); opacity: 0; } .icon.x { transform: none; opacity: 1; } }
-			& ~ #badges-popup { visibility: visible; opacity: 1; backdrop-filter: blur(8px); background-color: rgba(255, 255, 255, 0.8); @media (prefers-color-scheme: dark) { background-color: rgba(0, 0, 0, 0.8); } }
-		}
-		& + label {
-			position: absolute; cursor: pointer; inset-block-start: 0.5rem; inset-inline-end: 0.5rem;
-			border-radius: 4px; width: 2rem; height: 2rem; color: var(--accent-color); background-color: var(--bg-muted-1);
-            display: flex; align-items: center; justify-content: center;
-			.icon { position: absolute; transition: all 0.2s ease; } .icon.x { transform: rotate(-45deg); opacity: 0; }
-		}
-	}
-	#badges-popup {
-		position: absolute; transform: scale(0.5) translate(1rem, -1rem); transform-origin: top right;
-		visibility: hidden; opacity: 0; z-index: 10; transition: all 0.2s ease;
-		inset-block-start: 2.5rem; inset-inline-end: 2.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-		border-radius: 8px; padding: 1rem; width: 300px; background: white; @media (prefers-color-scheme: dark) { background: #333; }
-		ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.25rem; padding-inline-start: 0; list-style: none; li { display: flex; flex-direction: column; align-items: center; } }
-	}
-	#here {
-		--mask: url("/images/here.gif"); -webkit-mask-image: var(--mask);
-		position: absolute; transform: scale(0.5); transform-origin: rpx(36) rpx(182);
-		opacity: 0; mask-image: var(--mask); mask-size: cover; transition: 0.3s;
-		inset-block-start: calc(-100% - 3rem); inset-inline-end: -2.5rem; background-color: var(--accent-color);
-		width: rpx(76); height: rpx(194); pointer-events: none;
-		@media (prefers-reduced-motion) { --mask: url("/images/here-static.gif"); }
-	}
-}
-
 /* Scroll Snap */
 html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 .snap-section {
@@ -252,9 +186,6 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 .tile-embed-wrapper iframe { border-radius: 0 !important; }
 .retro-avatar-container { --avatar-rotation: 6deg; --avatar-size: 180px; --avatar-border-color: #db4740; }
 
-/* Custom Fixes for Daudix Components */
-/* Override specific Daudix list styles if they conflict */
-.fancy-list.games ul { margin: 0; }
-/* Ensure Masonry items don't break weirdly */
+/* Custom Fixes */
 .masonry > li { break-inside: avoid-column; page-break-inside: avoid; }
 

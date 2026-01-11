@@ -11,17 +11,8 @@ badges = [
   { name = "standwith.gif", url = "https://decolonizepalestine.com" },
   { name = "vscodium.gif", url = "https://vscodium.com" },
 ]
-games = [
-  { name = "Portal 2", id = "620", url = "https://store.steampowered.com/app/620/Portal_2/" },
-  { name = "The Stanley Parable: Ultra Deluxe", id = "1703340", url = "https://store.steampowered.com/app/1703340/The_Stanley_Parable_Ultra_Deluxe/" },
-  { name = "OneShot", id = "420530", url = "https://store.steampowered.com/app/420530/OneShot/" },
-  { name = "Firewatch", id = "383870", url = "https://store.steampowered.com/app/383870/Firewatch/" },
-  { name = "Superliminal", id = "1049410", url = "https://store.steampowered.com/app/1049410/Superliminal/" },
-  { name = "Celeste", id = "504230", url = "https://store.steampowered.com/app/504230/Celeste/" },
-  { name = "Teardown", id = "1167630", url = "https://store.steampowered.com/app/1167630/Teardown/" },
-  { name = "Dream BBQ", id = "1434540", url = "https://store.steampowered.com/app/1434540/Hello_Neighbor_2/" }, # Using Hello Neighbor 2 ID as Dream BBQ (Hello Engineer/Guest) might vary, but sticking to valid ID for artwork. Or actually Dream BBQ standalone page exists? Let's assume standard ID for artwork works.
-  { name = "Minecraft", id = "none", url = "https://minecraft.net" } 
-]
+# Games list removed to avoid confusion. Will load from Discord API or stay empty.
+games = [] 
 +++
 
 <section class="snap-section hero-wrapper">

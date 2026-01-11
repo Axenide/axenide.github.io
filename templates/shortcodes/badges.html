@@ -1,3 +1,5 @@
+{% import "macros/icon.html" as macros_icon %}
+
 <aside id="badges">
 	<strong class="title">Badges</strong>
 	<p>
@@ -5,17 +7,29 @@
 	</p>
 	<input type="checkbox" id="badges-popup-expand" class="visually-hidden" autocomplete="off" />
 	<label for="badges-popup-expand" autocomplete="off" title="Link to Me">
-		<svg class="icon plus" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-		<svg class="icon x" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+		{{- macros_icon::icon(name="plus") -}}
+		{{- macros_icon::icon(name="x") -}}
 	</label>
 	<div id="badges-popup">
 		<p>
 			If you'd like to link to me, you can use one of the following badges:
 		</p>
 		<ul>
-            {# Placeholder for user's own badges #}
 			<li>
-				<span>(Your badge here)</span>
+				<img width="88" height="31" class="pixels transparent no-hover" alt="daudix" src="{{ get_url(path='badges/badges/daudix.gif') }}" />
+				<span>Current</span>
+			</li>
+			<li>
+				<img width="88" height="31" class="pixels transparent no-hover" alt="daudix-neocities" src="{{ get_url(path='badges/badges/daudix-neocities.gif') }}" />
+				<span>Neocities</span>
+			</li>
+			<li>
+				<img width="88" height="31" class="pixels transparent no-hover" alt="daudix-synthwave" src="{{ get_url(path='badges/badges/daudix-synthwave.gif') }}" />
+				<span>Synthwave</span>
+			</li>
+			<li>
+				<img width="88" height="31" class="pixels transparent no-hover" alt="daudix-tile" src="{{ get_url(path='badges/badges/daudix-tile.gif') }}" />
+				<span>Tile</span>
 			</li>
 		</ul>
 	</div>
@@ -38,8 +52,8 @@
 									{%- set badge_alt = badge.name | split(pat=".", limit=2) | first -%}
 								{%- endif -%}
 								alt="{{ badge_alt }}"
-								{% set badge_path = "badges/" ~ badge.name %}
-								src="/{{ badge_path }}"
+								{% set badge_path = "badges/badges/" ~ badge.name %}
+								src="{{ get_url(path=badge_path) }}"
 								{% if config.markdown.lazy_async_image %}
 									decoding="async" loading="lazy"
 								{% endif %}
@@ -49,11 +63,13 @@
 						{%- endif -%}
 					</li>
 				{%- endfor -%}
-                <li>
-                    <!-- Repeater just in case -->
-                </li>
+				<li>
+					<iframe src="https://incr.easrng.net/badge?key={{ config.base_url | replace(from='https://', to='') }}" title="increment badge"></iframe>
+				</li>
+				<li>
+					<a href="{{ get_url(path='badges/') }}" id="more"><span>more +<br />stamps</span></a>
+				</li>
 			</ul>
-            {# Duplicate for infinite scroll effect #}
 			<ul style="--duration: {{ section.extra.badges | length * 2 }}s" aria-hidden="true">
 				{%- for badge in section.extra.badges -%}
 					<li>
@@ -70,14 +86,20 @@
 									{%- set badge_alt = badge.name | split(pat=".", limit=2) | first -%}
 								{%- endif -%}
 								alt="{{ badge_alt }}"
-								{% set badge_path = "badges/" ~ badge.name %}
-								src="/{{ badge_path }}"
+								{% set badge_path = "badges/badges/" ~ badge.name %}
+								src="{{ get_url(path=badge_path) }}"
 							/>
 						{%- if badge.url -%}
 							</a>
 						{%- endif -%}
 					</li>
 				{%- endfor -%}
+				<li>
+					<iframe src="https://incr.easrng.net/badge?key={{ config.base_url | replace(from='https://', to='') }}" title="increment badge"></iframe>
+				</li>
+				<li>
+					<a href="{{ get_url(path='badges/') }}" id="more"><span>more +<br />stamps</span></a>
+				</li>
 			</ul>
 		</div>
 	</div>
