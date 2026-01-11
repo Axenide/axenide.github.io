@@ -12,9 +12,19 @@
 @import "components/fancy-list";
 @import "home/games";
 @import "home/badges";
-/* We can import others as needed, but let's start with what we use to avoid bloat/conflicts */
-/* @import "home/window"; */ /* Replaced by Tile embed */
-/* @import "home/polaroid"; */ /* Not used yet */
+@import "home/window";
+@import "home/polaroid";
+@import "home/online";
+@import "home/player";
+
+/* New Daudix Components */
+@import "components/icon-grid";
+@import "components/media-grid";
+@import "components/nanolog";
+@import "components/rainbow";
+
+/* Note: Page-specific styles (swag, design, nanolog) are in their respective folders in sass/ */
+/* Import them here if you want them globally applied, but beware of global selectors. */
 
 /* Custom Overrides & Layout */
 

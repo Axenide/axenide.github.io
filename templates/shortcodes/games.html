@@ -1,5 +1,5 @@
-{%- set token = get_env(name="DISCORD_TOKEN", default="NO_TOKEN") -%}
-{%- set user = config.extra.discord_user_id | default(value="650757995378114581") -%}
+{%- set token = get_env(name="DISCORD_TOKEN") -%}
+{%- set user = "650757995378114581" -%}
 {%- set widget_id = "1437242271912165387" -%}
 {%- set x_super = '{"os":"Windows","client_build_number":472914}' | base64_encode -%}
 {%- set parms = [
@@ -14,18 +14,14 @@
 	method="GET",
 	content_type="application/json",
 	headers=[
-		"authorization=" ~ token,
-		"user-agent=DiscordBot (" ~ config.base_url ~ ", 0.1.0)",
-		"x-super-properties=" ~ x_super
-	],
-    fail_on_error=false)
+		"authorization= " ~ token,
+		"user-agent= DiscordBot (" ~ config.base_url ~ ", 0.1.0)",
+		"x-super-properties= " ~ x_super
+	])
 -%}
 
-{%- if profile and profile.widgets -%}
-    {%- set played_games = profile.widgets | filter(attribute="id", value=widget_id) | first -%}
-{%- endif -%}
+{%- set played_games = profile.widgets | filter(attribute="id", value=widget_id) | first -%}
 
-{%- if played_games and played_games.data and played_games.data.games -%}
 {%- if played_games.data.games | length > 8 -%}
 	<input class="visually-hidden" id="show-more" type="checkbox" name="show-more" autocomplete="off" />
 	<label for="show-more">
@@ -67,4 +63,3 @@
 		</li>
 	{%- endfor -%}
 </ul>
-{%- endif -%}
