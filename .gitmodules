@@ -1,3 +1,6 @@
 [submodule "themes/ametrine"]
 	path = themes/ametrine
 	url = https://codeberg.org/Geode/ametrine.git
+[submodule "static/tile"]
+	path = static/tile
+	url = https://github.com/Axenide/tile.git

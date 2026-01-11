@@ -695,3 +695,41 @@ html {
     transform: translateY(-5px);
   }
 }
+
+/* Tile Embed adjustments */
+.tile-embed-wrapper {
+    /* Ensure it fills the article card */
+    width: 100%;
+    height: 100%;
+    min-height: 300px; /* Fallback */
+    aspect-ratio: 1/1;
+}
+
+/* Fancy List Styles (Daudix Style) - Recovered */
+.fancy-list ul {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	margin-block: 1rem;
+	padding-inline-start: 0;
+	list-style: none;
+
+	li {
+		margin-block: 0;
+		box-shadow: var(--edge-highlight);
+		border-radius: var(--rounded-corner-small);
+		background-color: var(--bg-muted-1);
+		padding: 0.5rem 0.75rem;
+        transition: transform 0.2s ease;
+        
+        &:hover {
+            transform: translateX(4px);
+            background-color: var(--bg-muted-2);
+        }
+	}
+}
+
+/* Force sharp corners on the embed itself */
+.tile-embed-wrapper, .tile-embed-wrapper iframe {
+    border-radius: 0 !important;
+}

@@ -1,0 +1,52 @@
+<div class="tile-embed-wrapper" id="tile-wrapper">
+    <iframe id="tile-iframe" src="/tile/index.html" title="Tile Embed" scrolling="no"></iframe>
+</div>
+
+<style>
+    .tile-embed-wrapper {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #tile-iframe {
+        border: none;
+        transform-origin: top left;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 250px;
+    }
+</style>
+
+<script>
+(function() {
+    const wrapper = document.getElementById('tile-wrapper');
+    const iframe = document.getElementById('tile-iframe');
+    const baseSize = 250;
+
+    function resize() {
+        if (!wrapper || !iframe) return;
+        const width = wrapper.clientWidth;
+        const scale = width / baseSize;
+        iframe.style.transform = `scale(${scale})`;
+    }
+
+    window.addEventListener('resize', resize);
+    const observer = new ResizeObserver(resize);
+    observer.observe(wrapper);
+    resize();
+    
+    // Optional: Hide scrollbars just in case
+    iframe.onload = function() {
+        try {
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            doc.body.style.overflow = 'hidden';
+        } catch(e) { }
+    };
+})();
+</script>

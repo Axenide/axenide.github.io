@@ -34,11 +34,11 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 {{ retro_avatar(src="/images/avatar.png", alt="Axenide") }}
 </div>
 
-  <div class="scroll-indicator" onclick="document.querySelector('#more').scrollIntoView({behavior: 'smooth'})">
-    <div class="bounce-inner">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32"><rect width="256" height="256" fill="none"/><polyline points="208 96 128 176 48 96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/></svg>
-    </div>
-  </div>
+<div class="scroll-indicator" onclick="document.querySelector('#more').scrollIntoView({behavior: 'smooth'})">
+<div class="bounce-inner">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32"><rect width="256" height="256" fill="none"/><polyline points="208 96 128 176 48 96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/></svg>
+</div>
+</div>
 </section>
 
 <section class="snap-section content-wrapper" id="more">
@@ -50,27 +50,23 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 <article>
 
 **I'm Adriano Tisera,** a future Computer Engineer. I love building things and exploring new technologies.
-</article>
-</li>
-<!-- Card End -->
 
-<!-- Card Start -->
-<li>
-<article class="window">
-{{ window() }}
-</article>
-</li>
-<!-- Card End -->
-
-<!-- Card Start -->
-<li>
-<article class="fancy-list">
+<div class="fancy-list">
 
 **Interests:**
 - Programming
 - Game Development
 - Music Production
 - Content Creation
+</div>
+</article>
+</li>
+<!-- Card End -->
+
+<!-- Card Start -->
+<li>
+<article>
+{{ tile_embed() }}
 </article>
 </li>
 <!-- Card End -->
