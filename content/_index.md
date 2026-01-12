@@ -40,7 +40,7 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 
 <div class="scroll-indicator" onclick="document.querySelector('#more').scrollIntoView({behavior: 'smooth'})" style="position: absolute; bottom: 72px; left: 50%; margin-left: -120px; display: flex; align-items: flex-end; gap: 76px; pointer-events: auto; cursor: pointer; z-index: 10;">
 <div style="width: 96px; height: 96px; z-index: 0; animation: svg-boil 0.3s infinite steps(1); flex-shrink: 0;">
-<div style="width: 96px; height: 96px; background-color: var(--accent-color); -webkit-mask: url('/images/axie.svg') no-repeat center / contain; mask: url('/images/axie.svg') no-repeat center / contain;"></div>
+<div class="axie-icon" style="width: 96px; height: 96px; background-color: var(--accent-color); -webkit-mask: url('/images/axie.svg') no-repeat center / contain; mask: url('/images/axie.svg') no-repeat center / contain; transition: background-color 0.3s ease;"></div>
 </div>
 <div style="margin-bottom: 28px; min-width: max-content;">
 <div style="transform: rotate(5deg); display: inline-block; text-align: center;">
@@ -49,6 +49,52 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 </div>
 </div>
 </section>
+
+<script>
+  // Handle Hover Effects via JS for robustness
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  
+  if (scrollIndicator) {
+    const axie = scrollIndicator.querySelector('.axie-icon');
+    // Note: arrow-note is created by shortcode, might need dynamic selection or it's available
+    
+    scrollIndicator.addEventListener('mouseenter', () => {
+      // 1. Arrow (SVG)
+      const paths = document.querySelectorAll('.arrow-path-boil');
+      paths.forEach(p => {
+          p.style.transition = 'stroke 0.3s ease';
+          p.style.stroke = 'var(--fg-color)';
+      });
+
+      // 2. Axie Icon
+      if (axie) axie.style.backgroundColor = 'var(--fg-color)';
+
+      // 3. Text
+      const note = scrollIndicator.querySelector('.arrow-note');
+      if (note) {
+        note.style.transition = 'color 0.3s ease';
+        note.style.color = 'var(--fg-color)';
+      }
+    });
+    
+    scrollIndicator.addEventListener('mouseleave', () => {
+      // 1. Arrow (SVG)
+      const paths = document.querySelectorAll('.arrow-path-boil');
+      paths.forEach(p => {
+          p.style.stroke = 'var(--accent-color)';
+      });
+
+      // 2. Axie Icon
+      if (axie) axie.style.backgroundColor = 'var(--accent-color)';
+
+      // 3. Text
+      const note = scrollIndicator.querySelector('.arrow-note');
+      if (note) {
+        note.style.color = 'var(--accent-color)';
+      }
+    });
+  }
+</script>
 
 <section class="snap-section content-wrapper" id="more">
 <div style="width: 100%;">
