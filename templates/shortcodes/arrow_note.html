@@ -178,7 +178,8 @@
 
         // Visibility check
         // If note is hidden (e.g. via responsive CSS), hide the arrow
-        if (note.offsetParent === null) {
+        const style = window.getComputedStyle(note);
+        if (note.offsetParent === null || style.visibility === 'hidden') {
             if (group.style.opacity !== "0") group.style.opacity = "0";
             return;
         }
