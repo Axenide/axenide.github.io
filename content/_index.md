@@ -133,27 +133,39 @@ I had a lot of fun making my own 88x31 button, and you should make one too! :)
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const indicator = document.querySelector('.scroll-indicator');
+    const heroSection = document.querySelector('.hero-wrapper');
     
+    // Move indicator to body to avoid stacking context issues
+    if (indicator) {
+      document.body.appendChild(indicator);
+    }
+
     function updateIndicator() {
-      // Logic for the scroll indicator visibility
-      if (window.scrollY > 150) {
+      if (!indicator || !heroSection) return;
+
+      // Use getBoundingClientRect to detect position regardless of what container is scrolling
+      const rect = heroSection.getBoundingClientRect();
+      
+      // If the top of the hero section moves up (scrolled down), hide the indicator
+      // We use -100 as a threshold (100px scrolled)
+      if (rect.top < -100) {
         indicator.classList.add('hidden');
       } else {
         indicator.classList.remove('hidden');
       }
 
-      // Logic to release scroll snapping after the first section
-      // This allows free scrolling in the tall content section
-      if (window.scrollY > window.innerHeight * 0.9) {
+      // Logic to release scroll snapping
+      if (Math.abs(rect.top) > window.innerHeight * 0.9) {
         document.documentElement.style.scrollSnapType = 'none';
       } else {
         document.documentElement.style.scrollSnapType = 'y mandatory';
       }
     }
 
-    // Check on load, but also allow a small delay to ensure layout is settled
+    // Check on load
     setTimeout(updateIndicator, 100); 
     
-    window.addEventListener('scroll', updateIndicator, { passive: true });
+    // Use capture: true to catch scroll events from any element (in case body or a div is scrolling)
+    document.addEventListener('scroll', updateIndicator, { passive: true, capture: true });
   });
 </script>
