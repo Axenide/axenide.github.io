@@ -51,7 +51,8 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 <li>
 <article>
 
-**I'm Adriano Tisera,** a future Computer Engineer. I love building things and exploring new technologies.
+I’m Adriano Tisera, also known as **Axenide**, a 24-year-old creator from Mendoza, Argentina. I’ve always been drawn to technology and science, and I love making things like code, music, animations, videos, and games.
+
 </article>
 </li>
 
@@ -59,11 +60,26 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 <li>
 <article class="fancy-list">
 
-**Interests:**
-- Programming
-- Game Development
-- Music Production
-- Content Creation
+**I think these are neat:**
+- Red
+- Open Source
+- Retro tech
+- Astronomy
+- Physics
+- Cartoons
+- Frutiger Aero
+- Pixel Art
+- You
+- Sans Undertale
+
+</article>
+</li>
+
+<li>
+<article>
+
+I’m obsessed with building my own tools and workflows. People say not to reinvent the wheel, but I think custom tools can unlock freedom and innovation. Just like every person is unique, the tools they use can be too.
+
 </article>
 </li>
 
@@ -71,6 +87,14 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 <li>
 <article>
 {{ tile_embed() }}
+</article>
+</li>
+
+<li>
+<article>
+
+My curiosity about computers led me into computer engineering, where I get to merge creativity with tech. I have a nostalgic side, and I often mix retro aesthetics like pixel art and chiptune with modern techniques to craft unique experiences.
+
 </article>
 </li>
 
