@@ -37,19 +37,14 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
   }
 </style>
 
-<div style="position: absolute; left: 50%; margin-left: -120px; bottom: 80px; z-index: 0; pointer-events: none; animation: svg-boil 0.3s infinite steps(1);">
-    <div style="
-        width: 96px; 
-        height: 96px; 
-        background-color: var(--accent-color);
-        -webkit-mask: url('/images/axie.svg') no-repeat center / contain;
-        mask: url('/images/axie.svg') no-repeat center / contain;
-    "></div>
+<div class="scroll-indicator" onclick="document.querySelector('#more').scrollIntoView({behavior: 'smooth'})" style="position: absolute; width: 100%; bottom: 0; pointer-events: none; left: 0; right: auto;">
+<div style="position: absolute; left: 50%; margin-left: -120px; bottom: 80px; z-index: 0; animation: svg-boil 0.3s infinite steps(1);">
+<div style="width: 96px; height: 96px; background-color: var(--accent-color); -webkit-mask: url('/images/axie.svg') no-repeat center / contain; mask: url('/images/axie.svg') no-repeat center / contain;"></div>
 </div>
-
-<div class="scroll-indicator" onclick="document.querySelector('#more').scrollIntoView({behavior: 'smooth'})" style="position: absolute; left: 50%; margin-left: 100px; bottom: 140px; right: auto;">
+<div style="position: absolute; left: 50%; margin-left: 100px; bottom: 140px; right: auto; pointer-events: auto;">
 <div style="transform: rotate(5deg); display: inline-block; text-align: center;">
-    {{ arrow_note(text="Pssst...<br>There's more.", target="scroll-target", start_dir="left", end_dir="top", color="accent", font_size="1rem", amplitude="80", spacing="10", stroke_width="2") }}
+{{ arrow_note(text="Pssst...<br>There's more.", target="scroll-target", start_dir="left", end_dir="top", color="accent", font_size="1rem", amplitude="80", spacing="10", stroke_width="2") }}
+</div>
 </div>
 </div>
 </section>
