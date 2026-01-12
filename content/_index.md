@@ -96,9 +96,9 @@ I’m obsessed with building my own tools and workflows. People say not to reinv
 <li>
 <article>
 
-**I study computer science engineering.**
+**👾 I study computer science engineering.**
 
-My curiosity about computers led me into computer engineering, where I get to merge creativity with tech. I have a nostalgic side, and I often mix retro aesthetics like pixel art and chiptune with modern techniques to craft unique experiences.
+My curiosity about computers led me into this field, where I get to merge creativity with tech. I have a nostalgic side, and I often mix retro aesthetics like pixel art and chiptune with modern techniques to craft unique experiences.
 
 I honestly enjoy coding and problem-solving. It’s like a puzzle that I get to solve every day, and I love the satisfaction of seeing my ideas come to life through code. :)
 
@@ -121,9 +121,9 @@ I honestly enjoy coding and problem-solving. It’s like a puzzle that I get to 
 
 Simply put, IndieWeb is anything on the web that is hand-crafted, feels personal and gives a retro feel.
 
-Everything about it is awesome, from 88x31 buttons to webrings. It also feels cozy and nostalgic, like the early days of the internet.
+Cozy and nostalgic, like the early days of the internet. Since I became an adult, I felt this strong urge to recreate that feeling of wonder and excitement I had when I first explored the web as a kid.
 
-I had a lot of fun making my own 88x31 button, and you should make one too! :)
+Also, I had a lot of fun making my own 88x31 button, and you should make one too! :)
 
 {{ badges() }}
 
@@ -154,8 +154,14 @@ I had a lot of fun making my own 88x31 button, and you should make one too! :)
         indicator.classList.remove('hidden');
       }
 
-      // Logic to release scroll snapping
-      if (Math.abs(rect.top) > window.innerHeight * 0.9) {
+      // Logic to manage scroll snapping
+      // We want strong snapping (mandatory) for the first section transition.
+      // But we need to disable it (none) once we are in the content to allow scrolling to the footer.
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      const viewportHeight = window.innerHeight;
+      
+      // If we have scrolled past the hero section (with a small buffer), disable snapping
+      if (scrollY > viewportHeight * 0.9) {
         document.documentElement.style.scrollSnapType = 'none';
       } else {
         document.documentElement.style.scrollSnapType = 'y mandatory';
