@@ -1,11 +1,11 @@
 <span id="age">
 	{%- set year = 31556926 -%}
-	{%- set birth = 1191497400 -%}
+	{%- set birth = 992304000 -%}
 	{%- set now = now(utc=true) | date(format="%s") | int -%}
 	{%- set age = (now - birth) / year -%}
 	{%- set delay = 0 -%}
 
-	{%- for ch in age | as_str | truncate(length=7, end="") | split(pat="") | slice(start=1, end=-1) -%}
+	{%- for ch in age | as_str | truncate(length=12, end="") | split(pat="") | slice(start=1, end=-1) -%}
 		{%- if ch == "." -%}
 			<span class="char dot">.</span>
 		{%- else -%}

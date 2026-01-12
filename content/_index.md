@@ -49,7 +49,11 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 <li>
 <article>
 
-I’m Adriano Tisera, also known as **Axenide**, a 24-year-old creator from Mendoza, Argentina. I’ve always been drawn to technology and science, and I love making things like code, music, animations, videos, and games.
+I'm a polymath from Mendoza, Argentina. I’ve always been drawn to technology and science, and I love making things like code, music, animations, videos, and games.
+
+I love learning new skills and exploring different fields. My mind is always buzzing with ideas, and I enjoy diving deep into topics that catch my interest.
+
+I’m {{ age() }} years old.
 
 </article>
 </li>

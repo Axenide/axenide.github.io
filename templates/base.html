@@ -54,7 +54,16 @@ This variable will hold all the text strings for the language #}
 	<span id="left" hidden></span>
 	<span id="right" hidden></span>
 	<a id="skip-to-content" href="#main-content" tabindex="0">{{ macros_translate::translate(key="skip_to_content", default="Skip to Main Content", language_strings=language_strings) }}</a>
-	{% include "partials/header.html" %}
+	{%- set hide_header = false -%}
+	{%- if page and page.extra.no_header -%}
+		{%- set hide_header = true -%}
+	{%- endif -%}
+	{%- if section and section.extra.no_header -%}
+		{%- set hide_header = true -%}
+	{%- endif -%}
+	{%- if not hide_header -%}
+		{% include "partials/header.html" %}
+	{%- endif -%}
 	{% include "partials/sidebar.html" %}
 	{% block body_before %}{% endblock body_before %}
 	{%- if banner and not hide_banner -%}
