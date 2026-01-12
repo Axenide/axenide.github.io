@@ -52,8 +52,11 @@
     left: 0;
     top: 0;
     z-index: 10;
+    
+    // Use the loop index (--i) to shift the background, creating a continuous/randomized look
     // Layering: Image on top, Solid color behind
-    background: url("/images/retro-boil.svg") center / auto 100% repeat-x, #cc241d;
+    background: url("/images/retro-boil.svg") calc(var(--i) * 50px) center / auto 100% repeat-x, #D10028;
+    
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

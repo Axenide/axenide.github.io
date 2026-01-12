@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100">
   <defs>
     <filter id="goo">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur" />
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
       <feColorMatrix in="blur" mode="matrix" values="
            1 0 0 0 0  
            0 1 0 0 0  
            0 0 1 0 0  
-           0 0 0 18 -9" result="goo" />
+           0 0 0 19 -9" result="goo" />
       <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
     </filter>
   </defs>
@@ -19,18 +19,22 @@
     }
     .wave {
       fill: #db4740;
-      animation: wave 3s linear infinite;
+      animation: wave 4s linear infinite;
     }
     .bubble {
       fill: #db4740;
-      transform-box: fill-box;
-      transform-origin: center;
-      animation: rise 2s ease-in infinite;
+      animation: rise 3s ease-in infinite;
     }
     
+    /* 
+       Wave Cycle Logic:
+       The path consists of alternating humps and valleys, each 200px wide.
+       Full cycle (Hump + Valley) = 400px.
+       We animate translateX by -400px to ensure the loop is seamless (Hump matches Hump).
+    */
     @keyframes wave {
       0% { transform: translateX(0); }
-      100% { transform: translateX(-100px); }
+      100% { transform: translateX(-400px); }
     }
     
     @keyframes rise {
@@ -45,21 +49,33 @@
   
   <g class="liquid-group">
     <!-- Base liquid filling bottom half -->
-    <rect x="0" y="55" width="100" height="50" class="liquid-base" />
+    <rect x="-100" y="55" width="1000" height="50" class="liquid-base" />
     
-    <!-- Waves oscillating around y=55 -->
-    <path class="wave" d="M 0 55 Q 25 50 50 55 T 100 55 T 150 55 T 200 55 V 100 H 0 Z" />
-    <path class="wave" d="M -50 55 Q -25 60 0 55 T 50 55 T 100 55 T 150 55 V 100 H -50 Z" style="animation-direction: reverse; animation-duration: 4s; opacity: 1;" />
+    <!-- 
+       Wave Path Construction:
+       Starts at -100.
+       -100 to 100: Hump (Q)
+       100 to 300: Valley (T)
+       300 to 500: Hump (T)
+       500 to 700: Valley (T)
+       700 to 900: Hump (T)
+       Total width covers animation range + viewbox.
+    -->
+    <path class="wave" d="M -100 55 Q 0 45 100 55 T 300 55 T 500 55 T 700 55 T 900 55 V 100 H -100 Z" />
+    
+    <!-- Second wave slightly offset and with different amplitude control in Q to vary the look -->
+    <path class="wave" d="M -100 55 Q 0 60 100 55 T 300 55 T 500 55 T 700 55 T 900 55 V 100 H -100 Z" style="animation-direction: reverse; animation-duration: 5s; opacity: 1;" />
 
-    <!-- Bubbles starting submerged at y=65 and rising vertically -->
-    <circle class="bubble" cx="15" cy="65" r="6" style="animation-delay: 0s; animation-duration: 2.2s;" />
-    <circle class="bubble" cx="35" cy="65" r="5" style="animation-delay: 0.5s; animation-duration: 2.8s;" />
-    <circle class="bubble" cx="55" cy="65" r="7" style="animation-delay: 1.2s; animation-duration: 2.5s;" />
-    <circle class="bubble" cx="75" cy="65" r="5" style="animation-delay: 0.2s; animation-duration: 3s;" />
-    <circle class="bubble" cx="90" cy="65" r="6" style="animation-delay: 0.8s; animation-duration: 2.6s;" />
-    
-    <circle class="bubble" cx="25" cy="65" r="5" style="animation-delay: 1.5s; animation-duration: 2.4s;" />
-    <circle class="bubble" cx="45" cy="65" r="6" style="animation-delay: 0.3s; animation-duration: 2.9s;" />
-    <circle class="bubble" cx="65" cy="65" r="5" style="animation-delay: 1.0s; animation-duration: 2.7s;" />
+    <!-- Bubbles -->
+    <circle class="bubble" cx="20" cy="65" r="6" style="animation-delay: 0s; animation-duration: 2.2s;" />
+    <circle class="bubble" cx="60" cy="65" r="5" style="animation-delay: 1.5s; animation-duration: 2.8s;" />
+    <circle class="bubble" cx="100" cy="65" r="7" style="animation-delay: 0.5s; animation-duration: 2.5s;" />
+    <circle class="bubble" cx="140" cy="65" r="5" style="animation-delay: 2.0s; animation-duration: 3s;" />
+    <circle class="bubble" cx="180" cy="65" r="6" style="animation-delay: 0.8s; animation-duration: 2.6s;" />
+    <circle class="bubble" cx="220" cy="65" r="5" style="animation-delay: 1.2s; animation-duration: 2.4s;" />
+    <circle class="bubble" cx="260" cy="65" r="8" style="animation-delay: 0.3s; animation-duration: 2.9s;" />
+    <circle class="bubble" cx="300" cy="65" r="5" style="animation-delay: 1.8s; animation-duration: 2.7s;" />
+    <circle class="bubble" cx="340" cy="65" r="6" style="animation-delay: 0.6s; animation-duration: 3.1s;" />
+    <circle class="bubble" cx="380" cy="65" r="4" style="animation-delay: 1.4s; animation-duration: 2.3s;" />
   </g>
 </svg>
