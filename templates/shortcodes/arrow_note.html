@@ -20,7 +20,11 @@
       data-end-dir="{{ end_dir | default(value='bottom') }}"
       data-color="{{ final_color }}"
       data-stroke-width="{{ s_stroke }}"
-      data-head-size="{{ s_head }}">
+      data-head-size="{{ s_head }}"
+      {% if amplitude %}data-amplitude="{{ amplitude }}"{% endif %}
+      {% if easing %}data-easing="{{ easing }}"{% endif %}
+      {% if ease_out %}data-ease-out="{{ ease_out }}"{% endif %}
+      {% if ease_in %}data-ease-in="{{ ease_in }}"{% endif %}>
     {{ text | safe }}
 </span>
 
@@ -67,6 +71,11 @@
         const color = note.dataset.color;
         const strokeWidth = parseFloat(note.dataset.strokeWidth);
         const headSize = parseFloat(note.dataset.headSize);
+        // Custom physics
+        const customAmp = note.dataset.amplitude ? parseFloat(note.dataset.amplitude) : null;
+        const baseEasing = note.dataset.easing ? parseFloat(note.dataset.easing) : 0;
+        const easeOut = note.dataset.easeOut ? parseFloat(note.dataset.easeOut) : baseEasing;
+        const easeIn = note.dataset.easeIn ? parseFloat(note.dataset.easeIn) : baseEasing;
 
         // Create Group for Path and Head
         const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
@@ -124,23 +133,58 @@
             x2 += scrollX; y2 += scrollY;
 
             // Curve Logic
-            const dist = Math.hypot(x2-x1, y2-y1);
-            const curve = Math.min(Math.max(dist * 0.5, 50), 200);
+            let curve;
+            if (customAmp !== null) {
+                curve = customAmp;
+            } else {
+                const dist = Math.hypot(x2-x1, y2-y1);
+                curve = Math.min(Math.max(dist * 0.5, 50), 200);
+            }
+
+            // Easing (Skew) - deviations from perpendicular
+            // easeOut applies to Start (cp1), easeIn applies to End (cp2)
 
             let cp1x = x1, cp1y = y1, cp2x = x2, cp2y = y2;
 
+            // Apply Amplitude (curve) along the normal
+            // Apply Easing (skew) along the tangent
+            
             switch(startDir) {
-                case 'top': cp1y -= curve; break;
-                case 'bottom': cp1y += curve; break;
-                case 'left': cp1x -= curve; break;
-                case 'right': cp1x += curve; break;
+                case 'top': 
+                    cp1y -= curve; 
+                    cp1x += easeOut;
+                    break;
+                case 'bottom': 
+                    cp1y += curve; 
+                    cp1x += easeOut;
+                    break;
+                case 'left': 
+                    cp1x -= curve; 
+                    cp1y += easeOut;
+                    break;
+                case 'right': 
+                    cp1x += curve; 
+                    cp1y += easeOut;
+                    break;
             }
 
             switch(endDir) {
-                case 'top': cp2y -= curve; break;
-                case 'bottom': cp2y += curve; break;
-                case 'left': cp2x -= curve; break;
-                case 'right': cp2x += curve; break;
+                case 'top': 
+                    cp2y -= curve; 
+                    cp2x += easeIn; 
+                    break;
+                case 'bottom': 
+                    cp2y += curve; 
+                    cp2x += easeIn;
+                    break;
+                case 'left': 
+                    cp2x -= curve; 
+                    cp2y += easeIn;
+                    break;
+                case 'right': 
+                    cp2x += curve; 
+                    cp2y += easeIn;
+                    break;
             }
 
             // Draw Main Curve

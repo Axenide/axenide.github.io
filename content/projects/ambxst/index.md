@@ -28,11 +28,11 @@ An ***Ax**tremely* customizable shell.
 
 <div align="center" style="position: relative; margin-top: 2rem;">
   <div style="position: absolute; right: calc(50% + 90px); top: 10px; width: max-content;">
-    {{ arrow_note(text="Support the project!", target="kofi-btn", color="text", font_size="1.8rem", stroke_width="3", head_size="10", start_dir="bottom", end_dir="bottom") }}
+    {{ arrow_note(text="Support the project!", target="kofi-btn", color="text", font_size="1.8rem", stroke_width="3", head_size="10", amplitude="50", ease_out="20", ease_in="-20", start_dir="bottom", end_dir="bottom") }}
   </div>
 
   <div style="position: absolute; left: calc(50% + 90px); top: 10px; width: max-content;">
-    {{ arrow_note(text="Join the server!", target="discord-btn", color="text", font_size="1.8rem", stroke_width="3", head_size="10", start_dir="top", end_dir="top") }}
+    {{ arrow_note(text="Join the server!", target="discord-btn", color="text", font_size="1.8rem", stroke_width="3", head_size="10", amplitude="50", ease_out="-20", ease_in="20", start_dir="top", end_dir="top") }}
   </div>
   
   {{ styled_button(id="kofi-btn", image="/social-icons/16x/kofi_icon_bg.png", link="https://ko-fi.com/Axenide", width="32px", effect="zoom rotate", rotate="-15") }}
