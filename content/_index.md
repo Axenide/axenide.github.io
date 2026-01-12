@@ -49,7 +49,9 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 <li>
 <article>
 
-I'm a polymath from Mendoza, Argentina. I’ve always been drawn to technology and science, and I love making things like code, music, animations, videos, and games.
+**⚡ I am a [polymath](https://en.wikipedia.org/wiki/Polymath).**
+
+I'm from Mendoza, Argentina. I’ve always been drawn to technology and science, and I love making things like code, music, animations, videos, and games. ᕙ(͡°‿ ͡°)ᕗ
 
 I love learning new skills and exploring different fields. My mind is always buzzing with ideas, and I enjoy diving deep into topics that catch my interest.
 
@@ -80,7 +82,9 @@ I’m {{ age() }} years old.
 <li>
 <article>
 
-I’m obsessed with building my own tools and workflows. People say not to reinvent the wheel, but I think custom tools can unlock freedom and innovation. Just like every person is unique, the tools they use can be too.
+**🔧 I like tinkering and building custom tools.**
+
+I’m obsessed with building my own tools and workflows. People say not to reinvent the wheel, but I think custom tools can unlock freedom and innovation. Just like every person is unique, the tools they use can be too. :D
 
 </article>
 </li>
@@ -95,7 +99,11 @@ I’m obsessed with building my own tools and workflows. People say not to reinv
 <li>
 <article>
 
+**I study computer science engineering.**
+
 My curiosity about computers led me into computer engineering, where I get to merge creativity with tech. I have a nostalgic side, and I often mix retro aesthetics like pixel art and chiptune with modern techniques to craft unique experiences.
+
+I honestly enjoy coding and problem-solving. It’s like a puzzle that I get to solve every day, and I love the satisfaction of seeing my ideas come to life through code. :)
 
 </article>
 </li>
@@ -104,7 +112,7 @@ My curiosity about computers led me into computer engineering, where I get to me
 <li>
 <article class="fancy-list games">
 
-**Games I like:**
+**🕹️ Games I like:**
 
 {{ games() }}
 </article>
