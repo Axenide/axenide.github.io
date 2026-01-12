@@ -5,16 +5,6 @@
 	padding-block-start: 0.75rem;
 	width: 100%;
 
-	&:hover #here {
-		transform: none;
-		opacity: 1;
-	}
-
-	&:has(#badges-popup-expand:checked) #here {
-		transform: scale(0.5);
-		opacity: 0;
-	}
-
 	& > p {
 		margin: 0.5rem 0 1rem;
 	}
@@ -233,29 +223,19 @@
 		}
 	}
 
-	#here {
-		--mask: url("/images/here.gif");
-		-webkit-mask-image: var(--mask);
-		position: absolute;
-		transform: scale(0.5);
-		transform-origin: rpx(36) rpx(182);
-		opacity: 0;
-		mask-image: var(--mask);
-		mask-size: cover;
-		transition: var(--transition-bezier);
-		inset-block-start: calc(-100% - 3rem);
-		inset-inline-end: -2.5rem;
-		background-color: var(--accent-color);
-		width: rpx(76);
-		height: rpx(194);
-		pointer-events: none;
+	.badge-arrow-wide {
+		display: block;
+	}
+	.badge-arrow-narrow {
+		display: none !important;
+	}
 
-		@media (prefers-reduced-motion) {
-			--mask: url("/images/here-static.gif");
+	@media (min-width: 851px) and (max-width: 1250px) {
+		.badge-arrow-wide {
+			display: none !important;
 		}
-
-		@media only screen and (max-width: 1024px) {
-			display: none;
+		.badge-arrow-narrow {
+			display: block !important;
 		}
 	}
 }

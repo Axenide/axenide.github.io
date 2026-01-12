@@ -3,6 +3,7 @@
 {% set s_weight = font_weight | default(value="bold") %}
 {% set s_stroke = stroke_width | default(value="4") %}
 {% set s_head = head_size | default(value="10") %}
+{% set s_spacing = spacing | default(value="10") %}
 
 {# Resolve Color Variables #}
 {% if s_color == "accent" %}
@@ -21,6 +22,7 @@
       data-color="{{ final_color }}"
       data-stroke-width="{{ s_stroke }}"
       data-head-size="{{ s_head }}"
+      data-spacing="{{ s_spacing }}"
       {% if amplitude %}data-amplitude="{{ amplitude }}"{% endif %}
       {% if easing %}data-easing="{{ easing }}"{% endif %}
       {% if ease_out %}data-ease-out="{{ ease_out }}"{% endif %}
@@ -117,6 +119,7 @@
         const color = note.dataset.color;
         const strokeWidth = parseFloat(note.dataset.strokeWidth);
         const headSize = parseFloat(note.dataset.headSize);
+        const spacing = parseFloat(note.dataset.spacing);
         const customAmp = note.dataset.amplitude ? parseFloat(note.dataset.amplitude) : null;
         const baseEasing = note.dataset.easing ? parseFloat(note.dataset.easing) : 0;
         const easeOut = note.dataset.easeOut ? parseFloat(note.dataset.easeOut) : baseEasing;
@@ -158,7 +161,7 @@
             path,
             head,
             config: {
-                startDir, endDir, headSize, customAmp, easeOut, easeIn
+                startDir, endDir, headSize, customAmp, easeOut, easeIn, spacing
             },
             prevCoords: null
         };
@@ -203,19 +206,20 @@
         let x1, y1, x2, y2;
 
         // Start Point
+        const spacing = config.spacing;
         switch(config.startDir) {
-            case 'top': x1 = r1.left + r1.width/2; y1 = r1.top; break;
-            case 'bottom': x1 = r1.left + r1.width/2; y1 = r1.bottom; break;
-            case 'left': x1 = r1.left; y1 = r1.top + r1.height/2; break;
-            case 'right': x1 = r1.right; y1 = r1.top + r1.height/2; break;
+            case 'top': x1 = r1.left + r1.width/2; y1 = r1.top - spacing; break;
+            case 'bottom': x1 = r1.left + r1.width/2; y1 = r1.bottom + spacing; break;
+            case 'left': x1 = r1.left - spacing; y1 = r1.top + r1.height/2; break;
+            case 'right': x1 = r1.right + spacing; y1 = r1.top + r1.height/2; break;
         }
 
         // End Point
         switch(config.endDir) {
-            case 'top': x2 = r2.left + r2.width/2; y2 = r2.top; break;
-            case 'bottom': x2 = r2.left + r2.width/2; y2 = r2.bottom; break;
-            case 'left': x2 = r2.left; y2 = r2.top + r2.height/2; break;
-            case 'right': x2 = r2.right; y2 = r2.top + r2.height/2; break;
+            case 'top': x2 = r2.left + r2.width/2; y2 = r2.top - spacing; break;
+            case 'bottom': x2 = r2.left + r2.width/2; y2 = r2.bottom + spacing; break;
+            case 'left': x2 = r2.left - spacing; y2 = r2.top + r2.height/2; break;
+            case 'right': x2 = r2.right + spacing; y2 = r2.top + r2.height/2; break;
         }
 
         // Add scroll to make them absolute document coordinates

@@ -6,10 +6,37 @@
 		<small><abbr title="Also Known As">AKA</abbr> 88x31 buttons</small>
 	</p>
 	<input type="checkbox" id="badges-popup-expand" class="visually-hidden" autocomplete="off" />
-	<label for="badges-popup-expand" autocomplete="off" title="Link to Me">
+	<label for="badges-popup-expand" id="badges-plus-label" autocomplete="off" title="Link to Me">
 		{{- macros_icon::icon(name="plus") -}}
 		{{- macros_icon::icon(name="x") -}}
 	</label>
+	
+	<!-- Wide Desktop: Arrow on the right -->
+	<div class="desktop-only badge-arrow-wide" style="position: absolute; top: -3.5rem; right: -2rem; z-index: 20;">
+		{% set text = "My 88x31 here" %}
+		{% set target = "badges-plus-label" %}
+		{% set start_dir = "right" %}
+		{% set end_dir = "right" %}
+		{% set color = "accent" %}
+		{% set font_size = "1.6rem" %}
+		{% set amplitude = "50" %}
+		{% set spacing = "10" %}
+		{% include "shortcodes/arrow_note.html" %}
+	</div>
+
+	<!-- Narrow Desktop: Arrow from bottom (prevents clipping) -->
+	<div class="desktop-only badge-arrow-narrow" style="position: absolute; top: -3.5rem; right: 1.5rem; z-index: 20;">
+		{% set text = "My 88x31 here" %}
+		{% set target = "badges-plus-label" %}
+		{% set start_dir = "bottom" %}
+		{% set end_dir = "left" %}
+		{% set color = "accent" %}
+		{% set font_size = "1.6rem" %}
+		{% set amplitude = "30" %}
+		{% set spacing = "10" %}
+		{% include "shortcodes/arrow_note.html" %}
+	</div>
+
 	<div id="badges-popup">
 		<p>
 			If you'd like to link to me, you can use one of the following badges:
@@ -21,7 +48,7 @@
 			</li>
 		</ul>
 	</div>
-	<div id="here"></div>
+	
 	<div class="badges-marquee-wrapper overshoot-row">
 		<div class="badges-marquee">
 			<ul style="--duration: {{ section.extra.badges | length * 2 | default(value=10) }}s">
