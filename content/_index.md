@@ -33,7 +33,7 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 <div style="transform: rotate(5deg); display: inline-block;">
     {{ arrow_note(text="Pssst...<br>There's more.", target="scroll-target", start_dir="bottom", end_dir="top", color="accent", font_size="1rem", amplitude="30", spacing="10") }}
 </div>
-<div id="scroll-target" style="width: 1px; height: 1px; position: absolute; bottom: -45px; left: 50%;"></div>
+<div id="scroll-target" style="width: 1px; height: 1px; position: absolute; bottom: -5.5rem; left: 50%;"></div>
 </div>
 </section>
 
