@@ -2,7 +2,6 @@
 title = "Axenide"
 insert_anchor_links = "left"
 [extra]
-no_header = true
 badges = [
   { name = "Axenide", image = "images/88x31.gif", alt = "Axenide" },
   { name = "tr1xem", image = "https://trix.is-a.dev/badges/tr1xem_1.gif", url = "https://trix.is-a.dev/" }
