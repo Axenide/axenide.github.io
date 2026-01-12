@@ -38,11 +38,11 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
   }
 </style>
 
-<div class="scroll-indicator" onclick="document.querySelector('#more').scrollIntoView({behavior: 'smooth'})" style="position: absolute; width: 100%; bottom: 0; pointer-events: none; left: 0; right: auto;">
-<div style="position: absolute; left: 50%; margin-left: -120px; bottom: 112px; z-index: 0; animation: svg-boil 0.3s infinite steps(1);">
+<div class="scroll-indicator" onclick="document.querySelector('#more').scrollIntoView({behavior: 'smooth'})" style="position: absolute; bottom: 72px; left: 50%; margin-left: -120px; display: flex; align-items: flex-end; gap: 76px; pointer-events: auto; cursor: pointer; z-index: 10;">
+<div style="width: 96px; height: 96px; z-index: 0; animation: svg-boil 0.3s infinite steps(1); flex-shrink: 0;">
 <div style="width: 96px; height: 96px; background-color: var(--accent-color); -webkit-mask: url('/images/axie.svg') no-repeat center / contain; mask: url('/images/axie.svg') no-repeat center / contain;"></div>
 </div>
-<div style="position: absolute; left: 50%; margin-left: 52px; bottom: 124px; right: auto; pointer-events: auto;">
+<div style="margin-bottom: 12px; min-width: max-content;">
 <div style="transform: rotate(5deg); display: inline-block; text-align: center;">
 {{ arrow_note(text="Pssst...<br>There's more.", target="scroll-target", start_dir="left", end_dir="top", color="accent", font_size="1rem", amplitude="30", spacing="10", stroke_width="2") }}
 </div>
@@ -146,25 +146,3 @@ Also, I had a lot of fun making my own 88x31 button, and you should make one too
 </div>
 </section>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const indicator = document.querySelector('.scroll-indicator');
-    const heroSection = document.querySelector('.hero-wrapper');
-    
-    function updateIndicator() {
-      if (!indicator || !heroSection) return;
-
-      const rect = heroSection.getBoundingClientRect();
-      
-      // Ocultar indicador al scrollear
-      if (rect.top < -100) {
-        indicator.classList.add('hidden');
-      } else {
-        indicator.classList.remove('hidden');
-      }
-    }
-
-    setTimeout(updateIndicator, 100); 
-    document.addEventListener('scroll', updateIndicator, { passive: true, capture: true });
-  });
-</script>
