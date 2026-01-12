@@ -207,7 +207,7 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 
 /* Scroll Indicator */
 .scroll-indicator {
-  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  position: fixed; bottom: 6rem; left: 50%; transform: translateX(-50%);
   color: var(--fg-color); opacity: 1; 
   transition: opacity 0.3s ease, visibility 0s linear 0s;
   cursor: pointer; z-index: 9999;

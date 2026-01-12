@@ -31,9 +31,9 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 
 <div class="scroll-indicator" onclick="document.querySelector('#more').scrollIntoView({behavior: 'smooth'})">
 <div style="transform: rotate(5deg); display: inline-block;">
-    {{ arrow_note(text="Pssst...<br>There's more.", target="scroll-target", start_dir="bottom", end_dir="top", color="accent", font_size="1.6rem", amplitude="30", spacing="10") }}
+    {{ arrow_note(text="Pssst...<br>There's more.", target="scroll-target", start_dir="bottom", end_dir="top", color="accent", font_size="1rem", amplitude="30", spacing="10") }}
 </div>
-<div id="scroll-target" style="width: 1px; height: 1px; position: absolute; bottom: -30px; left: 50%;"></div>
+<div id="scroll-target" style="width: 1px; height: 1px; position: absolute; bottom: -45px; left: 50%;"></div>
 </div>
 </section>
 
