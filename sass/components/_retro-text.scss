@@ -52,7 +52,8 @@
     left: 0;
     top: 0;
     z-index: 10;
-    background: linear-gradient(180deg, #ff6b4d 0%, #db4740 100%);
+    // Layering: Image on top, Solid color behind
+    background: url("/images/retro-boil.svg") center / auto 100% repeat-x, #cc241d;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
