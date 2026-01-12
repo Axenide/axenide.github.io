@@ -27,11 +27,11 @@ An ***Ax**tremely* customizable shell.
 {{ carousel(images=["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png"], interval=3000, style="margin: -2rem 0 -2rem 0") }}
 
 <div align="center" style="position: relative; margin-top: 2rem;">
-  <div style="position: absolute; right: calc(50% + 90px); top: 10px; width: max-content;">
+  <div class="desktop-only" style="position: absolute; right: calc(50% + 90px); top: 10px; width: max-content;">
     {{ arrow_note(text="Support the project!", target="kofi-btn", color="text", font_size="1.8rem", stroke_width="3", head_size="10", amplitude="50", ease_out="20", ease_in="-20", start_dir="bottom", end_dir="bottom") }}
   </div>
 
-  <div style="position: absolute; left: calc(50% + 90px); top: 10px; width: max-content;">
+  <div class="desktop-only" style="position: absolute; left: calc(50% + 90px); top: 10px; width: max-content;">
     {{ arrow_note(text="Join the server!", target="discord-btn", color="text", font_size="1.8rem", stroke_width="3", head_size="10", amplitude="50", ease_out="-20", ease_in="20", start_dir="top", end_dir="top") }}
   </div>
   

@@ -129,6 +129,13 @@
     function updateArrow(arrow, force = false) {
         const { note, target, group, path, head, config, prevCoords } = arrow;
 
+        // Visibility check
+        // If note is hidden (e.g. via responsive CSS), hide the arrow
+        if (note.offsetParent === null) {
+            if (group.style.opacity !== "0") group.style.opacity = "0";
+            return;
+        }
+
         // Get current positions
         const r1 = note.getBoundingClientRect();
         const r2 = target.getBoundingClientRect();
