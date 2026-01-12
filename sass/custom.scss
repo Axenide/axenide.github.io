@@ -15,9 +15,18 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Pangolin';
+  src: url('/fonts/Pangolin/Pangolin-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 // Component imports
 @import "components/retro-avatar";
 @import "components/retro-text";
+@import "components/arrow-note";
 
 :root {
   --font-sans-serif: "Roboto Condensed", "Geist", sans-serif;

@@ -1,0 +1,191 @@
+{% set s_color = color | default(value="accent") %}
+{% set s_size = font_size | default(value="1.5rem") %}
+{% set s_weight = font_weight | default(value="bold") %}
+{% set s_stroke = stroke_width | default(value="4") %}
+{% set s_head = head_size | default(value="10") %}
+
+{# Resolve Color Variables #}
+{% if s_color == "accent" %}
+    {% set final_color = "var(--accent-color)" %}
+{% elif s_color == "text" %}
+    {% set final_color = "var(--fg-color)" %} 
+{% else %}
+    {% set final_color = s_color %}
+{% endif %}
+
+<span class="arrow-note" 
+      style="color: {{ final_color }}; font-size: {{ s_size }}; font-weight: {{ s_weight }};"
+      data-target-id="{{ target }}" 
+      data-start-dir="{{ start_dir | default(value='bottom') }}" 
+      data-end-dir="{{ end_dir | default(value='bottom') }}"
+      data-color="{{ final_color }}"
+      data-stroke-width="{{ s_stroke }}"
+      data-head-size="{{ s_head }}">
+    {{ text | safe }}
+</span>
+
+<script>
+(function() {
+    function initArrowNotes() {
+        const notes = document.querySelectorAll('.arrow-note');
+        
+        notes.forEach(note => {
+            if (note.dataset.processed) return;
+            
+            const targetId = note.dataset.targetId;
+            const target = document.getElementById(targetId);
+            
+            if (!target) {
+                setTimeout(() => {
+                   const retryTarget = document.getElementById(targetId); 
+                   if(retryTarget) setupArrow(note, retryTarget);
+                }, 500);
+                return;
+            }
+            
+            setupArrow(note, target);
+        });
+    }
+
+    function setupArrow(note, target) {
+        let svg = document.getElementById('arrow-layer');
+        if (!svg) {
+            svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.id = "arrow-layer";
+            svg.style.position = "absolute";
+            svg.style.top = "0";
+            svg.style.left = "0";
+            svg.style.width = "100%";
+            svg.style.height = "100%";
+            svg.style.pointerEvents = "none";
+            svg.style.zIndex = "9999";
+            svg.style.overflow = "visible";
+            document.body.appendChild(svg);
+        }
+
+        // Configuration
+        const color = note.dataset.color;
+        const strokeWidth = parseFloat(note.dataset.strokeWidth);
+        const headSize = parseFloat(note.dataset.headSize);
+
+        // Create Group for Path and Head
+        const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("fill", "none");
+        path.setAttribute("stroke", color);
+        path.setAttribute("stroke-width", strokeWidth);
+        path.setAttribute("stroke-linecap", "round");
+        
+        // Manual Arrow Head (Path instead of marker for dynamic control)
+        const head = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        head.setAttribute("fill", "none");
+        head.setAttribute("stroke", color);
+        head.setAttribute("stroke-width", strokeWidth); // Same thickness as line
+        head.setAttribute("stroke-linecap", "round");
+        head.setAttribute("stroke-linejoin", "round");
+
+        group.appendChild(path);
+        group.appendChild(head);
+        
+        group.style.opacity = "0";
+        group.style.transition = "opacity 0.5s ease";
+        svg.appendChild(group);
+
+        function update() {
+            const r1 = note.getBoundingClientRect();
+            const r2 = target.getBoundingClientRect();
+            
+            const scrollX = window.scrollX;
+            const scrollY = window.scrollY;
+
+            const startDir = note.dataset.startDir;
+            const endDir = note.dataset.endDir;
+
+            let x1, y1, x2, y2;
+
+            // Start Point Calculation
+            switch(startDir) {
+                case 'top': x1 = r1.left + r1.width/2; y1 = r1.top; break;
+                case 'bottom': x1 = r1.left + r1.width/2; y1 = r1.bottom; break;
+                case 'left': x1 = r1.left; y1 = r1.top + r1.height/2; break;
+                case 'right': x1 = r1.right; y1 = r1.top + r1.height/2; break;
+            }
+
+            // End Point Calculation
+            switch(endDir) {
+                case 'top': x2 = r2.left + r2.width/2; y2 = r2.top; break;
+                case 'bottom': x2 = r2.left + r2.width/2; y2 = r2.bottom; break;
+                case 'left': x2 = r2.left; y2 = r2.top + r2.height/2; break;
+                case 'right': x2 = r2.right; y2 = r2.top + r2.height/2; break;
+            }
+
+            x1 += scrollX; y1 += scrollY;
+            x2 += scrollX; y2 += scrollY;
+
+            // Curve Logic
+            const dist = Math.hypot(x2-x1, y2-y1);
+            const curve = Math.min(Math.max(dist * 0.5, 50), 200);
+
+            let cp1x = x1, cp1y = y1, cp2x = x2, cp2y = y2;
+
+            switch(startDir) {
+                case 'top': cp1y -= curve; break;
+                case 'bottom': cp1y += curve; break;
+                case 'left': cp1x -= curve; break;
+                case 'right': cp1x += curve; break;
+            }
+
+            switch(endDir) {
+                case 'top': cp2y -= curve; break;
+                case 'bottom': cp2y += curve; break;
+                case 'left': cp2x -= curve; break;
+                case 'right': cp2x += curve; break;
+            }
+
+            // Draw Main Curve
+            // Offset the end slightly so the arrowhead tip lands exactly on the bounding box edge, not inside stroke
+            // Simple approach: calculate angle and back off by strokeWidth/2 roughly? 
+            // For now, exact point is fine, we just draw head *at* x2,y2.
+
+            const d = `M ${x1} ${y1} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x2} ${y2}`;
+            path.setAttribute("d", d);
+
+            // Calculate Angle at End Point (Tangent of Bezier at t=1 is P3 - P2)
+            // P3 = (x2, y2), P2 = (cp2x, cp2y)
+            const angle = Math.atan2(y2 - cp2y, x2 - cp2x);
+
+            // Draw Arrow Head
+            // "Open" style: Two lines going back from the tip
+            // Tip is at x2, y2
+            
+            const headLen = headSize;
+            const headAngle = Math.PI / 6; // 30 degrees
+
+            const p1x = x2 - headLen * Math.cos(angle - headAngle);
+            const p1y = y2 - headLen * Math.sin(angle - headAngle);
+            
+            const p2x = x2 - headLen * Math.cos(angle + headAngle);
+            const p2y = y2 - headLen * Math.sin(angle + headAngle);
+
+            const headD = `M ${p1x} ${p1y} L ${x2} ${y2} L ${p2x} ${p2y}`;
+            head.setAttribute("d", headD);
+
+            group.style.opacity = "1";
+        }
+
+        window.addEventListener('resize', update);
+        window.addEventListener('scroll', update);
+        update();
+        setTimeout(update, 1000);
+        
+        note.dataset.processed = "true";
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initArrowNotes);
+    } else {
+        initArrowNotes();
+    }
+})();
+</script>
