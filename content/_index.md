@@ -51,7 +51,9 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 
 <section class="snap-section content-wrapper" id="more">
 <div style="width: 100%;">
-<h2>About</h2>
+
+## About
+
 <ul class="masonry">
 <!-- Card Start: Intro -->
 <li>
@@ -74,7 +76,7 @@ I was extracted successfully, with my eyes wide open, and my first thought was "
 <li>
 <article class="fancy-list">
 
-**✨ I think these are neat:**
+**✨ Hyperfixations:**
 - Red
 - Open Source
 - Retro tech
@@ -84,7 +86,7 @@ I was extracted successfully, with my eyes wide open, and my first thought was "
 - Frutiger Aero
 - Pixel Art
 - You
-- Sans Undertale
+- Sans Undertale (literally me)
 
 </article>
 </li>
@@ -122,7 +124,7 @@ I honestly enjoy coding and problem-solving. It’s like a puzzle that I get to 
 <li>
 <article class="fancy-list games">
 
-**🕹️ Games I like:**
+**🕹️ Procrastination Kit:**
 
 {{ games() }}
 </article>
