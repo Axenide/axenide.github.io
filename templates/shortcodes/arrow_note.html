@@ -68,6 +68,48 @@
             svg.style.pointerEvents = "none";
             svg.style.zIndex = "9999";
             svg.style.overflow = "visible";
+            
+            // Add Filters for Line Boil
+            const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+            
+            // Function to create boil filters
+            const createBoilFilters = (prefix, scale) => {
+                [1, 2, 3].forEach(i => {
+                    const f = document.createElementNS("http://www.w3.org/2000/svg", "filter");
+                    f.id = `${prefix}${i}`;
+                    f.setAttribute("x", "-20%");
+                    f.setAttribute("y", "-20%");
+                    f.setAttribute("width", "140%");
+                    f.setAttribute("height", "140%");
+                    
+                    const turb = document.createElementNS("http://www.w3.org/2000/svg", "feTurbulence");
+                    turb.setAttribute("type", "fractalNoise");
+                    turb.setAttribute("baseFrequency", "0.03");
+                    turb.setAttribute("numOctaves", "1");
+                    turb.setAttribute("seed", i * 10);
+                    turb.setAttribute("result", "noise");
+                    
+                    const disp = document.createElementNS("http://www.w3.org/2000/svg", "feDisplacementMap");
+                    disp.setAttribute("in", "SourceGraphic");
+                    disp.setAttribute("in2", "noise");
+                    disp.setAttribute("scale", scale);
+                    disp.setAttribute("xChannelSelector", "R");
+                    disp.setAttribute("yChannelSelector", "G");
+                    
+                    f.appendChild(turb);
+                    f.appendChild(disp);
+                    defs.appendChild(f);
+                });
+            };
+
+            // Filters for Arrows (Stronger)
+            createBoilFilters('boil', 3);
+            
+            // Filters for Text (Subtler)
+            createBoilFilters('boilText', 1.5);
+
+            svg.appendChild(defs);
+
             document.body.appendChild(svg);
         }
 
@@ -87,12 +129,14 @@
         const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
         
         const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.classList.add("arrow-path-boil");
         path.setAttribute("fill", "none");
         path.setAttribute("stroke", color);
         path.setAttribute("stroke-width", strokeWidth);
         path.setAttribute("stroke-linecap", "round");
         
         const head = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        head.classList.add("arrow-path-boil");
         head.setAttribute("fill", "none");
         head.setAttribute("stroke", color);
         head.setAttribute("stroke-width", strokeWidth);

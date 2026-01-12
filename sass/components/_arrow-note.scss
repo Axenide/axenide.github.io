@@ -29,3 +29,31 @@
 .arrow-head {
   fill: var(--accent-color);
 }
+
+/* Line Boil Effect */
+@keyframes svg-boil {
+  0% { filter: url(#boil1); }
+  33% { filter: url(#boil2); }
+  66% { filter: url(#boil3); }
+  100% { filter: url(#boil1); }
+}
+
+.arrow-path-boil {
+  animation: svg-boil 0.3s infinite steps(1);
+  /* Ensure stroke rendering is crisp */
+  vector-effect: non-scaling-stroke; 
+}
+
+@keyframes text-boil {
+  0% { filter: url(#boilText1); }
+  33% { filter: url(#boilText2); }
+  66% { filter: url(#boilText3); }
+  100% { filter: url(#boilText1); }
+}
+
+.arrow-note {
+  animation: text-boil 0.3s infinite steps(1);
+  /* Fix for filter rendering clipping */
+  padding: 2px;
+  margin: -2px;
+}
