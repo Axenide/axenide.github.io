@@ -24,6 +24,7 @@
       data-head-size="{{ s_head }}"
       data-spacing="{{ s_spacing }}"
       {% if amplitude %}data-amplitude="{{ amplitude }}"{% endif %}
+      {% if amplitude_desktop %}data-amplitude-desktop="{{ amplitude_desktop }}"{% endif %}
       {% if easing %}data-easing="{{ easing }}"{% endif %}
       {% if ease_out %}data-ease-out="{{ ease_out }}"{% endif %}
       {% if ease_in %}data-ease-in="{{ ease_in }}"{% endif %}
@@ -123,6 +124,7 @@
         const headSize = parseFloat(note.dataset.headSize);
         const spacing = parseFloat(note.dataset.spacing);
         const customAmp = note.dataset.amplitude ? parseFloat(note.dataset.amplitude) : null;
+        const customAmpDesktop = note.dataset.amplitudeDesktop ? parseFloat(note.dataset.amplitudeDesktop) : null;
         const baseEasing = note.dataset.easing ? parseFloat(note.dataset.easing) : 0;
         const easeOut = note.dataset.easeOut ? parseFloat(note.dataset.easeOut) : baseEasing;
         const easeIn = note.dataset.easeIn ? parseFloat(note.dataset.easeIn) : baseEasing;
@@ -165,7 +167,7 @@
             path,
             head,
             config: {
-                startDir, endDir, headSize, customAmp, easeOut, easeIn, spacing, lockBottom, bottomOffset
+                startDir, endDir, headSize, customAmp, customAmpDesktop, easeOut, easeIn, spacing, lockBottom, bottomOffset
             },
             prevCoords: null
         };
@@ -238,8 +240,13 @@
 
         // Calculation Logic
         let curve;
-        if (config.customAmp !== null) {
-            curve = config.customAmp;
+        
+        // Determine amplitude based on screen size
+        const isDesktop = window.innerWidth > 768;
+        const effectiveAmp = (isDesktop && config.customAmpDesktop !== null) ? config.customAmpDesktop : config.customAmp;
+
+        if (effectiveAmp !== null) {
+            curve = effectiveAmp;
         } else {
             const dist = Math.hypot(x2-x1, y2-y1);
             curve = Math.min(Math.max(dist * 0.5, 50), 200);
