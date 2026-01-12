@@ -207,12 +207,20 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 
 /* Scroll Indicator */
 .scroll-indicator {
-  position: fixed; bottom: 6rem; left: 60%; transform: translateX(-50%);
+  position: fixed; bottom: 6rem; left: auto; right: 20%;
   color: var(--fg-color); opacity: 1; 
   transition: opacity 0.3s ease, visibility 0s linear 0s;
   cursor: pointer; z-index: 9999;
   pointer-events: auto;
 }
+
+@media (max-width: 768px) {
+  .scroll-indicator {
+    right: 5%;
+    bottom: 7rem;
+  }
+}
+
 .scroll-indicator.hidden { 
   opacity: 0; pointer-events: none; visibility: hidden;
   transition: opacity 0.3s ease, visibility 0s linear 0.3s;
