@@ -29,7 +29,7 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
     
 {{ retro_avatar(src="/images/avatar.png", alt="Axenide") }}
 </div>
-<div id="scroll-target" style="position: absolute; bottom: 10px; left: 50%; width: 1px; height: 1px; animation: bounce-vertical 3s infinite ease-in-out; z-index: -1;"></div>
+<div id="scroll-target" style="position: absolute; bottom: 58px; left: 50%; width: 1px; height: 1px; animation: bounce-vertical 3s infinite ease-in-out; z-index: -1;"></div>
 <style>
   @keyframes bounce-vertical {
     0%, 20%, 40%, 100% { transform: translate(-50%, 0); }
@@ -39,12 +39,12 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 </style>
 
 <div class="scroll-indicator" onclick="document.querySelector('#more').scrollIntoView({behavior: 'smooth'})" style="position: absolute; width: 100%; bottom: 0; pointer-events: none; left: 0; right: auto;">
-<div style="position: absolute; left: 50%; margin-left: -120px; bottom: 80px; z-index: 0; animation: svg-boil 0.3s infinite steps(1);">
+<div style="position: absolute; left: 50%; margin-left: -120px; bottom: 112px; z-index: 0; animation: svg-boil 0.3s infinite steps(1);">
 <div style="width: 96px; height: 96px; background-color: var(--accent-color); -webkit-mask: url('/images/axie.svg') no-repeat center / contain; mask: url('/images/axie.svg') no-repeat center / contain;"></div>
 </div>
-<div style="position: absolute; left: 50%; margin-left: 100px; bottom: 140px; right: auto; pointer-events: auto;">
+<div style="position: absolute; left: 50%; margin-left: 52px; bottom: 124px; right: auto; pointer-events: auto;">
 <div style="transform: rotate(5deg); display: inline-block; text-align: center;">
-{{ arrow_note(text="Pssst...<br>There's more.", target="scroll-target", start_dir="left", end_dir="top", color="accent", font_size="1rem", amplitude="80", spacing="10", stroke_width="2") }}
+{{ arrow_note(text="Pssst...<br>There's more.", target="scroll-target", start_dir="left", end_dir="top", color="accent", font_size="1rem", amplitude="30", spacing="10", stroke_width="2") }}
 </div>
 </div>
 </div>
@@ -151,43 +151,20 @@ Also, I had a lot of fun making my own 88x31 button, and you should make one too
     const indicator = document.querySelector('.scroll-indicator');
     const heroSection = document.querySelector('.hero-wrapper');
     
-    // Move indicator to body to avoid stacking context issues
-    // if (indicator) {
-    //   document.body.appendChild(indicator);
-    // }
-
     function updateIndicator() {
       if (!indicator || !heroSection) return;
 
-      // Use getBoundingClientRect to detect position regardless of what container is scrolling
       const rect = heroSection.getBoundingClientRect();
       
-      // If the top of the hero section moves up (scrolled down), hide the indicator
-      // We use -100 as a threshold (100px scrolled)
+      // Ocultar indicador al scrollear
       if (rect.top < -100) {
         indicator.classList.add('hidden');
       } else {
         indicator.classList.remove('hidden');
       }
-
-      // Logic to manage scroll snapping
-      // We want strong snapping (mandatory) for the first section transition.
-      // But we need to disable it (none) once we are in the content to allow scrolling to the footer.
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const viewportHeight = window.innerHeight;
-      
-      // If we have scrolled past the hero section (with a small buffer), disable snapping
-      if (scrollY > viewportHeight * 0.9) {
-        document.documentElement.style.scrollSnapType = 'none';
-      } else {
-        document.documentElement.style.scrollSnapType = 'y mandatory';
-      }
     }
 
-    // Check on load
     setTimeout(updateIndicator, 100); 
-    
-    // Use capture: true to catch scroll events from any element (in case body or a div is scrolling)
     document.addEventListener('scroll', updateIndicator, { passive: true, capture: true });
   });
 </script>

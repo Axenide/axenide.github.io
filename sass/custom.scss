@@ -196,12 +196,20 @@
 	padding-block: 3rem; min-height: 80vh;
 }
 
-/* Scroll Snap */
-html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+/* Scroll Snap - Disabled */
+html { scroll-behavior: smooth; scroll-padding-top: 3.75rem; }
 .snap-section {
-  scroll-snap-align: start; min-height: 100vh;
+  /* scroll-snap-align: start; */ min-height: 100vh;
   display: flex; flex-direction: column; justify-content: center; 
   padding: 2rem 0; box-sizing: border-box; position: relative;
+}
+
+/* Adjust hero wrapper to fit exactly below header and center content optically */
+.hero-wrapper.snap-section {
+  min-height: calc(100vh - 3.75rem);
+  /* Shift content up slightly */
+  padding-top: 0;
+  padding-bottom: 7rem;
 }
 .content-wrapper { max-width: var(--content-width, 960px); margin: 0 auto; width: 100%; }
 @media (max-width: 768px) { .snap-section { padding: 4rem 1rem; } }
