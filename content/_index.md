@@ -31,7 +31,7 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 
 <div class="scroll-indicator" onclick="document.querySelector('#more').scrollIntoView({behavior: 'smooth'})">
 <div style="transform: rotate(5deg); display: inline-block; text-align: center;">
-    {{ arrow_note(text="Pssst...<br>There's more.", target="scroll-target", start_dir="left", end_dir="top", color="accent", font_size="1rem", amplitude="30", spacing="10") }}
+    {{ arrow_note(text="Pssst...<br>There's more.", target="scroll-target", start_dir="left", end_dir="top", color="accent", font_size="1rem", amplitude="80", spacing="10", stroke_width="2") }}
 </div>
 </div>
 <div id="scroll-target" style="width: 1px; height: 1px; position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: -1;"></div>
