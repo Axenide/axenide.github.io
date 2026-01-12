@@ -3,6 +3,7 @@
 #badges {
 	position: relative;
 	padding-block-start: 0.75rem;
+	width: 100%;
 
 	&:hover #here {
 		transform: none;
@@ -87,7 +88,8 @@
 			height: rpx(31);
 
 			&:hover {
-				transform: translate(0.125rem, -0.125rem);
+				transform: scale(2);
+				z-index: 10;
 				filter: var(--drop-shadow);
 			}
 		}
@@ -232,7 +234,7 @@
 	}
 
 	#here {
-		--mask: url("here.gif");
+		--mask: url("/images/here.gif");
 		-webkit-mask-image: var(--mask);
 		position: absolute;
 		transform: scale(0.5);
@@ -249,7 +251,7 @@
 		pointer-events: none;
 
 		@media (prefers-reduced-motion) {
-			--mask: url("here-static.gif");
+			--mask: url("/images/here-static.gif");
 		}
 
 		@media only screen and (max-width: 1024px) {

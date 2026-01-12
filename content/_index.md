@@ -4,12 +4,8 @@ insert_anchor_links = "left"
 [extra]
 no_header = true
 badges = [
-  { name = "adhd.gif", url = "https://en.wikipedia.org/wiki/Attention_deficit_hyperactivity_disorder" },
-  { name = "dark-mode.gif", url = "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme" },
-  { name = "mobilefriendly.gif", url = "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design" },
-  { name = "righttorepair.gif", url = "https://www.ifixit.com/Right-to-Repair" },
-  { name = "standwith.gif", url = "https://decolonizepalestine.com" },
-  { name = "vscodium.gif", url = "https://vscodium.com" },
+  { name = "Axenide", image = "images/88x31.gif", alt = "Axenide" },
+  { name = "tr1xem", image = "https://trix.is-a.dev/badges/tr1xem_1.gif", url = "https://trix.is-a.dev/" }
 ]
 +++
 
@@ -53,9 +49,11 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 
 I'm from Mendoza, Argentina. I’ve always been drawn to technology and science, and I love making things like code, music, animations, videos, and games. ᕙ(͡°‿ ͡°)ᕗ
 
-I love learning new skills and exploring different fields. My mind is always buzzing with ideas, and I enjoy diving deep into topics that catch my interest.
+**I’m {{ age() }} years old.**
 
-I’m {{ age() }} years old.
+2001, what a year. June 12th, it was a Tuesday. A really cold night in Mendoza...
+
+I was extracted successfully, with my eyes wide open, and my first thought was "general relativity and quantum mechanics haven't been unified yet, what a shame". Then I cried a lot. Wouldn't you? u_u
 
 </article>
 </li>
@@ -64,7 +62,7 @@ I’m {{ age() }} years old.
 <li>
 <article class="fancy-list">
 
-**I think these are neat:**
+**✨ I think these are neat:**
 - Red
 - Open Source
 - Retro tech
@@ -120,12 +118,16 @@ I honestly enjoy coding and problem-solving. It’s like a puzzle that I get to 
 
 </ul>
 
-<div id="indieweb" style="margin-top: 3rem;">
-<h2>IndieWeb</h2>
+## IndieWeb
+
+Simply put, IndieWeb is anything on the web that is hand-crafted, feels personal and gives a retro feel.
+
+Everything about it is awesome, from 88x31 buttons to webrings. It also feels cozy and nostalgic, like the early days of the internet.
+
+I had a lot of fun making my own 88x31 button, and you should make one too! :)
+
 {{ badges() }}
 
-Simply put, IndieWeb is anything on the web that is hand-crafted and feels personal.
-</div>
 </div>
 </section>
 
