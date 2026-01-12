@@ -9,7 +9,7 @@ badges = [
 { name = "frutiger_aero_community.gif", image = "badges/frutiger_aero_community.gif", url = "https://frutigeraero.org" },
 { name = "dark-mode.gif", image = "badges/dark-mode.gif", url = "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme" },
 { name = "mobilefriendly.gif", image = "badges/mobilefriendly.gif", url = "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design" },
-{ name = "tr1xem.gif", image = "badges/tr1xem.gif", url = "https://trix.is-a.dev" }
+{ name = "tr1xem.gif", image = "badges/tr1xem.gif", url = "https://trix.is-a.dev" },
 { name = "sankalp.png", image = "badges/sankalp.png", url = "https://sankalptharu.com.np" },
 { name = "righttorepair.gif", image = "badges/righttorepair.gif", url = "https://www.ifixit.com/Right-to-Repair" },
 { name = "neovim.png", image = "badges/neovim.png", url = "https://neovim.io" },
