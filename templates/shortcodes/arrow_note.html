@@ -26,7 +26,9 @@
       {% if amplitude %}data-amplitude="{{ amplitude }}"{% endif %}
       {% if easing %}data-easing="{{ easing }}"{% endif %}
       {% if ease_out %}data-ease-out="{{ ease_out }}"{% endif %}
-      {% if ease_in %}data-ease-in="{{ ease_in }}"{% endif %}>
+      {% if ease_in %}data-ease-in="{{ ease_in }}"{% endif %}
+      {% if lock_bottom %}data-lock-bottom="{{ lock_bottom }}"{% endif %}
+      {% if bottom_offset %}data-bottom-offset="{{ bottom_offset }}"{% endif %}>
     {{ text | safe }}
 </span>
 
@@ -124,6 +126,8 @@
         const baseEasing = note.dataset.easing ? parseFloat(note.dataset.easing) : 0;
         const easeOut = note.dataset.easeOut ? parseFloat(note.dataset.easeOut) : baseEasing;
         const easeIn = note.dataset.easeIn ? parseFloat(note.dataset.easeIn) : baseEasing;
+        const lockBottom = note.dataset.lockBottom === "true";
+        const bottomOffset = note.dataset.bottomOffset ? parseFloat(note.dataset.bottomOffset) : 10;
         
         const startDir = note.dataset.startDir;
         const endDir = note.dataset.endDir;
@@ -161,7 +165,7 @@
             path,
             head,
             config: {
-                startDir, endDir, headSize, customAmp, easeOut, easeIn, spacing
+                startDir, endDir, headSize, customAmp, easeOut, easeIn, spacing, lockBottom, bottomOffset
             },
             prevCoords: null
         };
@@ -221,6 +225,11 @@
             case 'bottom': x2 = r2.left + r2.width/2; y2 = r2.bottom + spacing; break;
             case 'left': x2 = r2.left - spacing; y2 = r2.top + r2.height/2; break;
             case 'right': x2 = r2.right + spacing; y2 = r2.top + r2.height/2; break;
+        }
+
+        // Lock Bottom Logic
+        if (config.lockBottom) {
+             y2 = window.innerHeight - config.bottomOffset;
         }
 
         // Add scroll to make them absolute document coordinates

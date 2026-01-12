@@ -179,6 +179,7 @@
 .hero-container {
   display: flex; align-items: center; justify-content: center;
   gap: 2rem; flex-wrap: wrap; padding: 2rem;
+  position: relative;
 }
 .hero-content { flex: 1; max-width: 500px; text-align: left; }
 @media (max-width: 768px) {

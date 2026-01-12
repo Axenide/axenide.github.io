@@ -27,14 +27,14 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 </div>
     
 {{ retro_avatar(src="/images/avatar.png", alt="Axenide") }}
+<div id="scroll-target" style="position: absolute; bottom: 0; left: 50%; width: 1px; height: 1px; transform: translateX(-50%); z-index: -1;"></div>
 </div>
 
 <div class="scroll-indicator" onclick="document.querySelector('#more').scrollIntoView({behavior: 'smooth'})">
 <div style="transform: rotate(5deg); display: inline-block; text-align: center;">
-    {{ arrow_note(text="Pssst...<br>There's more.", target="scroll-target", start_dir="left", end_dir="top", color="accent", font_size="1rem", amplitude="80", spacing="10", stroke_width="2") }}
+    {{ arrow_note(text="Pssst...<br>There's more.", target="scroll-target", start_dir="left", end_dir="top", color="accent", font_size="1rem", amplitude="80", spacing="10", stroke_width="2", lock_bottom="true", bottom_offset="10") }}
 </div>
 </div>
-<div id="scroll-target" style="width: 1px; height: 1px; position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: -1;"></div>
 </section>
 
 <section class="snap-section content-wrapper" id="more">
