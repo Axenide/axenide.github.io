@@ -42,7 +42,7 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 <div style="width: 96px; height: 96px; z-index: 0; animation: svg-boil 0.3s infinite steps(1); flex-shrink: 0;">
 <div style="width: 96px; height: 96px; background-color: var(--accent-color); -webkit-mask: url('/images/axie.svg') no-repeat center / contain; mask: url('/images/axie.svg') no-repeat center / contain;"></div>
 </div>
-<div style="margin-bottom: 12px; min-width: max-content;">
+<div style="margin-bottom: 28px; min-width: max-content;">
 <div style="transform: rotate(5deg); display: inline-block; text-align: center;">
 {{ arrow_note(text="Pssst...<br>There's more.", target="scroll-target", start_dir="left", end_dir="top", color="accent", font_size="1rem", amplitude="30", spacing="10", stroke_width="2") }}
 </div>
