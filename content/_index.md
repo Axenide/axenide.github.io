@@ -37,13 +37,13 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
   }
 </style>
 
-<div style="position: absolute; left: 50%; margin-left: -120px; bottom: 80px; z-index: 0; pointer-events: none;">
+<div style="position: absolute; left: 50%; margin-left: -120px; bottom: 80px; z-index: 0; pointer-events: none; animation: svg-boil 0.3s infinite steps(1);">
     <div style="
         width: 96px; 
         height: 96px; 
         background-color: var(--accent-color);
-        -webkit-mask: url('/images/axie.png') no-repeat center / contain;
-        mask: url('/images/axie.png') no-repeat center / contain;
+        -webkit-mask: url('/images/axie.svg') no-repeat center / contain;
+        mask: url('/images/axie.svg') no-repeat center / contain;
     "></div>
 </div>
 
