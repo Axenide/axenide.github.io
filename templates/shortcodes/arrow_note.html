@@ -30,6 +30,9 @@
 
 <script>
 (function() {
+    // State to track active arrows
+    const activeArrows = [];
+
     function initArrowNotes() {
         const notes = document.querySelectorAll('.arrow-note');
         
@@ -42,16 +45,17 @@
             if (!target) {
                 setTimeout(() => {
                    const retryTarget = document.getElementById(targetId); 
-                   if(retryTarget) setupArrow(note, retryTarget);
+                   if(retryTarget) registerArrow(note, retryTarget);
                 }, 500);
                 return;
             }
             
-            setupArrow(note, target);
+            registerArrow(note, target);
         });
     }
 
-    function setupArrow(note, target) {
+    function registerArrow(note, target) {
+        // Create SVG layer if needed
         let svg = document.getElementById('arrow-layer');
         if (!svg) {
             svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -71,13 +75,15 @@
         const color = note.dataset.color;
         const strokeWidth = parseFloat(note.dataset.strokeWidth);
         const headSize = parseFloat(note.dataset.headSize);
-        // Custom physics
         const customAmp = note.dataset.amplitude ? parseFloat(note.dataset.amplitude) : null;
         const baseEasing = note.dataset.easing ? parseFloat(note.dataset.easing) : 0;
         const easeOut = note.dataset.easeOut ? parseFloat(note.dataset.easeOut) : baseEasing;
         const easeIn = note.dataset.easeIn ? parseFloat(note.dataset.easeIn) : baseEasing;
+        
+        const startDir = note.dataset.startDir;
+        const endDir = note.dataset.endDir;
 
-        // Create Group for Path and Head
+        // Create Group
         const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
         
         const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
@@ -86,11 +92,10 @@
         path.setAttribute("stroke-width", strokeWidth);
         path.setAttribute("stroke-linecap", "round");
         
-        // Manual Arrow Head (Path instead of marker for dynamic control)
         const head = document.createElementNS("http://www.w3.org/2000/svg", "path");
         head.setAttribute("fill", "none");
         head.setAttribute("stroke", color);
-        head.setAttribute("stroke-width", strokeWidth); // Same thickness as line
+        head.setAttribute("stroke-width", strokeWidth);
         head.setAttribute("stroke-linecap", "round");
         head.setAttribute("stroke-linejoin", "round");
 
@@ -98,138 +103,139 @@
         group.appendChild(head);
         
         group.style.opacity = "0";
-        group.style.transition = "opacity 0.5s ease";
+        group.style.transition = "opacity 0.2s ease"; // Faster transition
         svg.appendChild(group);
 
-        function update() {
-            const r1 = note.getBoundingClientRect();
-            const r2 = target.getBoundingClientRect();
-            
-            const scrollX = window.scrollX;
-            const scrollY = window.scrollY;
+        // Store arrow data
+        const arrowData = {
+            note,
+            target,
+            group,
+            path,
+            head,
+            config: {
+                startDir, endDir, headSize, customAmp, easeOut, easeIn
+            },
+            prevCoords: null
+        };
+        
+        activeArrows.push(arrowData);
+        note.dataset.processed = "true";
+        
+        // Initial render
+        updateArrow(arrowData, true);
+    }
 
-            const startDir = note.dataset.startDir;
-            const endDir = note.dataset.endDir;
+    function updateArrow(arrow, force = false) {
+        const { note, target, group, path, head, config, prevCoords } = arrow;
 
-            let x1, y1, x2, y2;
+        // Get current positions
+        const r1 = note.getBoundingClientRect();
+        const r2 = target.getBoundingClientRect();
+        const scrollX = window.scrollX;
+        const scrollY = window.scrollY;
 
-            // Start Point Calculation
-            switch(startDir) {
-                case 'top': x1 = r1.left + r1.width/2; y1 = r1.top; break;
-                case 'bottom': x1 = r1.left + r1.width/2; y1 = r1.bottom; break;
-                case 'left': x1 = r1.left; y1 = r1.top + r1.height/2; break;
-                case 'right': x1 = r1.right; y1 = r1.top + r1.height/2; break;
-            }
+        // Check if anything changed (optimization)
+        // We include scroll in the check because getBoundingClientRect is relative to viewport
+        const currentCoords = JSON.stringify({
+            r1: {x: r1.x, y: r1.y, w: r1.width, h: r1.height},
+            r2: {x: r2.x, y: r2.y, w: r2.width, h: r2.height},
+            scrollX, scrollY
+        });
 
-            // End Point Calculation
-            switch(endDir) {
-                case 'top': x2 = r2.left + r2.width/2; y2 = r2.top; break;
-                case 'bottom': x2 = r2.left + r2.width/2; y2 = r2.bottom; break;
-                case 'left': x2 = r2.left; y2 = r2.top + r2.height/2; break;
-                case 'right': x2 = r2.right; y2 = r2.top + r2.height/2; break;
-            }
+        if (!force && prevCoords === currentCoords) {
+            return; // No visual change needed
+        }
+        arrow.prevCoords = currentCoords;
 
-            x1 += scrollX; y1 += scrollY;
-            x2 += scrollX; y2 += scrollY;
+        // Calculate points
+        let x1, y1, x2, y2;
 
-            // Curve Logic
-            let curve;
-            if (customAmp !== null) {
-                curve = customAmp;
-            } else {
-                const dist = Math.hypot(x2-x1, y2-y1);
-                curve = Math.min(Math.max(dist * 0.5, 50), 200);
-            }
-
-            // Easing (Skew) - deviations from perpendicular
-            // easeOut applies to Start (cp1), easeIn applies to End (cp2)
-
-            let cp1x = x1, cp1y = y1, cp2x = x2, cp2y = y2;
-
-            // Apply Amplitude (curve) along the normal
-            // Apply Easing (skew) along the tangent
-            
-            switch(startDir) {
-                case 'top': 
-                    cp1y -= curve; 
-                    cp1x += easeOut;
-                    break;
-                case 'bottom': 
-                    cp1y += curve; 
-                    cp1x += easeOut;
-                    break;
-                case 'left': 
-                    cp1x -= curve; 
-                    cp1y += easeOut;
-                    break;
-                case 'right': 
-                    cp1x += curve; 
-                    cp1y += easeOut;
-                    break;
-            }
-
-            switch(endDir) {
-                case 'top': 
-                    cp2y -= curve; 
-                    cp2x += easeIn; 
-                    break;
-                case 'bottom': 
-                    cp2y += curve; 
-                    cp2x += easeIn;
-                    break;
-                case 'left': 
-                    cp2x -= curve; 
-                    cp2y += easeIn;
-                    break;
-                case 'right': 
-                    cp2x += curve; 
-                    cp2y += easeIn;
-                    break;
-            }
-
-            // Draw Main Curve
-            // Offset the end slightly so the arrowhead tip lands exactly on the bounding box edge, not inside stroke
-            // Simple approach: calculate angle and back off by strokeWidth/2 roughly? 
-            // For now, exact point is fine, we just draw head *at* x2,y2.
-
-            const d = `M ${x1} ${y1} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x2} ${y2}`;
-            path.setAttribute("d", d);
-
-            // Calculate Angle at End Point (Tangent of Bezier at t=1 is P3 - P2)
-            // P3 = (x2, y2), P2 = (cp2x, cp2y)
-            const angle = Math.atan2(y2 - cp2y, x2 - cp2x);
-
-            // Draw Arrow Head
-            // "Open" style: Two lines going back from the tip
-            // Tip is at x2, y2
-            
-            const headLen = headSize;
-            const headAngle = Math.PI / 6; // 30 degrees
-
-            const p1x = x2 - headLen * Math.cos(angle - headAngle);
-            const p1y = y2 - headLen * Math.sin(angle - headAngle);
-            
-            const p2x = x2 - headLen * Math.cos(angle + headAngle);
-            const p2y = y2 - headLen * Math.sin(angle + headAngle);
-
-            const headD = `M ${p1x} ${p1y} L ${x2} ${y2} L ${p2x} ${p2y}`;
-            head.setAttribute("d", headD);
-
-            group.style.opacity = "1";
+        // Start Point
+        switch(config.startDir) {
+            case 'top': x1 = r1.left + r1.width/2; y1 = r1.top; break;
+            case 'bottom': x1 = r1.left + r1.width/2; y1 = r1.bottom; break;
+            case 'left': x1 = r1.left; y1 = r1.top + r1.height/2; break;
+            case 'right': x1 = r1.right; y1 = r1.top + r1.height/2; break;
         }
 
-        window.addEventListener('resize', update);
-        window.addEventListener('scroll', update);
-        update();
-        setTimeout(update, 1000);
-        
-        note.dataset.processed = "true";
+        // End Point
+        switch(config.endDir) {
+            case 'top': x2 = r2.left + r2.width/2; y2 = r2.top; break;
+            case 'bottom': x2 = r2.left + r2.width/2; y2 = r2.bottom; break;
+            case 'left': x2 = r2.left; y2 = r2.top + r2.height/2; break;
+            case 'right': x2 = r2.right; y2 = r2.top + r2.height/2; break;
+        }
+
+        // Add scroll to make them absolute document coordinates
+        x1 += scrollX; y1 += scrollY;
+        x2 += scrollX; y2 += scrollY;
+
+        // Calculation Logic
+        let curve;
+        if (config.customAmp !== null) {
+            curve = config.customAmp;
+        } else {
+            const dist = Math.hypot(x2-x1, y2-y1);
+            curve = Math.min(Math.max(dist * 0.5, 50), 200);
+        }
+
+        let cp1x = x1, cp1y = y1, cp2x = x2, cp2y = y2;
+
+        switch(config.startDir) {
+            case 'top': cp1y -= curve; cp1x += config.easeOut; break;
+            case 'bottom': cp1y += curve; cp1x += config.easeOut; break;
+            case 'left': cp1x -= curve; cp1y += config.easeOut; break;
+            case 'right': cp1x += curve; cp1y += config.easeOut; break;
+        }
+
+        switch(config.endDir) {
+            case 'top': cp2y -= curve; cp2x += config.easeIn; break;
+            case 'bottom': cp2y += curve; cp2x += config.easeIn; break;
+            case 'left': cp2x -= curve; cp2y += config.easeIn; break;
+            case 'right': cp2x += curve; cp2y += config.easeIn; break;
+        }
+
+        const d = `M ${x1} ${y1} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x2} ${y2}`;
+        path.setAttribute("d", d);
+
+        // Arrow Head
+        const angle = Math.atan2(y2 - cp2y, x2 - cp2x);
+        const headLen = config.headSize;
+        const headAngle = Math.PI / 6;
+
+        const p1x = x2 - headLen * Math.cos(angle - headAngle);
+        const p1y = y2 - headLen * Math.sin(angle - headAngle);
+        const p2x = x2 - headLen * Math.cos(angle + headAngle);
+        const p2y = y2 - headLen * Math.sin(angle + headAngle);
+
+        const headD = `M ${p1x} ${p1y} L ${x2} ${y2} L ${p2x} ${p2y}`;
+        head.setAttribute("d", headD);
+
+        // Ensure visible
+        if (group.style.opacity !== "1") group.style.opacity = "1";
     }
 
+    // Animation Loop
+    function loop() {
+        if (activeArrows.length > 0) {
+            activeArrows.forEach(arrow => updateArrow(arrow));
+        }
+        requestAnimationFrame(loop);
+    }
+
+    // Initialize
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initArrowNotes);
+        document.addEventListener('DOMContentLoaded', () => {
+            initArrowNotes();
+            loop(); // Start loop after DOM ready
+        });
     } else {
         initArrowNotes();
+        loop();
     }
+    
+    // Safety check for late injections
+    window.addEventListener('load', initArrowNotes);
 })();
 </script>
