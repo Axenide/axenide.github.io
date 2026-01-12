@@ -27,12 +27,29 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 </div>
     
 {{ retro_avatar(src="/images/avatar.png", alt="Axenide") }}
-<div id="scroll-target" style="position: absolute; bottom: 0; left: 50%; width: 1px; height: 1px; transform: translateX(-50%); z-index: -1;"></div>
+</div>
+<div id="scroll-target" style="position: absolute; bottom: 10px; left: 50%; width: 1px; height: 1px; animation: bounce-vertical 3s infinite ease-in-out; z-index: -1;"></div>
+<style>
+  @keyframes bounce-vertical {
+    0%, 20%, 40%, 100% { transform: translate(-50%, 0); }
+    10% { transform: translate(-50%, 15px); }
+    30% { transform: translate(-50%, 15px); }
+  }
+</style>
+
+<div style="position: absolute; left: 50%; margin-left: -120px; bottom: 80px; z-index: 0; pointer-events: none;">
+    <div style="
+        width: 96px; 
+        height: 96px; 
+        background-color: var(--accent-color);
+        -webkit-mask: url('/images/axie.png') no-repeat center / contain;
+        mask: url('/images/axie.png') no-repeat center / contain;
+    "></div>
 </div>
 
-<div class="scroll-indicator" onclick="document.querySelector('#more').scrollIntoView({behavior: 'smooth'})">
+<div class="scroll-indicator" onclick="document.querySelector('#more').scrollIntoView({behavior: 'smooth'})" style="position: absolute; left: 50%; margin-left: 100px; bottom: 140px; right: auto;">
 <div style="transform: rotate(5deg); display: inline-block; text-align: center;">
-    {{ arrow_note(text="Pssst...<br>There's more.", target="scroll-target", start_dir="left", end_dir="top", color="accent", font_size="1rem", amplitude="80", amplitude_desktop="30", spacing="10", stroke_width="2", lock_bottom="true", bottom_offset="10") }}
+    {{ arrow_note(text="Pssst...<br>There's more.", target="scroll-target", start_dir="left", end_dir="top", color="accent", font_size="1rem", amplitude="80", spacing="10", stroke_width="2") }}
 </div>
 </div>
 </section>
@@ -137,9 +154,9 @@ Also, I had a lot of fun making my own 88x31 button, and you should make one too
     const heroSection = document.querySelector('.hero-wrapper');
     
     // Move indicator to body to avoid stacking context issues
-    if (indicator) {
-      document.body.appendChild(indicator);
-    }
+    // if (indicator) {
+    //   document.body.appendChild(indicator);
+    // }
 
     function updateIndicator() {
       if (!indicator || !heroSection) return;
