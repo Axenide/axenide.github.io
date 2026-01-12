@@ -11,8 +11,6 @@ badges = [
   { name = "standwith.gif", url = "https://decolonizepalestine.com" },
   { name = "vscodium.gif", url = "https://vscodium.com" },
 ]
-# Games list removed to avoid confusion. Will load from Discord API or stay empty.
-games = [] 
 +++
 
 <section class="snap-section hero-wrapper">
