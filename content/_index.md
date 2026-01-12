@@ -4,8 +4,31 @@ insert_anchor_links = "left"
 [extra]
 no_header = true
 badges = [
-  { name = "Axenide", image = "images/88x31.gif", alt = "Axenide" },
-  { name = "tr1xem", image = "https://trix.is-a.dev/badges/tr1xem_1.gif", url = "https://trix.is-a.dev/" }
+{ name = "axenide.gif", image = "badges/axenide.gif", url = "https://axeni.de" },
+{ name = "linux.gif", image = "badges/linux.gif", url = "https://kernel.org" },
+{ name = "frutiger_aero_community.gif", image = "badges/frutiger_aero_community.gif", url = "https://frutigeraero.org" },
+{ name = "dark-mode.gif", image = "badges/dark-mode.gif", url = "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme" },
+{ name = "mobilefriendly.gif", image = "badges/mobilefriendly.gif", url = "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design" },
+{ name = "tr1xem.gif", image = "badges/tr1xem.gif", url = "https://trix.is-a.dev" }
+{ name = "sankalp.png", image = "badges/sankalp.png", url = "https://sankalptharu.com.np" },
+{ name = "righttorepair.gif", image = "badges/righttorepair.gif", url = "https://www.ifixit.com/Right-to-Repair" },
+{ name = "neovim.png", image = "badges/neovim.png", url = "https://neovim.io" },
+{ name = "daudix.gif", image = "badges/daudix.gif", url = "https://daudix.one" },
+{ name = "bestviewed16bit.gif", image = "badges/bestviewed16bit.gif" },
+{ name = "firefox3.gif", image = "badges/firefox3.gif", url = "https://getfirefox.com" },
+{ name = "savewalterwhite.gif", image = "badges/savewalterwhite.gif", url = "http://www.savewalterwhite.com" },
+{ name = "ddg.gif", image = "badges/ddg.gif", url = "https://duckduckgo.com" },
+{ name = "neo-fedi.gif", image = "badges/neo-fedi.gif", url = "https://jointhefediverse.net" },
+{ name = "smoke.gif", image = "badges/smoke.gif" },
+{ name = "yarrr.gif", image = "badges/yarrr.gif" },
+{ name = "ffmpeg.png", image = "badges/ffmpeg.png", url = "https://ffmpeg.org" },
+{ name = "ublock-origin.webp", image = "badges/ublock-origin.webp", url = "https://github.com/gorhill/uBlock" },
+{ name = "aperturelabs.gif", image = "badges/aperturelabs.gif", url = "https://www.aperturescience.com" },
+{ name = "archlinux.gif", image = "badges/archlinux.gif", url = "https://archlinux.org" },
+{ name = "portal.gif", image = "badges/portal.gif", url = "https://www.thinkwithportals.com" },
+{ name = "python.png", image = "badges/python.png", url = "https://python.org" },
+{ name = "sourcemissing.gif", image = "badges/sourcemissing.gif" },
+{ name = "stardew-valley.gif", image = "badges/stardew-valley.gif", url = "https://www.stardewvalley.net" },
 ]
 +++
 
