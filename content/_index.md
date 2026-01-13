@@ -135,6 +135,8 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 <li>
 <article>
 
+<img src="/images/space.gif" style="height:128px; width:100%; object-fit:cover; object-position:center;">
+
 **⚡ I am a [polymath](https://en.wikipedia.org/wiki/Polymath).**
 
 I'm from Mendoza, Argentina. I’ve always been drawn to technology and science, and I love making things like code, music, animations, videos, and games. ᕙ(͡°‿ ͡°)ᕗ
@@ -152,62 +154,17 @@ I was extracted successfully, with my eyes wide open, and my first thought was "
 **✨ Hyperfixations:**
 - Red
 - Open Source
-- Retro tech
 - Astronomy
-- Physics
-- Biology
 - Cartoons
 - Frutiger Aero
 - Pixel Art
-- Terminal User Interfaces
-- Evangelion
 - Sans Undertale (literally me)
 
 </article>
 
-<article>
-
-**🔧 I like tinkering and building custom tools.**
-
-I’m obsessed with building my own tools and workflows. People say not to reinvent the wheel, but I think custom tools can unlock freedom and innovation. Just like every person is unique, the tools they use can be too. :D
-
-</article>
-
-<article>
-{{ piano_embed() }}
-</article>
-</li>
-
-<!-- Card Start: Tile Embed -->
-<li>
-<article>
-{{ tile_embed() }}
-</article>
-
-<article>
-
-**👾 I study computer science engineering.**
-
-My curiosity about computers led me into this field, where I get to merge creativity with tech. I have a nostalgic side, and I often mix retro aesthetics like pixel art and chiptune with modern techniques to craft unique experiences.
-
-I honestly enjoy coding and problem-solving. It’s like a puzzle that I get to solve every day, and I love the satisfaction of seeing my ideas come to life through code. :)
-
-</article>
-
-<article>
-
-{{ github_grid(color="#40c463") }}
-
-</article>
-<article class="fancy-list games">
-
-**🕹️ Procrastination Kit:**
-
-{{ games() }}
-</article>
-</li>
-<li>
 <article class="fancy-list">
+
+{{ piano_embed() }}
 
 **🎶 I play some instruments:**
 - Piano
@@ -216,6 +173,43 @@ I honestly enjoy coding and problem-solving. It’s like a puzzle that I get to 
 - Peruvian cajón
 - M-My dad h-has a violin... So maybe someday...
 
+</article>
+</li>
+
+<!-- Card Start: Tile Embed -->
+<li>
+<article>
+{{ tile_embed() }}
+
+**👾 I study computer science engineering.**
+
+My curiosity about computers led me into this field, where I get to merge creativity with tech.
+
+</article>
+
+<article>
+
+{{ github_grid(color="#40c463") }}
+
+I honestly enjoy coding and problem-solving. It’s like a puzzle that I get to solve every day, and I love the satisfaction of seeing my ideas come to life through code. :)
+
+</article>
+
+<article>
+
+<img src="/images/computer.gif" style="width:100%;">
+
+**🔧 I like tinkering and building custom tools.**
+
+I’m obsessed with building my own tools and workflows. People say not to reinvent the wheel, but I think custom tools can unlock freedom and innovation. Just like every person is unique, the tools they use can be too. :D
+
+</article>
+
+<article class="fancy-list games">
+
+**🕹️ Procrastination Kit:**
+
+{{ games() }}
 </article>
 </li>
 </ul>
