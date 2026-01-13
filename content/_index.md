@@ -171,7 +171,7 @@ I’m obsessed with building my own tools and workflows. People say not to reinv
 
 </article>
 
-<article>
+<article class="piano-embed-container">
 {{ piano_embed() }}
 </article>
 </li>
