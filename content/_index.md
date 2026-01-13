@@ -2,6 +2,7 @@
 title = "Axenide"
 insert_anchor_links = "left"
 [extra]
+scripts = ["js/home.js"]
 no_header = true
 socials = [
     { name = "YouTube", url = "https://www.youtube.com/@Axenide", icon = "/social-icons/16x/youtube_icon_bg.png" },
