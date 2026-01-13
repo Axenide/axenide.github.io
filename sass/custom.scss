@@ -414,17 +414,13 @@ html {
 }
 
 /* Custom Fixes */
-.masonry > li {
-  break-inside: avoid-column;
-  page-break-inside: avoid;
-}
 
 /* GitHub Grid Shortcode */
 .github-grid-container {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin: 2rem 0;
+  margin: 2rem 0 0.5rem 0;
   width: 100%;
 }
 
@@ -504,7 +500,6 @@ html {
   justify-content: center; /* Centered */
   gap: 4px;
   margin-top: 0rem;
-  margin-bottom: -1.5rem;
   font-size: 0.75rem;
   font-family: var(--font-sans-serif);
   opacity: 0.7;
