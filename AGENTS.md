@@ -112,3 +112,4 @@ This repository hosts the personal website and blog of Axenide, built with **Zol
 ### Safety
 - **Secrets:** Never commit API keys or private tokens.
 - **Paths:** Always use absolute paths when using tool agents (e.g., `/home/adriano/Repos/Axenide/axenide.github.io/...`).
+- **Submodules:** Never modify the `themes/ametrine/` submodule directly.

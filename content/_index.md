@@ -54,7 +54,7 @@ I'm <mark>Adriano Tisera</mark>, known on the Internet as <mark>Axenide</mark>. 
 </div>
 </div>
     
-{{ retro_avatar(src="/images/avatar.png", alt="Axenide") }}
+{{ retro_avatar(src="/images/avatar.jpg", alt="Axenide") }}
 </div>
 <div id="scroll-target" style="position: absolute; bottom: 58px; left: 50%; width: 1px; height: 1px; animation: bounce-vertical 3s infinite ease-in-out; z-index: -1;"></div>
 <style>
@@ -190,6 +190,8 @@ I’m obsessed with building my own tools and workflows. People say not to reinv
 My curiosity about computers led me into this field, where I get to merge creativity with tech. I have a nostalgic side, and I often mix retro aesthetics like pixel art and chiptune with modern techniques to craft unique experiences.
 
 I honestly enjoy coding and problem-solving. It’s like a puzzle that I get to solve every day, and I love the satisfaction of seeing my ideas come to life through code. :)
+
+{{ github_grid() }}
 
 </article>
 </li>
