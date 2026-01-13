@@ -1,5 +1,3 @@
-{% import "macros/icon.html" as macros_icon %}
-
 {%- if type == "contacts" -%}
 	{%- set items = section.extra.contacts -%}
 {%- elif type == "socials" -%}
@@ -8,30 +6,16 @@
 	{%- set items = section.extra.forges -%}
 {%- endif -%}
 
-{%- if type == "contacts" -%}
-	<style>
-		:root {
-			--icon-circle-dashed: {{ macros_icon::icon(name="circle-dashed", inline=true) }};
-			--icon-circle: {{ macros_icon::icon(name="circle", inline=true) }};
-			--icon-minus-circle: {{ macros_icon::icon(name="minus-circle", inline=true) }};
-			--icon-moon: {{ macros_icon::icon(name="moon", inline=true) }};
-		}
-	</style>
-{%- endif -%}
-
-<ul>
+<ul style="list-style: none; padding: 0;">
 	{%- for item in items -%}
-		<li>
-			<a href="{{ item.url }}"{% if item.favorite %} class="favorite"{% endif %}>
-				<img
-					width="32"
-					height="32"
-					class="transparent no-hover pixels drop-shadow"
-					alt="Pixel art {{ item.name }} icon."
-					{% set item_path = "home/icons/" ~ item.name ~ ".gif" | lower %}
-					src="{{ get_url(path=item_path) }}"
-				/>
-				{{- item.name -}}
+		<li style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+			<a href="{{ item.url }}" {% if type != "contacts" %}target="_blank"{% endif %} style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+				<img 
+                    src="{{ item.icon }}" 
+                    style="width: 16px; height: 16px; margin-right: 8px;" 
+                    alt="{{ item.name }}"
+                >
+				{{ item.name }}
 			</a>
 		</li>
 	{%- endfor -%}

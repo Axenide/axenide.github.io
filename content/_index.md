@@ -3,6 +3,19 @@ title = "Axenide"
 insert_anchor_links = "left"
 [extra]
 no_header = true
+socials = [
+    { name = "YouTube", url = "https://www.youtube.com/@Axenide", icon = "/social-icons/16x/youtube_icon_bg.png" },
+    { name = "Twitch", url = "https://www.twitch.tv/Axenide", icon = "/social-icons/16x/twitch_icon_bg.png" },
+    { name = "X / Twitter", url = "https://x.com/Axenide", icon = "/social-icons/16x/xtwitter_icon_bg.png" },
+    { name = "Instagram", url = "https://www.instagram.com/Axenide", icon = "/social-icons/16x/instagram_icon_bg.png" },
+]
+forges = [
+    { name = "GitHub", url = "https://github.com/Axenide", icon = "/social-icons/16x/github_icon_bg.png" },
+]
+contacts = [
+    { name = "Discord", url = "https://discord.com/invite/gHG9WHyNvH", icon = "/social-icons/16x/discord_icon_bg.png" },
+    { name = "Email", url = "mailto:hi@axeni.de", icon = "/social-icons/16x/domain_icon_bg.png" },
+]
 badges = [
 { name = "axenide.gif", url = "https://axeni.de" },
 { name = "linux.gif", url = "https://kernel.org" },
@@ -227,14 +240,51 @@ Also, I had a lot of fun making my own 88x31 button, and you should make one too
 </div>
 </section>
 
-## Contact
+## Online
 
-<ul class="masonry"> 
+Where and when to find me online.
+
+<ul class="masonry">
+<!-- Card Start -->
 <li>
-<article>
+{{ now_playing() }}
+</li>
+<!-- Card End -->
 
-Feel free to reach out to me on my [social media](/#top), or drop me an email at [hi@axeni.de](mailto:hi@axeni.de). :)
+<!-- Card Start -->
+<li>
+<article class="online fancy-list">
+<strong id="socials" class="title">Socials</strong>
+
+{{ online(type="socials") }}
 
 </article>
 </li>
+<!-- Card End -->
+
+<!-- Card Start -->
+<li>
+<article class="online fancy-list">
+<strong id="forges" class="title">Code</strong>
+
+{{ online(type="forges") }}
+
+</article>
+</li>
+<!-- Card End -->
+
+<!-- Card Start -->
+<li>
+<article class="online fancy-list">
+<strong id="contacts" class="title">Contacts</strong>
+
+For me it's currently <time id="clock">00:00</time> <small>(UTC-3)</small> and I'm <span id="online-indicator"><i class="icon"></i><span id="online-indicator-text">Offline</span></span>.
+
+Feel free to reach me out on any of these!
+
+{{ online(type="contacts") }}
+
+</article>
+</li>
+<!-- Card End -->
 </ul>
