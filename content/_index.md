@@ -29,6 +29,9 @@ badges = [
 { name = "smoke.gif" },
 { name = "yarrr.gif" },
 { name = "stardew-valley.gif", url = "https://www.stardewvalley.net" },
+{ name = "88x31.gif", url = "https://88x31.nl" },
+{ name = "98.gif" },
+{ name = "000010.gif" },
 { name = "sourcemissing.gif" },
 ]
 +++
