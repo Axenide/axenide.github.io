@@ -528,17 +528,34 @@ html {
     align-items: center;
     text-decoration: none;
     color: inherit;
-    /* Removed the aggressive resets so the button style remains */
+    
+    /* Layout & Spacing */
+    position: relative; /* Required for z-index stacking */
+    z-index: 1;
+    backdrop-filter: blur(8px);
+    
+    /* Smooth scaling transition */
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s ease;
+
+    &:hover {
+      transform: scale(1.15);
+      z-index: 100; /* Ensure it floats above others when scaled */
+      
+      img {
+          transform: rotate(-15deg);
+      }
+    }
     
     img {
-      width: 32px;
-      height: 32px;
-      margin-right: 0.75rem;
-      image-rendering: pixelated; /* Keep pixel art crisp */
+      width: 24px !important;
+      height: 24px !important;
+      margin-right: 1.5rem; /* Increased spacing between icon and text */
+      image-rendering: pixelated;
       object-fit: contain;
-      background: transparent; /* Ensure icon itself has no background */
-      box-shadow: none;        /* Ensure icon itself has no shadow */
-      border-radius: 0;        /* Keep square/pixel corners for the icon */
+      background: transparent;
+      box-shadow: none;
+      border-radius: 0;
+      transition: transform 0.3s ease; /* Smooth rotation */
     }
   }
 }
