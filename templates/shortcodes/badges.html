@@ -1,10 +1,10 @@
 {% import "macros/icon.html" as macros_icon %}
 
 <aside id="badges">
-	<strong class="title">Badges</strong>
-	<p>
+	<div style="display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 1rem;">
+		<strong class="title">Badges</strong>
 		<small><abbr title="Also Known As">AKA</abbr> 88x31 buttons</small>
-	</p>
+	</div>
 	<input type="checkbox" id="badges-popup-expand" class="visually-hidden" autocomplete="off" />
 	<label for="badges-popup-expand" id="badges-plus-label" autocomplete="off" title="Link to Me">
 		{{- macros_icon::icon(name="plus") -}}

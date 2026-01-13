@@ -227,3 +227,10 @@ Also, I had a lot of fun making my own 88x31 button, and you should make one too
 </div>
 </section>
 
+# Contact
+
+<article>
+
+Feel free to reach out to me on my [social media](), or drop me an email at [hi@axeni.de](mailto:hi@axeni.de). :)
+
+</article>
