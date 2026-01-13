@@ -4,3 +4,6 @@
 [submodule "static/tile"]
 	path = static/tile
 	url = https://github.com/Axenide/tile.git
+[submodule "static/piano"]
+	path = static/piano
+	url = https://github.com/Axenide/piano

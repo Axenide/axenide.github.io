@@ -170,6 +170,10 @@ I was extracted successfully, with my eyes wide open, and my first thought was "
 I’m obsessed with building my own tools and workflows. People say not to reinvent the wheel, but I think custom tools can unlock freedom and innovation. Just like every person is unique, the tools they use can be too. :D
 
 </article>
+
+<article>
+{{ piano_embed() }}
+</article>
 </li>
 
 <!-- Card Start: Tile Embed -->
