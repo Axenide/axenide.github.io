@@ -9,6 +9,8 @@ socials = [
     { name = "Twitch", url = "https://www.twitch.tv/Axenide", icon = "/social-icons/16x/twitch_icon_bg.png" },
     { name = "X / Twitter", url = "https://x.com/Axenide", icon = "/social-icons/16x/xtwitter_icon_bg.png" },
     { name = "Instagram", url = "https://www.instagram.com/Axenide", icon = "/social-icons/16x/instagram_icon_bg.png" },
+    { name = "Reddit", url = "https://www.reddit.com/user/Axenide", icon = "/social-icons/16x/reddit_icon_bg.png" },
+    { name = "Bluesky", url = "https://bsky.app/profile/axeni.de", icon = "/social-icons/16x/bluesky_icon_bg.png" },
 ]
 forges = [
     { name = "GitHub", url = "https://github.com/Axenide", icon = "/social-icons/16x/github_icon_bg.png" },
