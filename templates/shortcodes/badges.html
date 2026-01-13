@@ -70,7 +70,7 @@
 								{%- if badge.name is starting_with("http") -%}
 									{%- set img_src = badge.name -%}
 								{%- else -%}
-									{%- set img_src = get_url(path="badges/badges/" ~ badge.name) -%}
+									{%- set img_src = get_url(path="badges/" ~ badge.name) -%}
 								{%- endif -%}
 							{%- endif -%}
 
@@ -118,7 +118,7 @@
 								{%- if badge.name is starting_with("http") -%}
 									{%- set img_src = badge.name -%}
 								{%- else -%}
-									{%- set img_src = get_url(path="badges/badges/" ~ badge.name) -%}
+									{%- set img_src = get_url(path="badges/" ~ badge.name) -%}
 								{%- endif -%}
 							{%- endif -%}
 
