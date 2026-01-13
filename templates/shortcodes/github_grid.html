@@ -1,4 +1,4 @@
-<div class="github-grid-container">
+<div class="github-grid-container" style="{% if color %}--github-color: {{ color }};{% endif %}">
     {% set username = username | default(value="Axenide") %}
     
     {# Fetch data from the public API which supports simple GET requests #}
@@ -55,6 +55,26 @@
                 <div class="github-day level-{{ day.level }}" title="{{ day.date }}: {{ day.count }} contributions"></div>
             {% endfor %}
         </div>
+
+        <div class="github-legend">
+            <span>Less</span>
+            <div class="github-day level-0"></div>
+            <div class="github-day level-1"></div>
+            <div class="github-day level-2"></div>
+            <div class="github-day level-3"></div>
+            <div class="github-day level-4"></div>
+            <span>More</span>
+        </div>
+        
+        <script>
+            // Scroll to the end (most recent date) automatically
+            document.addEventListener("DOMContentLoaded", function() {
+                const grids = document.querySelectorAll('.github-grid');
+                grids.forEach(grid => {
+                    grid.scrollLeft = grid.scrollWidth;
+                });
+            });
+        </script>
     {% else %}
          <div class="error" style="color: orange; border: 1px dashed orange; padding: 1rem;">
             <strong>Error:</strong> Could not load GitHub data.

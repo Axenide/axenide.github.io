@@ -15,8 +15,10 @@ badges = [
 { name = "firefox.gif", url = "https://getfirefox.com" },
 { name = "ublock-origin.webp", url = "https://github.com/gorhill/uBlock" },
 { name = "frutiger_aero_community.png", url = "https://frutigeraero.org" },
+{ name = "minecraft.gif", url = "https://minecraft.net" },
 { name = "dark-mode.gif", url = "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme" },
 { name = "mobilefriendly.gif", url = "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design" },
+{ name = "discord.gif", url = "https://discord.com/invite/gHG9WHyNvH" },
 { name = "tr1xem.gif", url = "https://trix.is-a.dev" },
 { name = "sankalp.png", url = "https://sankalptharu.com.np" },
 { name = "daudix.gif", url = "https://daudix.one" },
@@ -144,10 +146,7 @@ I'm from Mendoza, Argentina. I’ve always been drawn to technology and science,
 I was extracted successfully, with my eyes wide open, and my first thought was "general relativity and quantum mechanics haven't been unified yet, what a shame". Then I cried a lot. Wouldn't you? u_u
 
 </article>
-</li>
 
-<!-- Card Start: Interests -->
-<li>
 <article class="fancy-list">
 
 **✨ Hyperfixations:**
@@ -163,9 +162,7 @@ I was extracted successfully, with my eyes wide open, and my first thought was "
 - Sans Undertale (literally me)
 
 </article>
-</li>
 
-<li>
 <article>
 
 **🔧 I like tinkering and building custom tools.**
@@ -180,9 +177,7 @@ I’m obsessed with building my own tools and workflows. People say not to reinv
 <article>
 {{ tile_embed() }}
 </article>
-</li>
 
-<li>
 <article>
 
 **👾 I study computer science engineering.**
@@ -191,13 +186,13 @@ My curiosity about computers led me into this field, where I get to merge creati
 
 I honestly enjoy coding and problem-solving. It’s like a puzzle that I get to solve every day, and I love the satisfaction of seeing my ideas come to life through code. :)
 
-{{ github_grid() }}
+</article>
+
+<article>
+
+{{ github_grid(color="#40c463") }}
 
 </article>
-</li>
-
-<!-- Card Start: Games -->
-<li>
 <article class="fancy-list games">
 
 **🕹️ Procrastination Kit:**
@@ -205,7 +200,25 @@ I honestly enjoy coding and problem-solving. It’s like a puzzle that I get to 
 {{ games() }}
 </article>
 </li>
+<li>
+<article class="fancy-list">
 
+**🎶 I play some instruments:**
+- Piano
+- Guitar
+- Flute
+- Peruvian cajón
+- M-My dad h-has a violin... So maybe someday...
+
+**🎵 Music Production Tools I Use:**
+- FL Studio
+- Logitech G435 Headset
+- Casio LK-100 Keyboard
+- Hearing
+- Determination
+
+</article>
+</li>
 </ul>
 
 ## IndieWeb
