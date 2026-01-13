@@ -6,13 +6,12 @@
 	{%- set items = section.extra.forges -%}
 {%- endif -%}
 
-<ul style="list-style: none; padding: 0;">
+<ul class="online-list">
 	{%- for item in items -%}
-		<li style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-			<a href="{{ item.url }}" {% if type != "contacts" %}target="_blank"{% endif %} style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+		<li>
+			<a href="{{ item.url }}" {% if type != "contacts" %}target="_blank"{% endif %}>
 				<img 
                     src="{{ item.icon }}" 
-                    style="width: 16px; height: 16px; margin-right: 8px;" 
                     alt="{{ item.name }}"
                 >
 				{{ item.name }}
