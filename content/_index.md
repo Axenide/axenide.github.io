@@ -155,10 +155,12 @@ I was extracted successfully, with my eyes wide open, and my first thought was "
 - Retro tech
 - Astronomy
 - Physics
+- Biology
 - Cartoons
 - Frutiger Aero
 - Pixel Art
-- Piano
+- Terminal User Interfaces
+- Evangelion
 - Sans Undertale (literally me)
 
 </article>
@@ -171,7 +173,7 @@ I’m obsessed with building my own tools and workflows. People say not to reinv
 
 </article>
 
-<article class="piano-embed-container">
+<article>
 {{ piano_embed() }}
 </article>
 </li>
@@ -213,13 +215,6 @@ I honestly enjoy coding and problem-solving. It’s like a puzzle that I get to 
 - Flute
 - Peruvian cajón
 - M-My dad h-has a violin... So maybe someday...
-
-**🎵 Music Production Tools I Use:**
-- FL Studio
-- Logitech G435 Headset
-- Casio LK-100 Keyboard
-- Hearing
-- Determination
 
 </article>
 </li>
