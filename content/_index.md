@@ -156,7 +156,7 @@ I was extracted successfully, with my eyes wide open, and my first thought was "
 - Cartoons
 - Frutiger Aero
 - Pixel Art
-- You
+- Piano
 - Sans Undertale (literally me)
 
 </article>
