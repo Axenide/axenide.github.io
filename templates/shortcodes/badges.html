@@ -96,9 +96,6 @@
 				<li>
 					<iframe src="https://incr.easrng.net/badge?key={{ config.base_url | replace(from='https://', to='') }}" title="increment badge"></iframe>
 				</li>
-				<li>
-					<a href="{{ get_url(path='badges/') }}" id="more"><span>more +<br />stamps</span></a>
-				</li>
 			</ul>
 			<ul style="--duration: {{ section.extra.badges | length * 2 | default(value=10) }}s" aria-hidden="true">
 				{%- for badge in section.extra.badges -%}
@@ -140,9 +137,6 @@
 				{%- endfor -%}
 				<li>
 					<iframe src="https://incr.easrng.net/badge?key={{ config.base_url | replace(from='https://', to='') }}" title="increment badge"></iframe>
-				</li>
-				<li>
-					<a href="{{ get_url(path='badges/') }}" id="more"><span>more +<br />stamps</span></a>
 				</li>
 			</ul>
 		</div>
