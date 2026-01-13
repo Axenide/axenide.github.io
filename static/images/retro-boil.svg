@@ -67,15 +67,15 @@
     <path class="wave" d="M -100 55 Q 0 60 100 55 T 300 55 T 500 55 T 700 55 T 900 55 V 100 H -100 Z" style="animation-direction: reverse; animation-duration: 5s; opacity: 1;" />
 
     <!-- Bubbles -->
-    <circle class="bubble" cx="20" cy="65" r="6" style="animation-delay: 0s; animation-duration: 2.2s;" />
-    <circle class="bubble" cx="60" cy="65" r="5" style="animation-delay: 1.5s; animation-duration: 2.8s;" />
-    <circle class="bubble" cx="100" cy="65" r="7" style="animation-delay: 0.5s; animation-duration: 2.5s;" />
-    <circle class="bubble" cx="140" cy="65" r="5" style="animation-delay: 2.0s; animation-duration: 3s;" />
-    <circle class="bubble" cx="180" cy="65" r="6" style="animation-delay: 0.8s; animation-duration: 2.6s;" />
-    <circle class="bubble" cx="220" cy="65" r="5" style="animation-delay: 1.2s; animation-duration: 2.4s;" />
-    <circle class="bubble" cx="260" cy="65" r="8" style="animation-delay: 0.3s; animation-duration: 2.9s;" />
-    <circle class="bubble" cx="300" cy="65" r="5" style="animation-delay: 1.8s; animation-duration: 2.7s;" />
-    <circle class="bubble" cx="340" cy="65" r="6" style="animation-delay: 0.6s; animation-duration: 3.1s;" />
-    <circle class="bubble" cx="380" cy="65" r="4" style="animation-delay: 1.4s; animation-duration: 2.3s;" />
+    <circle class="bubble" cx="20" cy="65" r="10" style="animation-delay: 0s; animation-duration: 2.2s;" />
+    <circle class="bubble" cx="60" cy="65" r="8" style="animation-delay: 1.5s; animation-duration: 2.8s;" />
+    <circle class="bubble" cx="100" cy="65" r="12" style="animation-delay: 0.5s; animation-duration: 2.5s;" />
+    <circle class="bubble" cx="140" cy="65" r="9" style="animation-delay: 2.0s; animation-duration: 3s;" />
+    <circle class="bubble" cx="180" cy="65" r="10" style="animation-delay: 0.8s; animation-duration: 2.6s;" />
+    <circle class="bubble" cx="220" cy="65" r="9" style="animation-delay: 1.2s; animation-duration: 2.4s;" />
+    <circle class="bubble" cx="260" cy="65" r="14" style="animation-delay: 0.3s; animation-duration: 2.9s;" />
+    <circle class="bubble" cx="300" cy="65" r="8" style="animation-delay: 1.8s; animation-duration: 2.7s;" />
+    <circle class="bubble" cx="340" cy="65" r="10" style="animation-delay: 0.6s; animation-duration: 3.1s;" />
+    <circle class="bubble" cx="380" cy="65" r="7" style="animation-delay: 1.4s; animation-duration: 2.3s;" />
   </g>
 </svg>
