@@ -3,33 +3,30 @@
 
 // CSS Property for wave animation
 @property --wave-amplitude {
-  syntax: '<length>';
+  syntax: "<length>";
   initial-value: -3px;
   inherits: true;
 }
 
 .retro-word {
   display: inline-flex;
-  font-family: var(--retro-text-font, 'Bytesized', monospace);
+  font-family: var(--retro-text-font, "Bytesized", monospace);
   font-size: var(--retro-text-size, 5rem);
   margin-bottom: 0;
   line-height: 1;
   cursor: default;
-  
+
   text-decoration: none !important;
   border: none !important;
   outline: none !important;
 
-  filter: 
-    drop-shadow(2px 0 0 white)
-    drop-shadow(-2px 0 0 white)
-    drop-shadow(0 2px 0 white)
-    drop-shadow(0 -2px 0 white);
+  filter: drop-shadow(2px 0 0 white) drop-shadow(-2px 0 0 white)
+    drop-shadow(0 2px 0 white) drop-shadow(0 -2px 0 white);
 
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 
   &:hover {
-    transform: scale(1.1); 
+    transform: scale(1.1);
   }
 }
 
@@ -38,11 +35,11 @@
   color: transparent;
   z-index: 1;
   display: inline-block;
-  
+
   --wave-amplitude: -3px;
-  
+
   transition: --wave-amplitude 0.5s ease;
-  
+
   animation: retro-wave 1s ease-in-out infinite running;
   animation-delay: calc(0.1s * var(--i));
 
@@ -52,11 +49,14 @@
     left: 0;
     top: 0;
     z-index: 10;
-    
+
     // Use the loop index (--i) to shift the background, creating a continuous/randomized look
     // Layering: Image on top, Solid color behind
-    background: url("/images/retro-boil.svg") calc(var(--i) * 50px) center / auto 100% repeat-x, #D10028;
-    
+    background:
+      url("/images/retro-boil.svg") calc(var(--i) * 50px) center / auto 100%
+        repeat-x,
+      #db4740;
+
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -70,19 +70,16 @@
     z-index: -1;
     color: black;
     -webkit-text-stroke: 8px black;
-    
-    filter: 
-      drop-shadow(1px 1px 0 #000)
-      drop-shadow(1px 1px 0 #000)
-      drop-shadow(1px 1px 0 #000)
-      drop-shadow(1px 1px 0 #000)
-      drop-shadow(1px 1px 0 #000)
-      drop-shadow(1px 1px 0 #000);
+
+    filter: drop-shadow(1px 1px 0 #000) drop-shadow(1px 1px 0 #000)
+      drop-shadow(1px 1px 0 #000) drop-shadow(1px 1px 0 #000)
+      drop-shadow(1px 1px 0 #000) drop-shadow(1px 1px 0 #000);
   }
 }
 
 @keyframes retro-wave {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {

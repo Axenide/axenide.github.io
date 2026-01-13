@@ -15,14 +15,14 @@
       filter: url(#goo);
     }
     .liquid-base {
-      fill: #db4740;
+      fill: #D10028;
     }
     .wave {
-      fill: #db4740;
+      fill: #D10028;
       animation: wave 4s linear infinite;
     }
     .bubble {
-      fill: #db4740;
+      fill: #D10028;
       animation: rise 3s ease-in infinite;
     }
     
