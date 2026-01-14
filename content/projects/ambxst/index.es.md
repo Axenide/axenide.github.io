@@ -11,6 +11,7 @@ tags = ["dev", "wip"]
 no_header = true
 banner = "1.png"
 hide_banner = true
+hide_site_title = true
 accent_color = "hsl(2.71, 68.28%, 55.49%)"
 [extra.meta]
 favicon = "favicon.svg"
