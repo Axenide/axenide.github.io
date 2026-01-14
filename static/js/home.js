@@ -148,60 +148,69 @@ function initScrollSnap() {
 		}, 800);
 	};
 
-	const handleInput = (deltaY, e) => {
+	// Mouse Wheel - Instant reaction
+	window.addEventListener("wheel", (e) => {
 		const currentScroll = window.scrollY;
 		const scrollPadding = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 60;
 		const targetTop = moreSection.offsetTop - scrollPadding;
 		const tolerance = 50;
 
-		// 1. Animation in progress
+		// 1. Animation in progress (Reversal Logic)
 		if (isSnapScrolling) {
-			if (e.cancelable) e.preventDefault(); // Critical: prevents browser from cancelling the smooth scroll
-
-			// Allow reversal if direction opposes current target
-			if (deltaY > 0 && snapTarget === 'hero') {
-				doScroll('content');
-			} else if (deltaY < 0 && snapTarget === 'content') {
-				doScroll('hero');
-			}
+			e.preventDefault();
+			if (e.deltaY > 0 && snapTarget === 'hero') doScroll('content');
+			else if (e.deltaY < 0 && snapTarget === 'content') doScroll('hero');
 			return;
 		}
 
-		// 2. Idle - Check triggers
-		
-		// From Top -> Down to Content
-		if (deltaY > 0 && currentScroll < 100) {
-			if (e.cancelable) e.preventDefault();
+		// 2. Idle triggers
+		if (e.deltaY > 0 && currentScroll < 100) {
+			e.preventDefault();
 			doScroll('content');
-		}
-		
-		// From Content Top -> Up to Hero
-		else if (deltaY < 0 && Math.abs(currentScroll - targetTop) < tolerance) {
-			if (e.cancelable) e.preventDefault();
+		} else if (e.deltaY < 0 && Math.abs(currentScroll - targetTop) < tolerance) {
+			e.preventDefault();
 			doScroll('hero');
 		}
-	};
-
-	window.addEventListener("wheel", (e) => {
-		handleInput(e.deltaY, e);
 	}, { passive: false });
 
-	// Touch support
-	let lastTouchY = 0;
+	// Touch - Delayed reaction (Swipe/Flick)
+	let touchStartY = 0;
+	let touchStartScrollY = 0;
+
 	window.addEventListener("touchstart", (e) => {
-		lastTouchY = e.touches[0].clientY;
-	}, { passive: false });
+		touchStartY = e.touches[0].clientY;
+		touchStartScrollY = window.scrollY;
+	}, { passive: true });
 
-	window.addEventListener("touchmove", (e) => {
-		const currentY = e.touches[0].clientY;
-		const deltaY = lastTouchY - currentY; // Finger UP = Scroll DOWN (Positive Delta)
-		lastTouchY = currentY;
+	window.addEventListener("touchend", (e) => {
+		const touchEndY = e.changedTouches[0].clientY;
+		const deltaY = touchStartY - touchEndY; // Positive = Drag Up (Scroll Down)
+		const absDelta = Math.abs(deltaY);
 
-		// Small threshold to avoid noise
-		if (Math.abs(deltaY) > 2) {
-			handleInput(deltaY, e);
+		// Threshold to ignore small taps/jitters
+		if (absDelta > 30) {
+			// Check Reversal (if interrupting an animation)
+			if (isSnapScrolling) {
+				if (deltaY > 0 && snapTarget === 'hero') doScroll('content');
+				else if (deltaY < 0 && snapTarget === 'content') doScroll('hero');
+				return;
+			}
+
+			// Normal triggers based on START position
+			const scrollPadding = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 60;
+			const targetTop = moreSection.offsetTop - scrollPadding;
+			const tolerance = 50;
+
+			// 1. Started at Top -> Dragged Up (Scroll Down)
+			if (touchStartScrollY < 100 && deltaY > 0) {
+				doScroll('content');
+			}
+			// 2. Started at Content -> Dragged Down (Scroll Up)
+			else if (Math.abs(touchStartScrollY - targetTop) < tolerance && deltaY < 0) {
+				doScroll('hero');
+			}
 		}
-	}, { passive: false });
+	}, { passive: true });
 }
 
 /* Initialization and Event Listeners ======================================= */
