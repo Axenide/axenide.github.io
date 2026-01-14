@@ -35,8 +35,28 @@
 
 <script>
 (function() {
-    // State to track active arrows
-    const activeArrows = [];
+    // State to track visible arrows (Performance Optimization)
+    const visibleArrows = new Set();
+    
+    // IntersectionObserver to only update arrows when the note is in viewport
+    // rootMargin: "50%" ensures arrows update slightly before entering screen
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const arrowData = entry.target._arrowData;
+            if (!arrowData) return;
+
+            if (entry.isIntersecting) {
+                visibleArrows.add(arrowData);
+                // Ensure visible immediately
+                if (arrowData.group.style.opacity !== "1") arrowData.group.style.opacity = "1";
+            } else {
+                visibleArrows.delete(arrowData);
+                // Hide when off-screen to prevent artifacts/confusion
+                // But only if we are sure (optional, keeping it visible doesn't hurt if loop stops)
+                // Leaving opacity management to the visibility check in loop for smoother transitions
+            }
+        });
+    }, { rootMargin: "50% 0px 50% 0px" });
 
     function initArrowNotes() {
         const notes = document.querySelectorAll('.arrow-note');
@@ -77,7 +97,6 @@
             // Add Filters for Line Boil
             const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
             
-            // Function to create boil filters
             const createBoilFilters = (prefix, scale) => {
                 [1, 2, 3].forEach(i => {
                     const f = document.createElementNS("http://www.w3.org/2000/svg", "filter");
@@ -107,14 +126,10 @@
                 });
             };
 
-            // Filters for Arrows (Stronger)
             createBoilFilters('boil', 3);
-            
-            // Filters for Text (Subtler)
             createBoilFilters('boilText', 1.5);
 
             svg.appendChild(defs);
-
             document.body.appendChild(svg);
         }
 
@@ -156,10 +171,9 @@
         group.appendChild(head);
         
         group.style.opacity = "0";
-        group.style.transition = "opacity 0.2s ease"; // Faster transition
+        group.style.transition = "opacity 0.2s ease"; 
         svg.appendChild(group);
 
-        // Store arrow data
         const arrowData = {
             note,
             target,
@@ -172,126 +186,136 @@
             prevCoords: null
         };
         
-        activeArrows.push(arrowData);
+        // Link and observe
+        note._arrowData = arrowData;
         note.dataset.processed = "true";
-        
-        // Initial render
-        updateArrow(arrowData, true);
+        observer.observe(note);
     }
 
-    function updateArrow(arrow, force = false) {
-        const { note, target, group, path, head, config, prevCoords } = arrow;
-
-        // Visibility check
-        // If note is hidden (e.g. via responsive CSS), hide the arrow
-        const style = window.getComputedStyle(note);
-        if (note.offsetParent === null || style.visibility === 'hidden') {
-            if (group.style.opacity !== "0") group.style.opacity = "0";
-            return;
-        }
-
-        // Get current positions
-        const r1 = note.getBoundingClientRect();
-        const r2 = target.getBoundingClientRect();
-        const scrollX = window.scrollX;
-        const scrollY = window.scrollY;
-
-        // Check if anything changed (optimization)
-        // We include scroll in the check because getBoundingClientRect is relative to viewport
-        const currentCoords = JSON.stringify({
-            r1: {x: r1.x, y: r1.y, w: r1.width, h: r1.height},
-            r2: {x: r2.x, y: r2.y, w: r2.width, h: r2.height},
-            scrollX, scrollY
-        });
-
-        if (!force && prevCoords === currentCoords) {
-            return; // No visual change needed
-        }
-        arrow.prevCoords = currentCoords;
-
-        // Calculate points
-        let x1, y1, x2, y2;
-
-        // Start Point
-        const spacing = config.spacing;
-        switch(config.startDir) {
-            case 'top': x1 = r1.left + r1.width/2; y1 = r1.top - spacing; break;
-            case 'bottom': x1 = r1.left + r1.width/2; y1 = r1.bottom + spacing; break;
-            case 'left': x1 = r1.left - spacing; y1 = r1.top + r1.height/2; break;
-            case 'right': x1 = r1.right + spacing; y1 = r1.top + r1.height/2; break;
-        }
-
-        // End Point
-        switch(config.endDir) {
-            case 'top': x2 = r2.left + r2.width/2; y2 = r2.top - spacing; break;
-            case 'bottom': x2 = r2.left + r2.width/2; y2 = r2.bottom + spacing; break;
-            case 'left': x2 = r2.left - spacing; y2 = r2.top + r2.height/2; break;
-            case 'right': x2 = r2.right + spacing; y2 = r2.top + r2.height/2; break;
-        }
-
-        // Lock Bottom Logic
-        if (config.lockBottom) {
-             y2 = window.innerHeight - config.bottomOffset;
-        }
-
-        // Add scroll to make them absolute document coordinates
-        x1 += scrollX; y1 += scrollY;
-        x2 += scrollX; y2 += scrollY;
-
-        // Calculation Logic
-        let curve;
-        
-        // Determine amplitude based on screen size
-        const isDesktop = window.innerWidth > 768;
-        const effectiveAmp = (isDesktop && config.customAmpDesktop !== null) ? config.customAmpDesktop : config.customAmp;
-
-        if (effectiveAmp !== null) {
-            curve = effectiveAmp;
-        } else {
-            const dist = Math.hypot(x2-x1, y2-y1);
-            curve = Math.min(Math.max(dist * 0.5, 50), 200);
-        }
-
-        let cp1x = x1, cp1y = y1, cp2x = x2, cp2y = y2;
-
-        switch(config.startDir) {
-            case 'top': cp1y -= curve; cp1x += config.easeOut; break;
-            case 'bottom': cp1y += curve; cp1x += config.easeOut; break;
-            case 'left': cp1x -= curve; cp1y += config.easeOut; break;
-            case 'right': cp1x += curve; cp1y += config.easeOut; break;
-        }
-
-        switch(config.endDir) {
-            case 'top': cp2y -= curve; cp2x += config.easeIn; break;
-            case 'bottom': cp2y += curve; cp2x += config.easeIn; break;
-            case 'left': cp2x -= curve; cp2y += config.easeIn; break;
-            case 'right': cp2x += curve; cp2y += config.easeIn; break;
-        }
-
-        const d = `M ${x1} ${y1} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x2} ${y2}`;
-        path.setAttribute("d", d);
-
-        // Arrow Head
-        const angle = Math.atan2(y2 - cp2y, x2 - cp2x);
-        const headLen = config.headSize;
-        const headAngle = Math.PI / 6;
-
-        const p1x = x2 - headLen * Math.cos(angle - headAngle);
-        const p1y = y2 - headLen * Math.sin(angle - headAngle);
-        const p2x = x2 - headLen * Math.cos(angle + headAngle);
-        const p2y = y2 - headLen * Math.sin(angle + headAngle);
-
-        const headD = `M ${p1x} ${p1y} L ${x2} ${y2} L ${p2x} ${p2y}`;
-        head.setAttribute("d", headD);
-
-        // Ensure visible
-        if (group.style.opacity !== "1") group.style.opacity = "1";
-    }
-
-    // Animation Loop
+    // Optimized Animation Loop
     function loop() {
-        if (activeArrows.length > 0) {
-            activeArrows.forEach(arrow => updateArrow(arrow));
+        if (visibleArrows.size > 0) {
+            
+            // PHASE 1: READ (Batch all DOM reads)
+            // -----------------------------------
+            const scrollX = window.scrollX;
+            const scrollY = window.scrollY;
+            const updates = [];
+
+            for (const arrow of visibleArrows) {
+                const { note, target, prevCoords } = arrow;
+
+                // Optimization: offsetParent checks if element or ancestors are display:none
+                if (note.offsetParent === null) {
+                    if (arrow.group.style.opacity !== "0") arrow.group.style.opacity = "0";
+                    continue; 
+                }
+
+                // If we need strict visibility check (e.g. visibility: hidden)
+                // We do it here, but it triggers style recalc. 
+                // Using offsetParent covers most cases (display: none).
+                // We can assume if it's in viewport (via Observer) and not display:none, we render.
+
+                const r1 = note.getBoundingClientRect();
+                const r2 = target.getBoundingClientRect();
+
+                // Check for changes efficiently
+                const currentCoords = JSON.stringify({
+                    r1: {x: Math.round(r1.x), y: Math.round(r1.y), w: Math.round(r1.width), h: Math.round(r1.height)},
+                    r2: {x: Math.round(r2.x), y: Math.round(r2.y), w: Math.round(r2.width), h: Math.round(r2.height)},
+                    scrollX, scrollY
+                });
+
+                if (prevCoords === currentCoords) continue;
+                
+                // Queue for update
+                arrow.prevCoords = currentCoords;
+                updates.push({ arrow, r1, r2, scrollX, scrollY });
+            }
+
+            // PHASE 2: WRITE (Batch all DOM writes)
+            // ------------------------------------
+            for (const update of updates) {
+                const { arrow, r1, r2, scrollX, scrollY } = update;
+                const { config, group, path, head } = arrow;
+
+                // Calculate points
+                let x1, y1, x2, y2;
+
+                // Start Point
+                const spacing = config.spacing;
+                switch(config.startDir) {
+                    case 'top': x1 = r1.left + r1.width/2; y1 = r1.top - spacing; break;
+                    case 'bottom': x1 = r1.left + r1.width/2; y1 = r1.bottom + spacing; break;
+                    case 'left': x1 = r1.left - spacing; y1 = r1.top + r1.height/2; break;
+                    case 'right': x1 = r1.right + spacing; y1 = r1.top + r1.height/2; break;
+                }
+
+                // End Point
+                switch(config.endDir) {
+                    case 'top': x2 = r2.left + r2.width/2; y2 = r2.top - spacing; break;
+                    case 'bottom': x2 = r2.left + r2.width/2; y2 = r2.bottom + spacing; break;
+                    case 'left': x2 = r2.left - spacing; y2 = r2.top + r2.height/2; break;
+                    case 'right': x2 = r2.right + spacing; y2 = r2.top + r2.height/2; break;
+                }
+
+                // Lock Bottom Logic
+                if (config.lockBottom) {
+                     y2 = window.innerHeight - config.bottomOffset;
+                }
+
+                // Add scroll for absolute coordinates
+                x1 += scrollX; y1 += scrollY;
+                x2 += scrollX; y2 += scrollY;
+
+                // Bezier Logic
+                let curve;
+                const isDesktop = window.innerWidth > 768; // Read from window is cheap enough here
+                const effectiveAmp = (isDesktop && config.customAmpDesktop !== null) ? config.customAmpDesktop : config.customAmp;
+
+                if (effectiveAmp !== null) {
+                    curve = effectiveAmp;
+                } else {
+                    const dist = Math.hypot(x2-x1, y2-y1);
+                    curve = Math.min(Math.max(dist * 0.5, 50), 200);
+                }
+
+                let cp1x = x1, cp1y = y1, cp2x = x2, cp2y = y2;
+
+                switch(config.startDir) {
+                    case 'top': cp1y -= curve; cp1x += config.easeOut; break;
+                    case 'bottom': cp1y += curve; cp1x += config.easeOut; break;
+                    case 'left': cp1x -= curve; cp1y += config.easeOut; break;
+                    case 'right': cp1x += curve; cp1y += config.easeOut; break;
+                }
+
+                switch(config.endDir) {
+                    case 'top': cp2y -= curve; cp2x += config.easeIn; break;
+                    case 'bottom': cp2y += curve; cp2x += config.easeIn; break;
+                    case 'left': cp2x -= curve; cp2y += config.easeIn; break;
+                    case 'right': cp2x += curve; cp2y += config.easeIn; break;
+                }
+
+                const d = `M ${x1} ${y1} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x2} ${y2}`;
+                
+                // Arrow Head
+                const angle = Math.atan2(y2 - cp2y, x2 - cp2x);
+                const headLen = config.headSize;
+                const headAngle = Math.PI / 6;
+
+                const p1x = x2 - headLen * Math.cos(angle - headAngle);
+                const p1y = y2 - headLen * Math.sin(angle - headAngle);
+                const p2x = x2 - headLen * Math.cos(angle + headAngle);
+                const p2y = y2 - headLen * Math.sin(angle + headAngle);
+
+                const headD = `M ${p1x} ${p1y} L ${x2} ${y2} L ${p2x} ${p2y}`;
+
+                // Apply DOM updates
+                path.setAttribute("d", d);
+                head.setAttribute("d", headD);
+
+                if (group.style.opacity !== "1") group.style.opacity = "1";
+            }
         }
         requestAnimationFrame(loop);
     }
@@ -300,14 +324,13 @@
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
             initArrowNotes();
-            loop(); // Start loop after DOM ready
+            loop(); 
         });
     } else {
         initArrowNotes();
         loop();
     }
     
-    // Safety check for late injections
     window.addEventListener('load', initArrowNotes);
 })();
 </script>
