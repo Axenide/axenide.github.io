@@ -225,7 +225,6 @@ Also, I had a lot of fun making my own 88x31 button, and you should make one too
 {{ badges(note_text="My 88x31 here") }}
 
 </div>
-</section>
 
 ## Online
 
@@ -275,3 +274,4 @@ Feel free to reach me out on any of these!
 </li>
 <!-- Card End -->
 </ul>
+</section>
