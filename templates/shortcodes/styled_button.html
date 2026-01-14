@@ -10,15 +10,13 @@
     {% set wrapper_style = "width: " ~ width ~ "; height: " ~ height ~ ";" %}
     {# Image keeps default 100% from class #}
 {% elif width %}
-    {# Only width provided: Maintain aspect ratio #}
-    {% set wrapper_style = "width: " ~ width ~ "; height: auto;" %}
-    {% set img_style = "height: auto;" %}
+    {# Only width provided: Force Square based on width #}
+    {% set wrapper_style = "width: " ~ width ~ "; height: " ~ width ~ ";" %}
 {% elif height %}
-    {# Only height provided: Maintain aspect ratio #}
-    {% set wrapper_style = "width: auto; height: " ~ height ~ ";" %}
-    {% set img_style = "width: auto;" %}
+    {# Only height provided: Force Square based on height #}
+    {% set wrapper_style = "width: " ~ height ~ "; height: " ~ height ~ ";" %}
 {% else %}
-    {# Neither provided: Default to 16px #}
+    {# Neither provided: Default to 16px Square #}
     {% set wrapper_style = "width: 16px; height: 16px;" %}
 {% endif %}
 

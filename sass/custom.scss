@@ -237,17 +237,30 @@
   transform-origin: center center;
   
   /* Optimized Social Button Style */
-  border-radius: 25%;
-  background-color: var(--bg-color, #fff); /* Ensure contrast */
-  border: 2px solid var(--avatar-border-color, #db4740);
-  box-shadow: 
-    0 0 0 2px #000, 
-    0 0 0 4px white,
-    0 4px 0 4px rgba(0,0,0,0.5);
-    
-  /* Padding to prevent icon from touching borders */
-  padding: 2px;
-  box-sizing: content-box; /* Maintain icon size */
+  border-radius: 0;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  
+  /* Layout: ensure wrapper matches icon size tightly and square */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  
+  /* Force dimensions constraints */
+  aspect-ratio: 1 / 1;
+  /* Reset typography to prevent ghost spacing */
+  line-height: 0;
+  font-size: 0;
+  
+  /* If width/height are auto (via style attr override), this ensures squareness */
+  /* If width is set by style, aspect-ratio handles height */
+  
+  /* Prevent flex interactions from distorting shape */
+  flex-shrink: 0;
+  align-self: center;
 
   .social-icon-img {
     width: 100%;
@@ -258,6 +271,9 @@
     transition: transform var(--rotate-dur, 0.5s) ease;
     transform-origin: center center;
     will-change: transform;
+    
+    /* Removed all border/shadow effects as requested */
+    box-shadow: none;
   }
   &:hover {
     transform: scale(var(--zoom-val, 1));
