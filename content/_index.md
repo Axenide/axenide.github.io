@@ -178,7 +178,7 @@ I was extracted successfully, with my eyes wide open, and my first thought was "
 - Guitar
 - Flute
 - Peruvian cajón
-- M-My dad h-has a violin... So maybe someday...
+- My dad has a violin, so maybe someday.
 
 </article>
 </li>
