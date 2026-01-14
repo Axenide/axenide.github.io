@@ -120,9 +120,47 @@ function updateClock() {
 	}
 }
 
+// Scroll Snap Logic
+function initScrollSnap() {
+	const moreSection = document.getElementById("more");
+	if (!moreSection) return;
+
+	let isSnapScrolling = false;
+
+	window.addEventListener("wheel", (e) => {
+		if (isSnapScrolling) return;
+
+		const currentScroll = window.scrollY;
+		// 3.75rem approx 60px, fetching from CSS is safer
+		const scrollPadding = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 60;
+		const targetTop = moreSection.offsetTop - scrollPadding;
+		const tolerance = 50;
+
+		// 1. From Top -> Down to Content
+		// Trigger if we are close to the top (Hero section)
+		if (e.deltaY > 0 && currentScroll < 100) {
+			e.preventDefault();
+			isSnapScrolling = true;
+			moreSection.scrollIntoView({ behavior: "smooth" });
+			setTimeout(() => { isSnapScrolling = false; }, 800);
+		}
+		
+		// 2. From Content Top -> Up to Hero
+		// Trigger if we are aligned with the content top
+		else if (e.deltaY < 0 && Math.abs(currentScroll - targetTop) < tolerance) {
+			e.preventDefault();
+			isSnapScrolling = true;
+			window.scrollTo({ top: 0, behavior: "smooth" });
+			setTimeout(() => { isSnapScrolling = false; }, 800);
+		}
+	}, { passive: false });
+}
+
 /* Initialization and Event Listeners ======================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
+	initScrollSnap();
+
 	if (lastFmPlayer) {
 		fetchLastFm();
 		setInterval(fetchLastFm, 10000);
