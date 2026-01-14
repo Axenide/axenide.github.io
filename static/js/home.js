@@ -148,7 +148,7 @@ function initScrollSnap() {
 		}, 800);
 	};
 
-	window.addEventListener("wheel", (e) => {
+	const handleInput = (deltaY, e) => {
 		const currentScroll = window.scrollY;
 		const scrollPadding = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 60;
 		const targetTop = moreSection.offsetTop - scrollPadding;
@@ -156,12 +156,12 @@ function initScrollSnap() {
 
 		// 1. Animation in progress
 		if (isSnapScrolling) {
-			e.preventDefault(); // Critical: prevents browser from cancelling the smooth scroll
+			if (e.cancelable) e.preventDefault(); // Critical: prevents browser from cancelling the smooth scroll
 
 			// Allow reversal if direction opposes current target
-			if (e.deltaY > 0 && snapTarget === 'hero') {
+			if (deltaY > 0 && snapTarget === 'hero') {
 				doScroll('content');
-			} else if (e.deltaY < 0 && snapTarget === 'content') {
+			} else if (deltaY < 0 && snapTarget === 'content') {
 				doScroll('hero');
 			}
 			return;
@@ -170,15 +170,36 @@ function initScrollSnap() {
 		// 2. Idle - Check triggers
 		
 		// From Top -> Down to Content
-		if (e.deltaY > 0 && currentScroll < 100) {
-			e.preventDefault();
+		if (deltaY > 0 && currentScroll < 100) {
+			if (e.cancelable) e.preventDefault();
 			doScroll('content');
 		}
 		
 		// From Content Top -> Up to Hero
-		else if (e.deltaY < 0 && Math.abs(currentScroll - targetTop) < tolerance) {
-			e.preventDefault();
+		else if (deltaY < 0 && Math.abs(currentScroll - targetTop) < tolerance) {
+			if (e.cancelable) e.preventDefault();
 			doScroll('hero');
+		}
+	};
+
+	window.addEventListener("wheel", (e) => {
+		handleInput(e.deltaY, e);
+	}, { passive: false });
+
+	// Touch support
+	let lastTouchY = 0;
+	window.addEventListener("touchstart", (e) => {
+		lastTouchY = e.touches[0].clientY;
+	}, { passive: false });
+
+	window.addEventListener("touchmove", (e) => {
+		const currentY = e.touches[0].clientY;
+		const deltaY = lastTouchY - currentY; // Finger UP = Scroll DOWN (Positive Delta)
+		lastTouchY = currentY;
+
+		// Small threshold to avoid noise
+		if (Math.abs(deltaY) > 2) {
+			handleInput(deltaY, e);
 		}
 	}, { passive: false });
 }
