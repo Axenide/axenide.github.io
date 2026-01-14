@@ -65,14 +65,7 @@ Soy <mark>Adriano Tisera</mark>, conocido en Internet como <mark>Axenide</mark>.
     
 {{ retro_avatar(src="/images/avatar.jpg", alt="Axenide") }}
 </div>
-<div id="scroll-target" style="position: absolute; bottom: 58px; left: 50%; width: 1px; height: 1px; animation: bounce-vertical 3s infinite ease-in-out; z-index: -1;"></div>
-<style>
-  @keyframes bounce-vertical {
-    0%, 20%, 40%, 100% { transform: translate(-50%, 0); }
-    10% { transform: translate(-50%, 15px); }
-    30% { transform: translate(-50%, 15px); }
-  }
-</style>
+<div id="scroll-target" style="position: absolute; bottom: 58px; left: 50%; width: 1px; height: 1px; z-index: -1;"></div>
 
 <div class="scroll-indicator" onclick="document.querySelector('#more').scrollIntoView({behavior: 'smooth'})" style="position: absolute; bottom: 72px; left: 50%; margin-left: -120px; display: flex; align-items: flex-end; gap: 76px; pointer-events: auto; cursor: pointer; z-index: 10;">
 <div style="width: 96px; height: 96px; z-index: 0; animation: svg-boil 0.3s infinite steps(1); flex-shrink: 0;">
