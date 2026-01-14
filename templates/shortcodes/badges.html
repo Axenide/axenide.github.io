@@ -13,7 +13,7 @@
 	
 	<!-- Wide Desktop: Arrow on the right -->
 	<div class="desktop-only badge-arrow-wide" style="position: absolute; top: -3.5rem; right: -2rem; z-index: 20;">
-		{% set text = "My 88x31 here" %}
+		{% set text = note_text | default(value="My 88x31 here") %}
 		{% set target = "badges-plus-label" %}
 		{% set start_dir = "right" %}
 		{% set end_dir = "right" %}
@@ -26,7 +26,7 @@
 
 	<!-- Narrow Desktop: Arrow from bottom (prevents clipping) -->
 	<div class="desktop-only badge-arrow-narrow" style="position: absolute; top: -3.5rem; right: 1.5rem; z-index: 20;">
-		{% set text = "My 88x31 here" %}
+		{% set text = note_text | default(value="My 88x31 here") %}
 		{% set target = "badges-plus-label" %}
 		{% set start_dir = "bottom" %}
 		{% set end_dir = "left" %}

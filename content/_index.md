@@ -229,7 +229,7 @@ Cozy and nostalgic, like the early days of the internet. Since I became an adult
 
 Also, I had a lot of fun making my own 88x31 button, and you should make one too! :)
 
-{{ badges() }}
+{{ badges(note_text="My 88x31 here") }}
 
 </div>
 </section>
