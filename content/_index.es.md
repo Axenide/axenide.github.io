@@ -181,7 +181,7 @@ Fui extraído con éxito, con los ojos bien abiertos, y mi primer pensamiento fu
 <article>
 {{ tile_embed() }}
 
-**👾 Estudio ingeniería en computación.**
+**👾 Estudio ingeniería informática.**
 
 Mi curiosidad por las computadoras me llevó a esto, combinando creatividad y tecnología.
 
