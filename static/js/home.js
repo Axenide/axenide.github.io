@@ -126,32 +126,59 @@ function initScrollSnap() {
 	if (!moreSection) return;
 
 	let isSnapScrolling = false;
+	let snapTarget = null; // 'hero' or 'content'
+	let snapTimeout = null;
+
+	// Helper to perform the scroll
+	const doScroll = (target) => {
+		if (target === 'content') {
+			moreSection.scrollIntoView({ behavior: "smooth" });
+		} else {
+			window.scrollTo({ top: 0, behavior: "smooth" });
+		}
+
+		snapTarget = target;
+		isSnapScrolling = true;
+
+		// Reset timeout to allow the animation to finish
+		if (snapTimeout) clearTimeout(snapTimeout);
+		snapTimeout = setTimeout(() => {
+			isSnapScrolling = false;
+			snapTarget = null;
+		}, 800);
+	};
 
 	window.addEventListener("wheel", (e) => {
-		if (isSnapScrolling) return;
-
 		const currentScroll = window.scrollY;
-		// 3.75rem approx 60px, fetching from CSS is safer
 		const scrollPadding = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 60;
 		const targetTop = moreSection.offsetTop - scrollPadding;
 		const tolerance = 50;
 
-		// 1. From Top -> Down to Content
-		// Trigger if we are close to the top (Hero section)
+		// 1. Animation in progress
+		if (isSnapScrolling) {
+			e.preventDefault(); // Critical: prevents browser from cancelling the smooth scroll
+
+			// Allow reversal if direction opposes current target
+			if (e.deltaY > 0 && snapTarget === 'hero') {
+				doScroll('content');
+			} else if (e.deltaY < 0 && snapTarget === 'content') {
+				doScroll('hero');
+			}
+			return;
+		}
+
+		// 2. Idle - Check triggers
+		
+		// From Top -> Down to Content
 		if (e.deltaY > 0 && currentScroll < 100) {
 			e.preventDefault();
-			isSnapScrolling = true;
-			moreSection.scrollIntoView({ behavior: "smooth" });
-			setTimeout(() => { isSnapScrolling = false; }, 800);
+			doScroll('content');
 		}
 		
-		// 2. From Content Top -> Up to Hero
-		// Trigger if we are aligned with the content top
+		// From Content Top -> Up to Hero
 		else if (e.deltaY < 0 && Math.abs(currentScroll - targetTop) < tolerance) {
 			e.preventDefault();
-			isSnapScrolling = true;
-			window.scrollTo({ top: 0, behavior: "smooth" });
-			setTimeout(() => { isSnapScrolling = false; }, 800);
+			doScroll('hero');
 		}
 	}, { passive: false });
 }
