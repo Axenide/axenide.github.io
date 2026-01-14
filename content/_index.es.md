@@ -229,7 +229,7 @@ Acogedor y nostálgico, como en los primeros días de Internet. Desde que me con
 
 Además, fue divertido mi propio botón de 88x31, ¡también deberías hacer uno! :)
 
-{{ badges(note_text="Mi 88x31 aquí") }}
+{{ badges(note_text="Mi 88x31 acá") }}
 
 </div>
 </section>
