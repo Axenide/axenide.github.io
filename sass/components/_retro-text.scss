@@ -20,8 +20,12 @@
   border: none !important;
   outline: none !important;
 
-  filter: drop-shadow(2px 0 0 white) drop-shadow(-2px 0 0 white)
-    drop-shadow(0 2px 0 white) drop-shadow(0 -2px 0 white);
+  /* Optimized: Using filter only for the outer white border unification */
+  filter: 
+    drop-shadow(2px 0 0 white) 
+    drop-shadow(-2px 0 0 white) 
+    drop-shadow(0 2px 0 white) 
+    drop-shadow(0 -2px 0 white);
 
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 
@@ -35,7 +39,7 @@
   color: transparent;
   z-index: 1;
   display: inline-block;
-
+  
   --wave-amplitude: -3px;
 
   transition: --wave-amplitude 0.5s ease;
@@ -44,6 +48,7 @@
   animation-delay: calc(0.1s * var(--i));
 
   &::after {
+    /* Layer 2 (Top): The Fill */
     content: attr(data-text);
     position: absolute;
     left: 0;
@@ -60,20 +65,27 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    
+    /* Ensure no stroke interferes with the fill */
+    -webkit-text-stroke: 0;
   }
 
   &::before {
+    /* Layer 2 (Middle): Black Border + Projected Shadow */
     content: attr(data-text);
     position: absolute;
     left: 0;
     top: 0;
-    z-index: -1;
-    color: black;
+    z-index: 5; /* Above base layer (white stroke), below fill (z-10) */
+    
+    color: transparent;
     -webkit-text-stroke: 8px black;
 
-    filter: drop-shadow(1px 1px 0 #000) drop-shadow(1px 1px 0 #000)
-      drop-shadow(1px 1px 0 #000) drop-shadow(1px 1px 0 #000)
-      drop-shadow(1px 1px 0 #000) drop-shadow(1px 1px 0 #000);
+    /* Optimized shadow: thickened to match stroke width */
+    text-shadow: 
+      0 12px 0 #000,
+      4px 12px 0 #000,
+      -4px 12px 0 #000;
   }
 }
 
