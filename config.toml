@@ -68,3 +68,9 @@ socials = [
 
 [extra.footer.es]
 copyright = "© $YEAR Axenide"
+
+[slugify]
+paths = "on"
+taxonomies = "on"
+anchors = "on"
+paths_keep_dates = false
