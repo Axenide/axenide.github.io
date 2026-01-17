@@ -276,4 +276,4 @@ Feel free to reach me out on any of these!
 </ul>
 </section>
 
-<img id="flutter" width="128" height="110" class="transparent no-hover" src="home/sans.webp" alt="Sans The Skeleton">
+<img id="flutter" width="128" height="110" class="transparent no-hover" src="/home/sans.webp" alt="Sans The Skeleton">

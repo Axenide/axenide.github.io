@@ -225,7 +225,6 @@ Además, fue divertido mi propio botón de 88x31, ¡también deberías hacer uno
 {{ badges(note_text="Mi 88x31 acá") }}
 
 </div>
-</section>
 
 ## En línea
 
@@ -275,5 +274,6 @@ Para mí son actualmente las <time id="clock">00:00</time> <small>(UTC-3)</small
 </li>
 <!-- Card End -->
 </ul>
+</section>
 
-<img id="flutter" width="128" height="110" class="transparent no-hover" src="home/sans.webp" alt="Sans El Esqueleto">
+<img id="flutter" width="128" height="110" class="transparent no-hover" src="/home/sans.webp" alt="Sans El Esqueleto">
