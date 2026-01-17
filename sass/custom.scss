@@ -235,29 +235,29 @@
   transition: transform var(--zoom-dur, 0.25s)
     cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transform-origin: center center;
-  
+
   /* Optimized Social Button Style */
   border-radius: 0;
   background-color: transparent;
   border: none;
   box-shadow: none;
   padding: 0;
-  
+
   /* Layout: ensure wrapper matches icon size tightly and square */
   display: inline-flex;
   align-items: center;
   justify-content: center;
   vertical-align: middle;
-  
+
   /* Force dimensions constraints */
   aspect-ratio: 1 / 1;
   /* Reset typography to prevent ghost spacing */
   line-height: 0;
   font-size: 0;
-  
+
   /* If width/height are auto (via style attr override), this ensures squareness */
   /* If width is set by style, aspect-ratio handles height */
-  
+
   /* Prevent flex interactions from distorting shape */
   flex-shrink: 0;
   align-self: center;
@@ -271,7 +271,7 @@
     transition: transform var(--rotate-dur, 0.5s) ease;
     transform-origin: center center;
     will-change: transform;
-    
+
     /* Removed all border/shadow effects as requested */
     box-shadow: none;
   }
@@ -552,24 +552,26 @@ html {
     align-items: center;
     text-decoration: none;
     color: inherit;
-    
+
     /* Layout & Spacing */
     position: relative; /* Required for z-index stacking */
     z-index: 1;
     backdrop-filter: blur(8px);
-    
+
     /* Smooth scaling transition */
-    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s ease;
+    transition:
+      transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+      background-color 0.2s ease;
 
     &:hover {
       transform: scale(1.15);
       z-index: 100; /* Ensure it floats above others when scaled */
-      
+
       img {
-          transform: rotate(-15deg);
+        transform: rotate(-15deg);
       }
     }
-    
+
     img {
       width: 24px !important;
       height: 24px !important;
@@ -580,6 +582,68 @@ html {
       box-shadow: none;
       border-radius: 0;
       transition: transform 0.3s ease; /* Smooth rotation */
+    }
+  }
+}
+
+/* Fluttershy Component */
+// Who's shy?
+#shy {
+  transition: var(--transition, 0.2s ease);
+  cursor: pointer;
+  box-shadow: none;
+  border-radius: 0;
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: rpx(1);
+
+  &:hover {
+    text-decoration-style: solid;
+  }
+
+  &:active {
+    transform: none;
+  }
+
+  &:disabled {
+    opacity: var(--disabled-opacity, 0.5);
+    cursor: not-allowed;
+  }
+}
+
+// Ah, that's who
+#flutter {
+  position: fixed;
+  transform: translateY(100%);
+  visibility: hidden;
+  z-index: 1;
+  margin: 0;
+  inset-block-end: 0;
+  inset-inline-end: 1rem;
+  width: rpx(23) * 4;
+  height: rpx(30) * 4;
+  image-rendering: pixelated;
+
+  @media only screen and (max-width: 480px) {
+    width: calc(rpx(23) * 2);
+    height: calc(rpx(30) * 2);
+  }
+
+  &.active {
+    animation: peek var(--transition-long, 0.5s ease);
+
+    @keyframes peek {
+      50%,
+      75% {
+        transform: translateY(0);
+        visibility: visible;
+        filter: var(--drop-shadow, drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1)));
+      }
     }
   }
 }

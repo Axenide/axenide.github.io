@@ -2,7 +2,7 @@
 title = "Axenide"
 insert_anchor_links = "left"
 [extra]
-scripts = ["js/home.js"]
+scripts = ["js/home.js", "js/shy.js"]
 no_header = true
 socials = [
     { name = "YouTube", url = "https://www.youtube.com/@Axenide", icon = "/social-icons/16x/youtube_icon_bg.png" },
@@ -158,7 +158,7 @@ I was extracted successfully, with my eyes wide open, and my first thought was "
 - Cartoons
 - Frutiger Aero
 - Pixel Art
-- Sans Undertale (literally me)
+- <button id="shy">Sans</button> (literally me)
 
 </article>
 
@@ -275,3 +275,5 @@ Feel free to reach me out on any of these!
 <!-- Card End -->
 </ul>
 </section>
+
+<img id="flutter" width="128" height="110" class="transparent no-hover" src="home/sans.webp" alt="Fluttershy with a wide grin on her face.">

@@ -2,7 +2,7 @@
 title = "Axenide"
 insert_anchor_links = "left"
 [extra]
-scripts = ["js/home.js"]
+scripts = ["js/home.js", "js/shy.js"]
 no_header = true
 socials = [
     { name = "YouTube", url = "https://www.youtube.com/@Axenide", icon = "/social-icons/16x/youtube_icon_bg.png" },
@@ -158,7 +158,7 @@ Fui extraído con éxito, con los ojos bien abiertos, y mi primer pensamiento fu
 - Dibujos animados
 - Frutiger Aero
 - Pixel Art
-- Sans Undertale (literalmente yo)
+- <button id="shy">Sans</button> (literalmente yo)
 
 </article>
 
@@ -275,3 +275,5 @@ Para mí son actualmente las <time id="clock">00:00</time> <small>(UTC-3)</small
 </li>
 <!-- Card End -->
 </ul>
+
+<img id="flutter" width="128" height="110" class="transparent no-hover" src="home/flutter.webp" alt="Fluttershy with a wide grin on her face.">
