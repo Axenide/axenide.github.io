@@ -276,4 +276,4 @@ Para mí son actualmente las <time id="clock">00:00</time> <small>(UTC-3)</small
 <!-- Card End -->
 </ul>
 
-<img id="flutter" width="128" height="110" class="transparent no-hover" src="home/flutter.webp" alt="Fluttershy with a wide grin on her face.">
+<img id="flutter" width="128" height="110" class="transparent no-hover" src="home/sans.webp" alt="Sans El Esqueleto">
