@@ -81,10 +81,10 @@
                 [1, 2, 3].forEach(i => {
                     const f = document.createElementNS("http://www.w3.org/2000/svg", "filter");
                     f.id = `${prefix}${i}`;
-                    f.setAttribute("x", "-20%");
-                    f.setAttribute("y", "-20%");
-                    f.setAttribute("width", "140%");
-                    f.setAttribute("height", "140%");
+                    f.setAttribute("x", "-50%");
+                    f.setAttribute("y", "-50%");
+                    f.setAttribute("width", "200%");
+                    f.setAttribute("height", "200%");
                     
                     const turb = document.createElementNS("http://www.w3.org/2000/svg", "feTurbulence");
                     turb.setAttribute("type", "fractalNoise");
@@ -107,7 +107,7 @@
             };
 
             createBoilFilters('boil', 3);
-            createBoilFilters('boilText', 1.5);
+            createBoilFilters('boilText', 3);
 
             svg.appendChild(defs);
             document.body.appendChild(svg);

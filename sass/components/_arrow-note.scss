@@ -45,15 +45,15 @@
 }
 
 @keyframes text-boil {
-  0% { filter: url(#boilText1); }
-  33% { filter: url(#boilText2); }
-  66% { filter: url(#boilText3); }
-  100% { filter: url(#boilText1); }
+  0% { filter: url(#boilText1); transform: translate3d(0, 0, 0); }
+  33% { filter: url(#boilText2); transform: translate3d(0.5px, 0, 0); }
+  66% { filter: url(#boilText3); transform: translate3d(0, 0.5px, 0); }
+  100% { filter: url(#boilText1); transform: translate3d(0, 0, 0); }
 }
 
 .arrow-note {
   animation: text-boil 0.3s infinite steps(1);
   /* Fix for filter rendering clipping */
-  padding: 2px;
-  margin: -2px;
+  padding: 4px;
+  margin: -4px;
 }
